@@ -1,42 +1,55 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar_color {
+  background-color: #EC6E70;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar_link {
+  color: white !important;
+  font-weight: bold  !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navbar_username {
+  color: white;
+  font-weight: bold;
 }
 
-.card {
-  padding: 2em;
+.login_button {
+  background-color: #EC6E70;
+  color: white;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+}
+.signup_button, .logout_button {
+  background-color: white;
+  color: #EC6E70;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
 }
 
-.read-the-docs {
-  color: #888;
+.navbar_form {
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.navbar_input {
+  border: none;
+  flex: 3;
+}
+
+.navbar_button {
+  background-color: #F68D8F;
+  color: white;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
 }
