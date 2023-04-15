@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
 
-function navbar() {
+function navbar({onShow}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -54,7 +54,7 @@ function navbar() {
           ) : (
             <>
               <button className="login_button" onClick={handleLogin}>Login</button>
-              <button className="signup_button">Sign Up</button>
+              <button className="signup_button" onClick={onShow}>Sign Up</button>
             </>
           )}
         </Navbar.Collapse>

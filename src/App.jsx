@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Navbar from './Navbar'
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import Navbar from './Navbar'
+import Auth from './Auth';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  //handle showing auth modal
+  const [authModalShow, setauthModalShow] = useState(false);
+
+  const handleAuthModalClose = () => setauthModalShow(false);
+  const handleAuthModalShow = () => setauthModalShow(true);
+
 
   return (
     <div>
-        <Navbar/>
+        <Navbar onShow={handleAuthModalShow}/>
+        <Auth show={authModalShow} onHide={handleAuthModalClose}/>
     </div>
   )
 }
