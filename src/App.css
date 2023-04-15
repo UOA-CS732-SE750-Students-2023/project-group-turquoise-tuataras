@@ -1,3 +1,55 @@
 #root {
   margin: 0 auto;
 }
+
+.navbar_color {
+  background-color: #EC6E70;
+}
+
+.navbar_link {
+  color: white !important;
+  font-weight: bold  !important;
+}
+
+.navbar_username {
+  color: white;
+  font-weight: bold;
+}
+
+.login_button {
+  background-color: #EC6E70;
+  color: white;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+}
+.signup_button, .logout_button {
+  background-color: white;
+  color: #EC6E70;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+}
+
+.navbar_form {
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.navbar_input {
+  border: none;
+  flex: 3;
+}
+
+.navbar_button {
+  background-color: #F68D8F;
+  color: white;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+}
