@@ -8,4 +8,7 @@
 <h2>Member</h2>
 Benjamin Goh, Cameron Nathan, Yasith Udagedara, Yunqi Zheng, Hok Lai Frankie Yu, Paul Lan
 <h1>Introduction</h1>
-Some introduction here...
+This is Turqoise Tuataras' SE750 Project
+
+### Environment Variables
+MONGODB_CONNECTION_STRING=mongodb://127.0.0.1:27017/planmyplate
