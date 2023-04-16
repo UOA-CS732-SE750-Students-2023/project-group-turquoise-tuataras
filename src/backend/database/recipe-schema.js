@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const recipeSchema = new Schema({
-    ingredients: [{ingredient: String}],
-    steps: [{step: String}],
+    name: String,
+    ingredients: [String],
+    steps: [String]
 });
 
-const Recipe = mongoose.model('RecipeEntry', recipeSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema);
 
 export { Recipe };
