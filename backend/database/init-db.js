@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { User } from './user-schema';
 import { Recipe } from './recipe-schema';
 import { ScheduledRecipe } from './scheduled-recipe-schema';
+import recipe from '../database/init-recipe.json' assert { type: "json" };
 
 async function run() {
     console.log(`Connecting to database at ${process.env.MONGODB_CONNECTION_STRING}...`);
@@ -20,21 +21,31 @@ async function run() {
         password: '123'
     });
 
-    const baconAndEggs = new Recipe({
-        name: "Bacon and Eggs",
-        ingredients: ["bacon", "eggs"],
-        steps: ["fry bacon", "fry eggs"]
+    const initRecipe = new Recipe({
+        spoonacularId: recipe.spoonacularId,
+        types: recipe.types,
+        ingredients: recipe.ingredients,
+        title: recipe.title,
+        image: recipe.image,
+        readyInMinutes: recipe.readyInMinutes,
+        servings: recipe.servings,
+        nutrition: recipe.nutrition,
+        summary: recipe.summary,
+        cuisines: recipe.cuisines,
+        instructions: recipe.instructions
     });
 
+    console.log(initRecipe);
 
-    rootUser.savedRecipes.push(baconAndEggs);
+
+    rootUser.savedRecipes.push(initRecipe);
     rootUser.save;
 
-    await Recipe.create(baconAndEggs);
+    await Recipe.create(initRecipe);
     await ScheduledRecipe.create(
         new ScheduledRecipe({
             dateTime: '2025-10-06',
-            recipe: baconAndEggs,
+            recipe: initRecipe,
             user: rootUser
         })
     );

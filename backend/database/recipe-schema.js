@@ -1,9 +1,17 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const recipeSchema = new Schema({
-    name: String,
-    ingredients: [String],
-    steps: [String]
+    spoonacularId: Number,
+    types: Object,
+    ingredients: [Object],
+    title: String,
+    image: String,
+    readyInMinutes: Number,
+    servings: Number,
+    nutrition: Object,
+    summary: String,
+    cuisines: [String],
+    instructions: [String]
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
