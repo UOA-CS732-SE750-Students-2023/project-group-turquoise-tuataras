@@ -1,23 +1,22 @@
 import express from "express";
 import { User } from "../database/user-schema";
 import { Recipe } from '../database/recipe-schema';
-import { Schedule } from '../database/schedule-schema';
+import { ScheduledRecipe } from "../database/scheduled-recipe-schema";
 
 const router = express.Router();
 
 router.get('/users', async (req, res) => {
     const users = await User.find({})
-    .populate('savedRecipes').populate('mealSchedule')
-    const filteredUsers = users.map(({ id, username, savedRecipes, mealSchedule }) => ({ id, username, savedRecipes, mealSchedule }));
+    .populate('savedRecipes')
+    const filteredUsers = users.map(({ id, username, savedRecipes }) => ({ id, username, savedRecipes }));
     res.json(filteredUsers);
 });
 
-router.get('/users/:name', async (req, res) => {
-    const { name } = req.params;
 
-    const user = await User.findOne()
-    .populate('savedRecipes').populate('mealSchedule');
-    if (user) return res.json(user);
+router.get('/scheduledRecipes', async (req, res) => {
+    const recipes = await ScheduledRecipe.find({})
+    .populate('recipe').populate('user');
+    if (recipes) return res.json(recipes);
     return res.sendStatus(404);
 });
 
