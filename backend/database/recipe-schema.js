@@ -11,7 +11,9 @@ const recipeSchema = new Schema({
     nutrition: Object,
     summary: String,
     cuisines: [String],
-    instructions: [String]
+    instructions: [String],
+    rating: Object,
+    comments: [Object]
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);

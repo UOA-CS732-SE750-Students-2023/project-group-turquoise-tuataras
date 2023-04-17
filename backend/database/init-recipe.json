@@ -271,5 +271,19 @@
       "Once the buns are toasted, slather them with pesto.",
       "Layer arugula leaves, tomato slices and a patty on each bun. Top and serve!",
       "Serves 4."
-   ]
+   ],
+   "rating":{ 
+      "rating":4.5,
+      "numberOfRatings":5
+   },
+   "comments":[
+      {
+         "username": "Bob",
+         "words": "I love this recipe!!!"
+      },
+      {
+         "username": "Ben",
+         "words": "This is aight"
+      }
+   ]   
 }

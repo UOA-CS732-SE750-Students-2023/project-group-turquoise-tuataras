@@ -32,7 +32,9 @@ async function run() {
         nutrition: recipe.nutrition,
         summary: recipe.summary,
         cuisines: recipe.cuisines,
-        instructions: recipe.instructions
+        instructions: recipe.instructions,
+        rating: recipe.rating,
+        comments: recipe.comments
     });
 
     console.log(initRecipe);
