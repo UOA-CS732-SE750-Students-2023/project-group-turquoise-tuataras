@@ -37,12 +37,6 @@ async function run() {
         comments: recipe.comments
     });
 
-    console.log(initRecipe);
-
-
-    rootUser.savedRecipes.push(initRecipe);
-    rootUser.save;
-
     await Recipe.create(initRecipe);
     await ScheduledRecipe.create(
         new ScheduledRecipe({
@@ -51,6 +45,11 @@ async function run() {
             user: rootUser
         })
     );
+
+    rootUser.savedRecipes.push(initRecipe);
+    const ratedRecipe = {spoonacularId:recipe.spoonacularId, rating:5};
+    rootUser.ratedRecipes.push(ratedRecipe);
+    rootUser.save;
     await User.create(rootUser);
 
     await mongoose.disconnect();

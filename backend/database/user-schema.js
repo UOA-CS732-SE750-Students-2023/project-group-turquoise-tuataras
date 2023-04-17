@@ -4,6 +4,7 @@ const userSchema = new Schema({
     username: {type: String, unique: true},
     password: {type: String, required: true},
     savedRecipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
+    ratedRecipes: [{spoonacularId: String, rating: Number}]
 });
 
 const User = mongoose.model('User', userSchema);
