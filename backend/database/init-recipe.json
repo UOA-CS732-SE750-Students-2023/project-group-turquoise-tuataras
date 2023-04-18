@@ -279,11 +279,11 @@
    "comments":[
       {
          "username": "Bob",
-         "words": "I love this recipe!!!"
+         "comment": "I love this recipe!!!"
       },
       {
          "username": "Ben",
-         "words": "This is aight"
+         "comment": "This is aight"
       }
    ]   
 }

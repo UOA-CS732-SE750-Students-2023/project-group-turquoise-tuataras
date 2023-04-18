@@ -10,5 +10,20 @@ Benjamin Goh, Cameron Nathan, Yasith Udagedara, Yunqi Zheng, Hok Lai Frankie Yu,
 <h1>Introduction</h1>
 This is Turqoise Tuataras' SE750 Project
 
+### Setting Up the Server
+1. Change directory into backend
+2. 
+```
+npm install
+```
+3. 
+```
+npm run init-db
+```
+4. 
+```
+npm start
+```
+
 ### Environment Variables
 MONGODB_CONNECTION_STRING=mongodb://127.0.0.1:27017/planmyplate

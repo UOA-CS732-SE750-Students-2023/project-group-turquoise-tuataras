@@ -3,7 +3,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 import { User } from './user-schema';
 import { Recipe } from './recipe-schema';
-import { ScheduledRecipe } from './scheduled-recipe-schema';
+import { DayMealPlan } from './day-meal-plan-schema';
 import recipe from '../database/init-recipe.json' assert { type: "json" };
 
 async function run() {
@@ -12,7 +12,7 @@ async function run() {
 
     console.log('Clearing db...');
     await User.deleteMany({});
-    await ScheduledRecipe.deleteMany({});
+    await DayMealPlan.deleteMany({});
     await Recipe.deleteMany({});
 
     console.log('Adding data...');
@@ -38,8 +38,8 @@ async function run() {
     });
 
     await Recipe.create(initRecipe);
-    await ScheduledRecipe.create(
-        new ScheduledRecipe({
+    await DayMealPlan.create(
+        new DayMealPlan({
             dateTime: '2025-10-06',
             recipe: initRecipe,
             user: rootUser
