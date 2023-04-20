@@ -7,6 +7,17 @@ async function createDayMealPlan(dayMealPlan) {
     return dbDayMealPlan
 }
 
+async function updateDayMealPlan(dayMealPlan) {
+    try {
+        const dbDayMealPlan = await DayMealPlan.findOneAndUpdate({_id: dayMealPlan._id}, dayMealPlan);
+        return !!dbDayMealPlan;
+    } catch (error) {
+        return false
+    }
+    
+}
+
 export {
-    createDayMealPlan
+    createDayMealPlan,
+    updateDayMealPlan
 }
