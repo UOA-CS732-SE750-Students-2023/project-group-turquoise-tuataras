@@ -2,7 +2,7 @@ import axios from "axios";
 import * as dotenv from "dotenv";
 import * as fs from "fs";
 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 const SPOONACULAR_URL = process.env.SPOONACULAR_URL ?? '';
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY ?? '';
 
