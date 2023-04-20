@@ -17,7 +17,12 @@ async function updateDayMealPlan(dayMealPlan) {
     
 }
 
+async function deleteDayMealPlan(id) {
+    await DayMealPlan.deleteOne({ _id: id})
+}
+
 export {
     createDayMealPlan,
-    updateDayMealPlan
+    updateDayMealPlan,
+    deleteDayMealPlan
 }
