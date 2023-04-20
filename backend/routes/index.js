@@ -49,4 +49,20 @@ router.post('/recipe/:spoonacularId/rating', async (req, res) => {
     }
 });
 
+router.post('/users/:username/intolerances', async (req, res) => {
+    const { username } = req.params;
+    const intolerances = req.body;
+    const user = await User.findOne({'username': username});
+    if (user){
+        user.intolerances = intolerances;
+        await user.save();
+        res.status(201).json({
+            "message": "Intolerances updated"
+        });
+    }
+    else{
+        res.status(404).json({"message": "User with username " + username + " not found"});
+    }
+});
+
 export default router;
