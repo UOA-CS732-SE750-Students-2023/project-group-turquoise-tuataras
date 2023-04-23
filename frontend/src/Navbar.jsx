@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
 
-function navbar({onShow}) {
+function NavBar({onShow}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -16,6 +16,15 @@ function navbar({onShow}) {
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
+
+  const handleSearch = (event) => {
+    event.preventDefault(); // prevent form from submitting and refreshing the page
+    const searchValue = event.target.elements.search.value.trim(); // get search input value
+    if (searchValue) { // if search input value is not empty
+      const searchUrl = `/search?search=${encodeURIComponent(searchValue)}`; // construct search URL with encoded search value
+      window.location.href = searchUrl; // redirect to search URL
+    }
+  }
 
   return (
     <Navbar className='navbar_color' expand="lg">
@@ -28,8 +37,8 @@ function navbar({onShow}) {
             <Nav.Link href="#link" className="navbar_link">Meal Schedule</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <form className="navbar_form">
-          <input type="text" placeholder="Search" className="navbar_input" />
+        <form className="navbar_form" onSubmit={handleSearch}>
+          <input type="text" name="search" placeholder="Search" className="navbar_input" />
           <button type="submit" className="navbar_button">Search</button>
         </form>
         <Navbar.Collapse className="justify-content-end">
@@ -63,4 +72,4 @@ function navbar({onShow}) {
   );
 }
 
-export default navbar;
+export default NavBar;
