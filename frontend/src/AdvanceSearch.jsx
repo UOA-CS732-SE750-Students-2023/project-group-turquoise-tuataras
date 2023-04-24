@@ -1,11 +1,17 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+
 
 import { cuisines } from './cuisines';
 import { diets } from './diets';
@@ -16,10 +22,29 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const animatedComponents = makeAnimated();
 
 function AdvanceSearch() {
+  const [cardComponents, setCardComponents] = useState([]);
+
   const [selectedCuisines, setSelectedCuisines] = useState([]);
   const [selectedDiets, setSelectedDiets] = useState([]);
 
   const [searchResults, setSearchResults] = useState({});
+
+  useEffect(() => {
+    if (Array.isArray(searchResults.results)) {
+      const recipeCards = searchResults.results.map((recipe)=>(
+        <Col key={recipe.id}>
+        <Card style={{ width: '18rem'}} key={recipe.id}>
+          <Card.Img variant="top" src={recipe.image} height="160rem"/>
+          <Card.Body>
+            <Card.Title>{recipe.title}</Card.Title>
+            <Button variant="primary" href={`/recipe/${recipe.id}`}>View</Button>
+          </Card.Body>
+        </Card>
+        </Col>
+      ));
+      setCardComponents(recipeCards);
+    }
+  }, [searchResults]);
 
   const handleSearch = async () => {
     const inputText = document.querySelector('[aria-label="Complex Search Bar"]').value;
@@ -30,11 +55,11 @@ function AdvanceSearch() {
       inputText,
       selectedMealType,
     };
-    console.log(data);
+    // console.log(data);
     try {
       const response = await axios.get(`${API_BASE_URL}/api/complexSearch`, data);
+      // const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=1414f1ede1c14cc3b2f498b8cfad8239&query=chicken');
       setSearchResults(response.data);
-      console.log(searchResults);
     } catch (err) {
       console.error(err);
     }
@@ -86,6 +111,11 @@ function AdvanceSearch() {
           placeholder="Select Diets"
           value={diets.filter((option) => selectedDiets.includes(option.value))}
         />
+      </div>
+      <div className='container'>
+        <Row xs={1} md={4} className="g-4">
+          {cardComponents}
+        </Row>
       </div>
     </Form>
   );

@@ -29,12 +29,13 @@ function NavBar({onShow}) {
   return (
     <Navbar className='navbar_color' expand="lg">
       <Container>
-        <Navbar.Brand href="#home"><img src={icon} width="200"></img></Navbar.Brand>
+        <Navbar.Brand href="/"><img src={icon} width="200"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className="navbar_link">Saved Recipes</Nav.Link>
-            <Nav.Link href="#link" className="navbar_link">Meal Schedule</Nav.Link>
+            <Nav.Link href="saved-recipes" className="navbar_link">Saved Recipes</Nav.Link>
+            <Nav.Link href="meal-schedule" className="navbar_link">Meal Schedule</Nav.Link>
+            <Nav.Link href="advance-search" className="navbar_link">Adcance Search</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <form className="navbar_form" onSubmit={handleSearch}>
