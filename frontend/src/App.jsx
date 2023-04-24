@@ -5,6 +5,7 @@ import './App.css'
 import Navbar from './Navbar'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from "./HomePage.jsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
   return (
     <div>
         <Navbar/>
+        <HomePage/>
     </div>
   )
 }

@@ -1,0 +1,19 @@
+.navbar_button {
+    width: 18%;
+    background-color: #F68D8F;
+    color: white;
+    border-radius: 15px;
+    margin-left: 1%;
+    padding: 5px 10px;
+    border: none;
+}
+.navbar_input {
+    width: 80%;
+    border: none;
+    flex: 3;
+}
+.navbar_form {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
