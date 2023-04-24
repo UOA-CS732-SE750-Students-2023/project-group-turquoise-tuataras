@@ -1,5 +1,17 @@
 import { DayMealPlan } from './day-meal-plan-schema'
 
+async function getMealPlanByUserAndCurrentWeek(userId, start, end) {
+    const mealPlan = await DayMealPlan.find({
+        user: userId,
+        dateTime: {
+            $gte: start,
+            $lte: end
+        }
+    }).populate('recipe');
+
+    return mealPlan
+}
+
 async function createDayMealPlan(dayMealPlan) {
 
     const dbDayMealPlan = new DayMealPlan(dayMealPlan);
@@ -22,6 +34,7 @@ async function deleteDayMealPlan(id) {
 }
 
 export {
+    getMealPlanByUserAndCurrentWeek,
     createDayMealPlan,
     updateDayMealPlan,
     deleteDayMealPlan
