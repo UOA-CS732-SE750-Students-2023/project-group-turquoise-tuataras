@@ -1,0 +1,74 @@
+.navbar_button {
+    background: #EC6E70;
+    border: 1px solid #EC6E70;
+    border-radius: 15px;
+}
+
+.navbar_button:hover {
+    background: #F68D8F;
+    border-color: #F68D8F;
+}
+
+.navbar_button_group {
+    float: right;
+    margin-left: 10px;
+}
+
+.navbar_input {
+    width: 450px;
+    margin-top: 2px;
+    height: 35px;
+    border: none;
+    flex: 3;
+}
+
+.navbar_form {
+    height: 50px;
+    line-height: 30px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.home_search_box {
+    width: 100%;
+    height: var(--search_height);
+    background: url("./images/homePage.jpg");
+    background-size: cover;
+    margin-bottom: 50px;
+}
+
+.home_search_box_content {
+    position: relative;
+    top: var(--search_content_position);
+    width: fit-content;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.home_search_icon {
+    position: absolute;
+    background: url("./src/images/homeIcon.png");
+    background-size: cover;
+    width: 250px;
+    height: 200px;
+    top: -260px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 10px white solid;
+    border-radius: 15px;
+}
+
+.home_interval {
+    position: relative;
+    border-top: 3px solid lightgrey;
+    width: 85%;
+    left: 7.5%;
+}
+.home_bottom {
+    height: 200px;
+    margin-top: 100px;
+    background: #EC6E70;
+}

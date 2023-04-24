@@ -1,0 +1,40 @@
+.card_group {
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+.card_group_title {
+    position: relative;
+    left: 5%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.card_group_title_animation {
+    position: absolute;
+    top: -15px;
+    left: 5%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #EC6E70;
+    z-index: 999;
+}
+
+.card_group_items {
+    width: 100%;
+    height: 520px;
+    text-align: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.card_group_card {
+    width: 16rem;
+    display: inline-block;
+    margin: 1rem;
+}
+
+.card_group_card:hover {
+    background: lightgrey;
+}
