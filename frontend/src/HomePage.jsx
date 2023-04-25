@@ -1,27 +1,47 @@
-import {Carousel} from "react-bootstrap";
-import React from "react";
+import {ButtonGroup, Carousel} from "react-bootstrap";
+import React, {useEffect, useRef} from "react";
 import style from "./HomePage.module.css";
+import * as basicScroll from "basicscroll";
+import Button from "react-bootstrap/Button";
+import HomeCardGroup from "./HomeCardGroup.jsx";
 
 
 function homePage() {
-
+    const instance = basicScroll.create({
+        from: '0px',
+        to: '300px',
+        props: {
+            '--search_content_position': {
+                from: "45vh",
+                to: "10vh"
+            },
+            '--search_height': {
+                from: "100vh",
+                to: "30vh"
+            }
+        }
+    });
+    instance.start();
     return (
         <div>
-            <div id="Search" style={{width:"100%",height:"500px",background:"red"}}>
-                <div style={{position:"relative",top:"230px",width:"60%",left:"0",right:"0",margin:"auto"}}>
+            <div id="Search" className={style.home_search_box}>
+                <div className={style.home_search_box_content}>
                     <form className={style.navbar_form}>
                         <input type="text" placeholder="Search" className={style.navbar_input}/>
-                        <button type="submit" className={style.navbar_button}>Search</button>
+                        <ButtonGroup className={style.navbar_button_group}>
+                            <Button type={"submit"} className={style.navbar_button}>Search</Button>
+                            <Button type={"submit"} className={style.navbar_button}>Advance</Button>
+                        </ButtonGroup>
                     </form>
                 </div>
             </div>
-            <div id="Carousel" style={{width:"100%",height:"400px",background:"black"}}>
+            <div id="Carousel" className={style.home_carousel}>
                 <Carousel>
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
                             src="holder.js/800x400?text=First slide&bg=373940"
-                            style={{width:"100%",height:"400px"}}
+                            style={{width: "100%", height: "500px"}}
                             alt="First slide"
                         />
                         <Carousel.Caption>
@@ -33,7 +53,7 @@ function homePage() {
                         <img
                             className="d-block w-100"
                             src="holder.js/800x400?text=First slide&bg=373940"
-                            style={{width:"100%",height:"400px"}}
+                            style={{width: "100%", height: "500px"}}
                             alt="First slide"
                         />
                         <Carousel.Caption>
@@ -43,7 +63,10 @@ function homePage() {
                     </Carousel.Item>
                 </Carousel>
             </div>
-            <div id="Items" style={{width:"100%",height:"500px",background:"red"}}></div>
+            <HomeCardGroup type = {"breakfast"}/>
+            <HomeCardGroup type = {"soup"}/>
+            <HomeCardGroup type = {"chicken"}/>
+            <div id="Bottom" style={{height:"200px",marginTop:"100px",background:"#EC6E70"}}></div>
         </div>
     );
 }

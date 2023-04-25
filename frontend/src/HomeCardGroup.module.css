@@ -1,0 +1,27 @@
+.card_group{
+    position: relative;
+    left: 5%;
+    width: 90%;
+    border-Top: 3px solid lightgrey;
+}
+.card_group_title{
+    position: relative;
+    font-size: 35px;
+    left: 5%;
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+.card_group_items{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.card_group_card{
+    width: 16rem;
+    display: inline-block;
+    margin: 1rem;
+}
+.card_group_card:hover{
+    background: lightgrey;
+}
