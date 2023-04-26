@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
 })
 
 // Update day meal plan
-router.put('/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     const { id } = req.params;
     const dayMealPlan = req.body;
     dayMealPlan._id = id;
