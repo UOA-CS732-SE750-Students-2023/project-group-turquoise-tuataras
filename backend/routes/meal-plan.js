@@ -11,7 +11,7 @@ const router = express.Router();
 // Todo: Implement JWT so that userId in req body isn't needed
 
 // Retrieve the user's meal plan for the current week
-router.get('/current-week', async (req, res) => {
+router.get('/', async (req, res) => {
     const { userId } = req.body;
 
     const startOfWeek = moment().utc().isoWeekday(1).startOf('day');
