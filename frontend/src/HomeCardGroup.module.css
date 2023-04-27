@@ -38,3 +38,9 @@
 .card_group_card:hover {
     background: lightgrey;
 }
+
+.card_group_error {
+    height: 600px;
+    line-height: 600px;
+    text-align: center;
+}

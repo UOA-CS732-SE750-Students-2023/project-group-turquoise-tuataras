@@ -33,8 +33,6 @@
 .home_search_box {
     width: 100%;
     height: var(--search_height);
-    background: url("./images/homePage.jpg");
-    background-size: cover;
     margin-bottom: 50px;
 }
 
@@ -49,15 +47,15 @@
 
 .home_search_icon {
     position: absolute;
-    background: url("./src/images/homeIcon.png");
+    background: #EC6E70 url("images/icon_vertical.png");
     background-size: cover;
-    width: 250px;
+    width: 450px;
     height: 200px;
     top: -260px;
     left: 0;
     right: 0;
     margin: auto;
-    border: 10px white solid;
+    border: 5px white solid;
     border-radius: 15px;
 }
 
@@ -67,8 +65,57 @@
     width: 85%;
     left: 7.5%;
 }
+
 .home_bottom {
-    height: 200px;
-    margin-top: 100px;
+    height: 350px;
+    margin-top: 50px;
     background: #EC6E70;
+}
+
+.home_bottom_title {
+    position: absolute;
+    height: 60px;
+    left: 15%;
+    margin-top: 50px;
+    background-color: #EC6E70;
+}
+
+.home_bottom_title_icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: url("images/mail_icon.png");
+    background-size: cover;
+    display: inline-block;
+}
+
+.home_bottom_title_text {
+    position: relative;
+    height: 60px;
+    left: 20px;
+    line-height: 60px;
+    font-size: 35px;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+}
+
+.home_bottom_content {
+    position: absolute;
+    height: 200px;
+    left: 15%;
+    margin-top: 110px;
+    display: inline-block;
+    background-color: #EC6E70;
+}
+
+.home_bottom_icon {
+    position: absolute;
+    height: 160px;
+    width: 360px;
+    right: 15%;
+    margin-top: 100px;
+    background: url("images/icon_vertical.png");
+    background-size: cover;
+    z-index: 0;
 }

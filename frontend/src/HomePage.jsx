@@ -3,11 +3,31 @@ import style from "./HomePage.module.css";
 import * as basicScroll from "basicscroll";
 import Button from "react-bootstrap/Button";
 import HomeCardGroup from "./HomeCardGroup.jsx";
-import React, {useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 
 function homePage() {
-    //
+    // --check window width--
+    const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowWidth(getWindowWidth());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    function getWindowWidth() {
+        return window.innerWidth;
+    }
+
+    // --generate a random number, decide the search background--
+    let random = Math.floor(Math.random() * 3) + 1;
+    // --search route--
+    // search value
     const searchInfo = useRef('');
     // search
     const search = () => {
@@ -26,7 +46,7 @@ function homePage() {
             window.location.href = "./advance_search?value=" + info;
         }
     }
-    // according to time, recommend breakfast/lunch/dinner
+    // --according to time, recommend breakfast/lunch/dinner--
     let time = new Date().getHours();
     if (time > 3) {
         if (time > 9) {
@@ -41,6 +61,7 @@ function homePage() {
     } else {
         time = "Dinner";
     }
+    // --animation--
     // animation for search box
     basicScroll.create({
         from: '0px', to: '300px', props: {
@@ -108,7 +129,10 @@ function homePage() {
         }
     }).start();
     return (<div>
-        <div id="Search" className={style.home_search_box}>
+        <div id="Search" className={style.home_search_box}
+             style={{
+                 backgroundImage: "url(./src/images/homePageBackgrounds/" + random + ".png)", backgroundSize: "cover"
+             }}>
             <div className={style.home_search_box_content}>
                 <div className={style.navbar_form}>
                     <div className={style.home_search_icon}></div>
@@ -129,7 +153,23 @@ function homePage() {
         <HomeCardGroup type={"Soup"} index={3}/>
         <div className={style.home_interval}></div>
         <HomeCardGroup type={"Salad"} index={4}/>
-        <div id="Bottom" className={style.home_bottom}></div>
+        <div id="Bottom" className={style.home_bottom}>
+            {windowWidth > 1100 && <div className={style.home_bottom_icon}></div>}
+            <div className={style.home_bottom_title}>
+                <div className={style.home_bottom_title_icon}></div>
+                <div className={style.home_bottom_title_text}>Contact us</div>
+            </div>
+            <div className={style.home_bottom_content}>
+                <ul style={{listStyle: "none", padding: 0, color: "white", fontSize: "20px"}}>
+                    <li>Benjamin Goh: xxx@aucklanduni.ac.nz</li>
+                    <li>Cameron Nathan: xxx@aucklanduni.ac.nz</li>
+                    <li>Yasith Udagedara: xxx@aucklanduni.ac.nz</li>
+                    <li>Yunqi Zheng: yzhe583@aucklanduni.ac.nz</li>
+                    <li>Hok Lai Frankie Yu: xxx@aucklanduni.ac.nz</li>
+                    <li>Paul Lan: xxx@aucklanduni.ac.nz</li>
+                </ul>
+            </div>
+        </div>
     </div>);
 }
 
