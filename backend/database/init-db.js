@@ -41,7 +41,7 @@ async function run() {
     await DayMealPlan.create(
         new DayMealPlan({
             dateTime: '2025-10-06',
-            recipe: initRecipe,
+            recipe: [initRecipe],
             user: rootUser
         })
     );
