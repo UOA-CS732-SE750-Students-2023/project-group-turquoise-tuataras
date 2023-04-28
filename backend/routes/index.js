@@ -49,7 +49,7 @@ router.post('/recipe/:spoonacularId/rating', async (req, res) => {
     }
 });
 
-router.post('/users/:username/intolerances', async (req, res) => {
+router.put('/users/:username/intolerances', async (req, res) => {
     const { username } = req.params;
     const intolerances = req.body;
     const user = await User.findOne({'username': username});
