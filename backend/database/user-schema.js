@@ -5,20 +5,7 @@ const userSchema = new Schema({
     password: {type: String, required: true},
     savedRecipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
     ratedRecipes: [{spoonacularId: String, rating: Number}],
-    intolerances:{
-        glutenFree: {type: Boolean, default: false},
-        dairyFree: {type: Boolean, default: false},
-        peanutAllergy: {type: Boolean, default: false},
-        soyAllergy: {type: Boolean, default: false},
-        eggAllergy: {type: Boolean, default: false},
-        seafoodAllergy: {type: Boolean, default: false},
-        sulfiteAllergy: {type: Boolean, default: false},
-        sesameAllergy: {type: Boolean, default: false},
-        treeNutAllergy: {type: Boolean, default: false},
-        grainAllergy: {type: Boolean, default: false},
-        shellfishAllergy: {type: Boolean, default: false},
-        wheatAllergy: {type: Boolean, default: false}
-    }
+    intolerances: [{type: String}]
 });
 
 const User = mongoose.model('User', userSchema);
