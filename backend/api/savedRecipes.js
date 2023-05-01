@@ -1,7 +1,6 @@
 import express from "express";
 import {User} from "../database/user-schema.js";
-import {Recipe} from "../database/recipe-schema.js";
-import {getRecipe} from "../spoonacular/queries.js";
+import {createRecipe, getRecipeById} from "../database/recipe-dao.js";
 
 const router = express.Router();
 
@@ -22,24 +21,12 @@ router.post("/users/:userId/savedRecipes/:recipeId", async (req, res) => {
     const userId = req.params.userId;
     const spoonacularRecipeId = req.params.recipeId;
 
-    let recipe = await Recipe
-        .findOne({spoonacularId: spoonacularRecipeId});
+    let recipe = await getRecipeById(spoonacularRecipeId);
 
     if (recipe === null) {
-        const newRecipe = new Recipe({
-            ...getRecipe(spoonacularRecipeId),
-            rating: {
-                rating: 0,
-                numberOfRatings: 0
-            },
-            comments: []
-        });
-        newRecipe.save().then((newRecipe) => {
-            recipe = newRecipe;
-        });
+        recipe = await createRecipe(spoonacularRecipeId);
     }
-    const user = await User
-        .findById(userId);
+    const user = await User.findById(userId);
 
     if(user) {
         user.savedRecipes.push(recipe);
@@ -55,11 +42,9 @@ router.delete("/users/:userId/savedRecipes/:recipeId", async (req, res) => {
     const userId = req.params.userId;
     const spoonacularRecipeId = req.params.recipeId;
 
-    const recipe = await Recipe
-        .findOne({spoonacularId: spoonacularRecipeId});
+    const recipe = await getRecipeById(spoonacularRecipeId);
 
-    const user = await User
-        .findById(userId);
+    const user = await User.findById(userId);
 
     if(user) {
         user.savedRecipes.pull(recipe);
