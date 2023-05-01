@@ -21,8 +21,23 @@ async function createDayMealPlan(dayMealPlan) {
 
 async function updateDayMealPlan(dayMealPlan) {
     try {
-        const dbDayMealPlan = await DayMealPlan.findOneAndUpdate({_id: dayMealPlan._id}, dayMealPlan);
-        return !!dbDayMealPlan;
+        const filter = { _id: dayMealPlan._id };
+        const update = {};
+
+        if (dayMealPlan.dateTime) {
+            update.dateTime = dayMealPlan.dateTime;
+        }
+
+        if (dayMealPlan.user) {
+            update.user = dayMealPlan.user;
+        }
+
+        if (dayMealPlan.recipe && dayMealPlan.recipe.length > 0){
+            update.$push = { recipe: { $each: dayMealPlan.recipe } };
+        }
+
+        const result = await DayMealPlan.updateOne(filter, update);
+        return !!result;
     } catch (error) {
         return false
     }
