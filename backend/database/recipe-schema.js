@@ -32,7 +32,8 @@ const recipeSchema = new Schema({
     },
     comments: [{
         username: String,
-        comment: String
+        comment: String,
+        date: Date
     }]
 });
 

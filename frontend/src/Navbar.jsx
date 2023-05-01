@@ -6,55 +6,56 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
 
-function navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchValue = event.target.elements.search.value.trim();
+    if (searchValue) {
+      const searchUrl = `/search?search=${encodeURIComponent(searchValue)}`;
+      window.location.href = searchUrl;
+    }
+  }
 
   return (
     <Navbar className='navbar_color' expand="lg">
       <Container>
-        <Navbar.Brand href="#home"><img src={icon} width="200"></img></Navbar.Brand>
+        <Navbar.Brand href="/"><img src={icon} width="200"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home" className="navbar_link">Saved Recipes</Nav.Link>
-            <Nav.Link href="#link" className="navbar_link">Meal Schedule</Nav.Link>
-          </Nav>
+        <Nav className="me-auto">
+          <Nav.Link href={isLoggedIn ? "saved-recipes" : null} className="navbar_link">
+            Saved Recipes
+          </Nav.Link>
+          <Nav.Link href={isLoggedIn ? "meal-schedule" : null} className="navbar_link">
+            Meal Schedule
+          </Nav.Link>
+          <Nav.Link href={isLoggedIn ? "advance-search" : null} className="navbar_link">
+            Advance Search
+          </Nav.Link>
+        </Nav>
         </Navbar.Collapse>
-        <form className="navbar_form">
-          <input type="text" placeholder="Search" className="navbar_input" />
+        <form className="navbar_form" onSubmit={handleSearch}>
+          <input type="text" name="search" placeholder="Search" className="navbar_input" />
           <button type="submit" className="navbar_button">Search</button>
         </form>
         <Navbar.Collapse className="justify-content-end">
           {isLoggedIn ? (
             <>
-              <NavDropdown className="navbar_username" title="Username" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
+              <NavDropdown className="navbar_username" title={user} id="basic-nav-dropdown">
+                <NavDropdown.Item>
                   My Profile
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  ...
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  ...
-                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+                <NavDropdown.Item onClick={handleLogout}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
             </>
           ) : (
             <>
-              <button className="login_button" onClick={handleLogin}>Login</button>
-              <button className="signup_button">Sign Up</button>
+              <button className="login_button" onClick={onLogInShow}>Login</button>
+              <button className="signup_button" onClick={onSignUpShow}>Sign Up</button>
             </>
           )}
         </Navbar.Collapse>
@@ -63,4 +64,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default NavBar;
