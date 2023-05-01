@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '800px',
@@ -12,7 +12,13 @@ function LocationSearch() {
     navigator.geolocation.getCurrentPosition((position) => {
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
     })
+    const position = {
+        lat: lat,
+        lng: lng
+    }
     return (
       <LoadScript
         googleMapsApiKey="AIzaSyCLEu_YtuPwWib7dyJSbRWzP0T2KvfAvpc"
@@ -27,8 +33,7 @@ function LocationSearch() {
             }
           zoom={10}
         >
-          { /* Child components, such as markers, info windows, etc. */ }
-          <></>
+            <MarkerF position={position}/>
         </GoogleMap>
       </LoadScript>
     )
