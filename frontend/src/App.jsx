@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './Navbar'
 import Auth from './Auth';
 import AdvanceSearch from './AdvanceSearch';
+import LocationSearch from './LocationSearch';
 
 function App() {
 
@@ -27,6 +28,8 @@ function App() {
             element={<p>Search Page</p>}/>
           <Route path="/"
             element={<p>Home Page</p>}/>
+          <Route path="/stores-near-me" 
+            element={<LocationSearch/>}/>
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
