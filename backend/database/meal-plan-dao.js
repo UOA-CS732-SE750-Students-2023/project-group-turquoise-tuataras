@@ -37,7 +37,7 @@ async function updateDayMealPlan(dayMealPlan) {
         }
 
         const result = await DayMealPlan.updateOne(filter, update);
-        return !!result;
+        return result.modifiedCount > 0;
     } catch (error) {
         return false
     }
