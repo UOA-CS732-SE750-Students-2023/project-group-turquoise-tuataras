@@ -43,8 +43,8 @@ function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
           {isLoggedIn ? (
             <>
               <NavDropdown className="navbar_username" title={user} id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                  My Profile
+                <NavDropdown.Item href={`profile?user=${user}`}>
+                    My Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>
