@@ -26,29 +26,22 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const handleLogin = (username, password) => {
-  //     axios.post(`${API_BASE_URL}/api/login`,{
-  //       username,
-  //       password
-  //     })
-  //     .then((response) => {
-  //       if(response.status === 200) {
-  //         localStorage.setItem("user", JSON.stringify(username));
-  //         setIsLoggedIn(true);
-  //         setLogInModalShow(false);
-  //         setUser(username);
-  //       } 
-  //     })
-  //   console.log(username);
-  //   console.log(password);
-  // };
-
   const handleLogin = (username, password) => {
-    localStorage.setItem("user", JSON.stringify(username));
-    setIsLoggedIn(true);
-    setLogInModalShow(false);
-    setUser(username);
-};
+      axios.post(`${API_BASE_URL}/api/login`,{
+        username,
+        password
+      })
+      .then((response) => {
+        if(response.status === 200) {
+          localStorage.setItem("user", JSON.stringify(username));
+          setIsLoggedIn(true);
+          setLogInModalShow(false);
+          setUser(username);
+        } 
+      })
+    console.log(username);
+    console.log(password);
+  };
 
   const handleSignup = (username, password) => {
     axios.post(`${API_BASE_URL}/api/signup`,{
