@@ -6,6 +6,7 @@ import axios from 'axios';
 import Navbar from './Navbar'
 import SignUp from './SignUp';
 import Login from './Login';
+import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -53,8 +54,6 @@ function App() {
         setSignUpModalShow(false);
       } 
     })
-  console.log(username);
-  console.log(password);
   }
 
   const handleLogout = () => {
@@ -62,6 +61,19 @@ function App() {
     setUser("");
     setIsLoggedIn(false);
   };
+
+  const handleReset = (username, password) => {
+    axios.post(`${API_BASE_URL}/api/reset`,{
+      username,
+      password
+    })
+  }
+
+  const handleIntolerances = (intolerances) => {
+    axios.post(`${API_BASE_URL}/api/intolerances`,{
+      intolerances
+    })
+  }
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -74,14 +86,17 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow} user={user}/>
+        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} onSignUpShow={handleSignUpModalShow} 
+          onLogInShow={handleLogInModalShow} user={user}/>
         <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} handleSignup={handleSignup}/>
         <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
         <Routes>
           <Route path="/advance-search"
-            element={<AdvanceSearch/>}/>
+            element={<AdvanceSearch handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
           <Route path="/search"
             element={<p>Search Page</p>}/>
+          <Route path="/profile"
+            element={<Profile/>}/>
           <Route path="/"
             element={<p>Home Page</p>}/>
           <Route path="*"
