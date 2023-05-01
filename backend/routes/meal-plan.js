@@ -3,7 +3,7 @@ import {
     getMealPlanByUserAndCurrentWeek,
     createDayMealPlan,
     updateDayMealPlan,
-    deleteDayMealPlan } from '../database/meal-plan-dao';
+    deleteDayMealPlanRecipe } from '../database/meal-plan-dao';
 import moment from 'moment'
 
 const router = express.Router();
@@ -41,10 +41,10 @@ router.patch('/:id', async (req, res) => {
 })
 
 // Delete day meal plan
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    await deleteDayMealPlan(id);
-    res.sendStatus(204)
+router.delete('/:id/:recipeId', async (req, res) => {
+    const { id, recipeId } = req.params;
+    const success = await deleteDayMealPlanRecipe(id, recipeId);
+    res.sendStatus(success ? 204 : 404);
 })
 
 export default router;

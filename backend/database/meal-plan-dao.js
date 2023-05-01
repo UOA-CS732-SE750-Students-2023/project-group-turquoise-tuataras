@@ -44,13 +44,16 @@ async function updateDayMealPlan(dayMealPlan) {
     
 }
 
-async function deleteDayMealPlan(id) {
-    await DayMealPlan.deleteOne({ _id: id})
+async function deleteDayMealPlanRecipe(id, recipeId) {
+    const filter = { _id: id };
+    const update = { $pull: { recipe: recipeId } };
+    const result = await DayMealPlan.updateOne(filter, update);
+    return result.modifiedCount > 0;
 }
 
 export {
     getMealPlanByUserAndCurrentWeek,
     createDayMealPlan,
     updateDayMealPlan,
-    deleteDayMealPlan
+    deleteDayMealPlanRecipe
 }
