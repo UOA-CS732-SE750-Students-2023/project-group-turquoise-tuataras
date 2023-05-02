@@ -1,8 +1,8 @@
 import express from "express";
-import {searchRecipes, getRecipe} from "../spoonacular/queries.js";
-import {getRecipeById} from "../database/dao/recipe-dao.js";
-import {Recipe} from "../database/schema/recipe-schema.js";
-import {getIntolerances} from "../database/dao/user-dao.js";
+import {searchRecipes, getRecipe} from "../../spoonacular/queries.js";
+import {getRecipeById} from "../../database/dao/recipe-dao.js";
+import {Recipe} from "../../database/schema/recipe-schema.js";
+import {getIntolerances} from "../../database/dao/user-dao.js";
 
 const router = express.Router();
 
