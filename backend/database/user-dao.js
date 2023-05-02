@@ -9,6 +9,11 @@ async function loginUser(username, password) {
 // signup user
 async function signupUser(username, password) {
     
+    // validation
+    if (!username || !password) {
+        throw Error('All fields must be filled')
+    }
+
     const exists = await User.findOne({ username });
 
     if (exists){
