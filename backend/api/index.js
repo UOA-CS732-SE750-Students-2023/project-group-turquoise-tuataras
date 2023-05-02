@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "../database/user-schema.js";
+import { User } from "../database/schema/user-schema.js";
 import mealPlanRoutes from './meal-plan.js'
 import recipeRoutes from './recipes.js'
 

@@ -1,6 +1,6 @@
 import express from "express";
-import {User} from "../database/user-schema.js";
-import {createRecipe, getRecipeById} from "../database/recipe-dao.js";
+import {User} from "../database/schema/user-schema.js";
+import {createRecipe, getRecipeById} from "../database/dao/recipe-dao.js";
 
 const router = express.Router();
 

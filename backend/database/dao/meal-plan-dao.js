@@ -1,4 +1,4 @@
-import { DayMealPlan } from './day-meal-plan-schema'
+import { DayMealPlan } from '../schema/day-meal-plan-schema.js'
 
 async function getMealPlanByUserAndCurrentWeek(userId, start, end) {
     const mealPlan = await DayMealPlan.find({

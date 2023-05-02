@@ -3,7 +3,7 @@ import {
     getMealPlanByUserAndCurrentWeek,
     createDayMealPlan,
     updateDayMealPlan,
-    deleteDayMealPlanRecipe } from '../database/meal-plan-dao.js';
+    deleteDayMealPlanRecipe } from '../database/dao/meal-plan-dao.js';
 import moment from 'moment'
 
 const router = express.Router();

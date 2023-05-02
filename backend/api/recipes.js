@@ -1,21 +1,22 @@
 import express from "express";
 import {searchRecipes, getRecipe} from "../spoonacular/queries.js";
-import {getRecipeById} from "../database/recipe-dao.js";
-import {Recipe} from "../database/recipe-schema.js";
+import {getRecipeById} from "../database/dao/recipe-dao.js";
+import {Recipe} from "../database/schema/recipe-schema.js";
+import {getIntolerances} from "../database/dao/user-dao.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-
+router.get("/search", async (req, res) => {
+    const { recipeQuery, cuisines, diet, userId, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
-    req.query.recipeQuery && (searchQuery.query = req.params.recipeQuery);
-    req.query.cuisine && (searchQuery.cuisine = req.query.cuisine);
-    req.query.diet && (searchQuery.diet = req.query.diet);
-    req.query.intolerances && (searchQuery.intolerances = req.query.intolerances);
-    req.query.type && (searchQuery.type = req.query.type);
-    req.query.maxReadyTime && (searchQuery.maxReadyTime = req.query.maxReadyTime);
-    req.query.number && (searchQuery.number = req.query.number);
-    req.query.offset && (searchQuery.offset = req.query.offset);
+    recipeQuery && (searchQuery.query = recipeQuery);
+    cuisines && (searchQuery.cuisines = cuisines.toString());
+    diet && (searchQuery.diet = diet.join('|'));
+    userId && (searchQuery.intolerances = getIntolerances(userId).toString());
+    type && (searchQuery.type = type);
+    maxReadyTime && (searchQuery.maxReadyTime = maxReadyTime);
+    number && (searchQuery.number = number);
+    offset && (searchQuery.offset = offset);
 
     res.json(searchRecipes(searchQuery));
 });
@@ -31,7 +32,7 @@ router.get("/:spoonacularId", async (req, res) => {
     }
 });
 
-router.post('/recipe/:spoonacularId/comment', async (req, res) => {
+router.post('/:spoonacularId/comment', async (req, res) => {
     const { spoonacularId } = req.params;
     const comment = req.body;
     const recipe = await Recipe.findOne({'spoonacularId': spoonacularId});
@@ -48,7 +49,7 @@ router.post('/recipe/:spoonacularId/comment', async (req, res) => {
     }
 });
 
-router.post('/recipe/:spoonacularId/rating', async (req, res) => {
+router.post('/:spoonacularId/rating', async (req, res) => {
     const { spoonacularId } = req.params;
     const rating = req.body.rating;
     const recipe = await Recipe.findOne({'spoonacularId': spoonacularId});
