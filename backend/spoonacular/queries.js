@@ -14,7 +14,7 @@ export function searchRecipes(query) {
         }
     })
         .then(response => {
-          console.log(response.data);
+          return response.data.results;
     })
         .catch(error => {
             console.log(error);
