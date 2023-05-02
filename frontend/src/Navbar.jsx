@@ -12,7 +12,10 @@ function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
     event.preventDefault();
     const searchValue = event.target.elements.search.value.trim();
     if (searchValue) {
-      const searchUrl = `/search?search=${encodeURIComponent(searchValue)}`;
+      const searchUrl = `/search?query=${encodeURIComponent(searchValue)}`;
+      window.location.href = searchUrl;
+    } else {
+      const searchUrl = `/search`;
       window.location.href = searchUrl;
     }
   }
@@ -30,7 +33,7 @@ function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
           <Nav.Link href={isLoggedIn ? "meal-schedule" : null} className="navbar_link">
             Meal Schedule
           </Nav.Link>
-          <Nav.Link href={isLoggedIn ? "advance-search" : null} className="navbar_link">
+          <Nav.Link href={isLoggedIn ? "search" : null} className="navbar_link">
             Advance Search
           </Nav.Link>
         </Nav>
