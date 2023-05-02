@@ -27,7 +27,8 @@ function Profile({ handleReset, handleIntolerances }) {
     
 
     return (
-        <Form>
+        <div>
+        <Form onSubmit={handleResetSubmit}>
             <div style={{paddingTop: '5%'}}/>
             <h2 className='container'>Edit  Account</h2>
             <Card className='container' style={{padding: 10}}>
@@ -41,11 +42,12 @@ function Profile({ handleReset, handleIntolerances }) {
                     <Form.Control type="password" placeholder="Enter New Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
                 
-                <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }} onClick={handleResetSubmit}>
+                <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
                     Submit
                 </Button>
             </Card>
-
+        </Form>
+        <Form onSubmit={handleIntolerancesSubmit}>
             <div style={{paddingTop: '5%'}}/>
             <h2 className='container'>Intolerances</h2>
             <Card className='container' style={{padding: 10}}>
@@ -63,11 +65,12 @@ function Profile({ handleReset, handleIntolerances }) {
                 value={intolerances.filter((option) => selectedIntolerances.includes(option.value))}
                 />
                 <div style={{paddingTop: '1%'}}/>
-                <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }} onClick={handleIntolerancesSubmit}>
+                <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
                     Submit
                 </Button>
             </Card>
         </Form>
+        </div>
     );
 }
 
