@@ -1,0 +1,291 @@
+{
+   "spoonacularId":650181,
+   "types":{
+      "vegetarian":false,
+      "vegan":false,
+      "glutenFree":false,
+      "dairyFree":false
+   },
+   "ingredients":[
+      {
+         "name":"ground beef",
+         "amount":453.592,
+         "unit":"grams"
+      },
+      {
+         "name":"pancetta",
+         "amount":8,
+         "unit":"slices"
+      },
+      {
+         "name":"pesto",
+         "amount":1,
+         "unit":"jar"
+      },
+      {
+         "name":"mozzarella",
+         "amount":1,
+         "unit":"large ball"
+      },
+      {
+         "name":"onion",
+         "amount":1,
+         "unit":""
+      },
+      {
+         "name":"butter",
+         "amount":3,
+         "unit":"Tbsps"
+      },
+      {
+         "name":"tomato paste",
+         "amount":2,
+         "unit":"teaspoons"
+      },
+      {
+         "name":"anchovy paste",
+         "amount":1,
+         "unit":"teaspoon"
+      },
+      {
+         "name":"baby arugula",
+         "amount":4,
+         "unit":"servings"
+      },
+      {
+         "name":"tomato",
+         "amount":1,
+         "unit":"slice"
+      },
+      {
+         "name":"ciabatta buns",
+         "amount":4,
+         "unit":""
+      }
+   ],
+   "title":"Little Italy Burger",
+   "image":"https://spoonacular.com/recipeImages/650181-556x370.jpg",
+   "readyInMinutes":45,
+   "servings":4,
+   "nutrition":[
+      {
+         "name":"Calories",
+         "amount":962.62,
+         "unit":"kcal",
+         "percentOfDailyNeeds":48.13
+      },
+      {
+         "name":"Fat",
+         "amount":71.32,
+         "unit":"g",
+         "percentOfDailyNeeds":109.72
+      },
+      {
+         "name":"Saturated Fat",
+         "amount":28.25,
+         "unit":"g",
+         "percentOfDailyNeeds":176.59
+      },
+      {
+         "name":"Carbohydrates",
+         "amount":35.03,
+         "unit":"g",
+         "percentOfDailyNeeds":11.68
+      },
+      {
+         "name":"Net Carbohydrates",
+         "amount":32.9,
+         "unit":"g",
+         "percentOfDailyNeeds":11.96
+      },
+      {
+         "name":"Sugar",
+         "amount":3.86,
+         "unit":"g",
+         "percentOfDailyNeeds":4.29
+      },
+      {
+         "name":"Cholesterol",
+         "amount":170.88,
+         "unit":"mg",
+         "percentOfDailyNeeds":56.96
+      },
+      {
+         "name":"Sodium",
+         "amount":1437.77,
+         "unit":"mg",
+         "percentOfDailyNeeds":62.51
+      },
+      {
+         "name":"Protein",
+         "amount":43.6,
+         "unit":"g",
+         "percentOfDailyNeeds":87.2
+      },
+      {
+         "name":"Vitamin B12",
+         "amount":3.89,
+         "unit":"µg",
+         "percentOfDailyNeeds":64.77
+      },
+      {
+         "name":"Selenium",
+         "amount":33.7,
+         "unit":"µg",
+         "percentOfDailyNeeds":48.14
+      },
+      {
+         "name":"Zinc",
+         "amount":6.89,
+         "unit":"mg",
+         "percentOfDailyNeeds":45.94
+      },
+      {
+         "name":"Phosphorus",
+         "amount":443.08,
+         "unit":"mg",
+         "percentOfDailyNeeds":44.31
+      },
+      {
+         "name":"Calcium",
+         "amount":405.64,
+         "unit":"mg",
+         "percentOfDailyNeeds":40.56
+      },
+      {
+         "name":"Vitamin A",
+         "amount":1851.92,
+         "unit":"IU",
+         "percentOfDailyNeeds":37.04
+      },
+      {
+         "name":"Vitamin B3",
+         "amount":6.48,
+         "unit":"mg",
+         "percentOfDailyNeeds":32.38
+      },
+      {
+         "name":"Vitamin B6",
+         "amount":0.52,
+         "unit":"mg",
+         "percentOfDailyNeeds":25.86
+      },
+      {
+         "name":"Vitamin B2",
+         "amount":0.38,
+         "unit":"mg",
+         "percentOfDailyNeeds":22.43
+      },
+      {
+         "name":"Iron",
+         "amount":3.19,
+         "unit":"mg",
+         "percentOfDailyNeeds":17.74
+      },
+      {
+         "name":"Potassium",
+         "amount":538.7,
+         "unit":"mg",
+         "percentOfDailyNeeds":15.39
+      },
+      {
+         "name":"Vitamin K",
+         "amount":16.14,
+         "unit":"µg",
+         "percentOfDailyNeeds":15.37
+      },
+      {
+         "name":"Magnesium",
+         "amount":44.64,
+         "unit":"mg",
+         "percentOfDailyNeeds":11.16
+      },
+      {
+         "name":"Vitamin B1",
+         "amount":0.17,
+         "unit":"mg",
+         "percentOfDailyNeeds":11.07
+      },
+      {
+         "name":"Vitamin B5",
+         "amount":0.92,
+         "unit":"mg",
+         "percentOfDailyNeeds":9.17
+      },
+      {
+         "name":"Fiber",
+         "amount":2.13,
+         "unit":"g",
+         "percentOfDailyNeeds":8.51
+      },
+      {
+         "name":"Vitamin E",
+         "amount":1.2,
+         "unit":"mg",
+         "percentOfDailyNeeds":8
+      },
+      {
+         "name":"Folate",
+         "amount":28.7,
+         "unit":"µg",
+         "percentOfDailyNeeds":7.18
+      },
+      {
+         "name":"Copper",
+         "amount":0.13,
+         "unit":"mg",
+         "percentOfDailyNeeds":6.27
+      },
+      {
+         "name":"Vitamin C",
+         "amount":5.12,
+         "unit":"mg",
+         "percentOfDailyNeeds":6.2
+      },
+      {
+         "name":"Manganese",
+         "amount":0.12,
+         "unit":"mg",
+         "percentOfDailyNeeds":5.86
+      },
+      {
+         "name":"Vitamin D",
+         "amount":0.48,
+         "unit":"µg",
+         "percentOfDailyNeeds":3.18
+      }
+   ],
+   "summary":"Little Italy Burger is an American main course. For <b>$4.72 per serving</b>, this recipe <b>covers 23%</b> of your daily requirements of vitamins and minerals. One portion of this dish contains roughly <b>44g of protein</b>, <b>71g of fat</b>, and a total of <b>963 calories</b>. This recipe serves 4. Head to the store and pick up ground beef, anchovy paste, mozzarella, and a few other things to make it today. This recipe from Foodista has 1 fans. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 46%</b>. This score is good. Similar recipes include <a href=\"https://spoonacular.com/recipes/florentines-italy-741718\">Florentines (Italy)</a>, <a href=\"https://spoonacular.com/recipes/postcards-from-italy-cocktail-493254\">Postcards From Italy Cocktail</a>, and <a href=\"https://spoonacular.com/recipes/little-italy-pignoli-cookies-462407\">Little Italy Pignoli Cookies</a>.",
+   "cuisines":[
+      "American"
+   ],
+   "instructions":[
+      "Heat the grill to high. Divide the ground beef into 4 portions. Salt and pepper and press into patties.",
+      "Layer each patty with a slice of pancetta on top and bottom. Press the pancetta into the patty.",
+      "Cut the onion and mozzarella into rounds.",
+      "Melt the butter and mix it with the tomato paste and anchovy paste.",
+      "Cut the ciabatta buns and brush the insides with tomato-butter.",
+      "CAREFULLY brush the grill with oil or use non-stick grill spray. Grill the patties and onions at the same time. Grill the patties for 3-5 minutes per side and the onions for 1-2 minutes per side.",
+      "Once you flip the burgers, lay the onion rounds over the top of each patty, followed by the mozzarella slices. The cheese will melt while the burgers finish cooking.",
+      "Place the buns on the open grill and toast for 1 minute.",
+      "Once the buns are toasted, slather them with pesto.",
+      "Layer arugula leaves, tomato slices and a patty on each bun. Top and serve!",
+      "Serves 4."
+   ],
+   "rating":{ 
+      "rating":4.5,
+      "numberOfRatings":5
+   },
+   "comments":[
+      {
+         "username": "Bob",
+         "comment": "I love this recipe!!!",
+         "date": "2025-10-06"
+      },
+      {
+         "username": "Ben",
+         "comment": "This is aight",
+         "date": "2025-10-06"
+      }
+   ]   
+}

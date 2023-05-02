@@ -1,18 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Navigate, Route, Routes } from "react-router-dom";
+import PageLayout from "./PageLayout";
 import './App.css'
 import Navbar from './Navbar'
-import Button from 'react-bootstrap/Button';
+import RecipePage from "./RecipePage";
+import SavedRecipePage from "./SavedRecipePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div>
-        <Navbar/>
+
+      <Navbar/>
+
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+
+          <Route index element={<Navigate to="recipe" replace />} />
+
+          <Route path="recipe" element={<RecipePage /> } />
+          <Route path="savedRecipes" element={<SavedRecipePage /> } />
+
+        </Route>
+      </Routes>
+
     </div>
+    
   )
 }
 
