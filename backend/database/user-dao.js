@@ -4,6 +4,24 @@ import bcrypt from 'bcrypt'
 // login user
 async function loginUser(username, password) {
 
+    // validation
+    if (!username || !password) {
+        throw Error('All fields must be filled');
+    }
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+        throw Error('Invalid login credentials');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+        throw Error('Invalid login credentials');
+    }
+
+    return user;
 }
 
 // signup user
@@ -11,7 +29,7 @@ async function signupUser(username, password) {
     
     // validation
     if (!username || !password) {
-        throw Error('All fields must be filled')
+        throw Error('All fields must be filled');
     }
 
     const exists = await User.findOne({ username });
@@ -25,7 +43,7 @@ async function signupUser(username, password) {
 
     const user = await User.create({ username, password: hash, savedRecipes: [], ratedRecipes: [] });
 
-    return user
+    return user;
 }
 
 export {

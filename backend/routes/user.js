@@ -12,7 +12,18 @@ const createToken = (_id) => {
 
 //login route
 router.post('/login', async (req, res) => {
-    res.json(loginUser)
+    const { username, password } = req.body;
+
+    try {
+        const user = await loginUser(username, password);
+
+        //create token
+        const token = createToken(user._id);
+
+        res.status(201).json({username, token});
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
 })
 
 // signup route
@@ -23,11 +34,11 @@ router.post('/signup', async (req, res) => {
         const user = await signupUser(username, password);
 
         //create token
-        const token = createToken(user._id)
+        const token = createToken(user._id);
 
-        res.status(201).json({username, token})
+        res.status(201).json({username, token});
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({error: error.message});
     }
 })
 
