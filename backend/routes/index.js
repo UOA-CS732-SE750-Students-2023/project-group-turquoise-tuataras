@@ -5,11 +5,8 @@ import { DayMealPlan } from "../database/day-meal-plan-schema";
 
 const router = express.Router();
 
-router.get('/users', async (req, res) => {
-    const users = await User.find({})
-    const filteredUsers = users.map(({ id, username, savedRecipes, ratedRecipes }) => ({ id, username, savedRecipes, ratedRecipes }));
-    res.json(filteredUsers);
-});
+import mealPlanRoutes from './meal-plan'
+router.use('/meal-plan', mealPlanRoutes)
 
 router.post('/recipe/:spoonacularId/comment', async (req, res) => {
     const { spoonacularId } = req.params;
