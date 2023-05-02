@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Setup our API routes.
-import api from './routes';
+import api from './api/index.js';
 app.use('/api', api);
 
 // Make the "public" folder available statically
