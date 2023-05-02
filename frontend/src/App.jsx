@@ -43,6 +43,13 @@ function App() {
     console.log(password);
   };
 
+  // const handleLogin = (username, password) => {
+  //   localStorage.setItem("user", JSON.stringify(username));
+  //   setIsLoggedIn(true);
+  //   setLogInModalShow(false);
+  //   setUser(username);
+  // };
+
   const handleSignup = (username, password) => {
     axios.post(`${API_BASE_URL}/api/signup`,{
       username,
@@ -54,7 +61,7 @@ function App() {
         setSignUpModalShow(false);
       } 
     })
-  }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -67,13 +74,13 @@ function App() {
       username,
       password
     })
-  }
+  };
 
   const handleIntolerances = (intolerances) => {
     axios.post(`${API_BASE_URL}/api/intolerances`,{
       intolerances
     })
-  }
+  };
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -92,11 +99,11 @@ function App() {
         <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
         <Routes>
           <Route path="/advance-search"
-            element={<AdvanceSearch handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
+            element={<AdvanceSearch/>}/>
           <Route path="/search"
             element={<p>Search Page</p>}/>
           <Route path="/profile"
-            element={<Profile/>}/>
+            element={<Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
           <Route path="/"
             element={<p>Home Page</p>}/>
           <Route path="*"
