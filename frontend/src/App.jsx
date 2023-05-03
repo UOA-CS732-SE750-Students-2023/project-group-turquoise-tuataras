@@ -70,13 +70,15 @@ function App() {
   };
 
   const handleReset = (username, password) => {
-    axios.post(`${API_BASE_URL}/api/reset`,{
+    axios.put(`${API_BASE_URL}/api/reset`,{
       username,
       password
     })
   };
 
   const handleIntolerances = (intolerances) => {
+    const userId = JSON.parse(localStorage.getItem("user"));
+    localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
     axios.post(`${API_BASE_URL}/api/intolerances`,{
       intolerances
     })
@@ -98,10 +100,8 @@ function App() {
         <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} handleSignup={handleSignup}/>
         <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
         <Routes>
-          <Route path="/advance-search"
-            element={<AdvanceSearch/>}/>
           <Route path="/search"
-            element={<p>Search Page</p>}/>
+            element={<AdvanceSearch/>}/>
           <Route path="/profile"
             element={<Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
           <Route path="/"
