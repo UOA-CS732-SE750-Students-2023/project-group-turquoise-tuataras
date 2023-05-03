@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-
 import { intolerances } from './intolerances';
 
 const animatedComponents = makeAnimated();
@@ -25,6 +24,17 @@ function Profile({ handleReset, handleIntolerances }) {
         handleIntolerances(selectedIntolerances);
         };
     
+    const [storedIntolerances, setStoredIntolerances] = useState([]);
+
+    useEffect(() => {
+        const userId = JSON.parse(localStorage.getItem("user"));
+        const storedList = JSON.parse(localStorage.getItem(userId + "_intolerances"));
+        const convertedList = storedList.map(item => ({
+            value: item,
+            label: item
+        }));
+        setStoredIntolerances(convertedList);
+        }, []);
 
     return (
         <div>
@@ -56,13 +66,18 @@ function Profile({ handleReset, handleIntolerances }) {
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 isMulti
+                defaultValue={storedIntolerances}
                 options={intolerances}
                 onChange={(selectedOptions) => {
                     const values = selectedOptions.map((option) => option.value);
                     setSelectedIntolerances(values);
                 }}
                 placeholder="Select Intolerances"
-                value={intolerances.filter((option) => selectedIntolerances.includes(option.value))}
+                value={
+                    selectedIntolerances.length > 0 
+                        ? intolerances.filter((option) => selectedIntolerances.includes(option.value))
+                        : storedIntolerances
+                }
                 />
                 <div style={{paddingTop: '1%'}}/>
                 <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
