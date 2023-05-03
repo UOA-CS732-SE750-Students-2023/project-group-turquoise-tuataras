@@ -1,11 +1,11 @@
-import {User} from "../../database/schema/user-schema.js";
 import savedRecipesRoutes from "./saved-recipes.js";
 import express from "express";
 import {setUserIntolerances} from "../../database/dao/user-dao.js";
 
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 router.use('/:userId/savedRecipes', savedRecipesRoutes)
+
 router.put('/:userId/intolerances', async (req, res) => {
     const { userId } = req.params;
     const intolerances = req.body;

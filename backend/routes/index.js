@@ -1,4 +1,4 @@
-import api from './api';
+import api from './api/index.js';
 import express from "express";
 
 const router = express.Router();

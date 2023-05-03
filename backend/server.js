@@ -6,7 +6,7 @@ import path from 'path';
 import cors from 'cors';
 import * as url from 'url';
 import mongoose from 'mongoose';
-import routes from './routes';
+import routes from './routes/index.js';
 
 // Setup Express
 const app = express();
