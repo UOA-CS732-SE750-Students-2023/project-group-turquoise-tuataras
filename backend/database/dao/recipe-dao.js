@@ -1,5 +1,5 @@
 import {Recipe} from "../schema/recipe-schema.js";
-import {getRecipe} from "../../spoonacular/queries.js";
+import {getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
 
 export async function getRecipeById(recipeId) {
     const recipe = await Recipe.findOne({spoonacularId: recipeId});
@@ -7,15 +7,16 @@ export async function getRecipeById(recipeId) {
 }
 
 export async function createRecipe(spoonacularRecipeId) {
+    const recipe = await getRecipeBySpoonacularId(spoonacularRecipeId);
     const newRecipe = new Recipe({
-        ...getRecipe(spoonacularRecipeId),
+        ...recipe,
         rating: {
             rating: 0,
             numberOfRatings: 0
         },
         comments: []
     });
-    newRecipe.save().then((newRecipe) => {
-        return newRecipe;
-    });
+    const createdRecipe = await newRecipe.save();
+    console.log("Created recipe: " + createdRecipe)
+    return createdRecipe;
 }
