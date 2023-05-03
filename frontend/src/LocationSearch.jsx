@@ -5,6 +5,7 @@ const containerStyle = {
   width: '1200px',
   height: '800px'
 };
+const markers = [];
 
 function LocationSearch(){
   const [lat, setLat] = useState(0);
@@ -21,21 +22,30 @@ function LocationSearch(){
   });
 
   const request = {
-    query: 'supermarket',
-    fields:['name', 'geometry'],
-    locationBias: {
+    type: ['supermarket'],
+    location:{
       lat: lat,
       lng: lng,
-      radius: '3000'
-    }
+    },
+    radius: '5000'
   };
   
   const onLoad = useCallback(function onLoad(map){
     var service = new google.maps.places.PlacesService(map);
-    service.findPlaceFromQuery(request, function(results, status){
-      for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
-      }
+    service.nearbySearch(request, function(results, status){
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          var marker = new google.maps.Marker({
+              map: map,
+              position:place.geometry.location,
+              title: place.formatted_address,
+          });
+          markers.push(marker);
+        }
+      }  
+      console.log(status);
+      console.log(results);
     });
   })
   
@@ -46,7 +56,13 @@ function LocationSearch(){
             zoom={10}
             onLoad={onLoad}
           >
-              <MarkerF position={{lat: lat, lng: lng}}/>
+            {markers.map(({ id, title, position }) => (
+              <MarkerF
+                key={id}
+                position={position}
+              />
+            ))}
+            <MarkerF key='user' position={{lat: lat, lng: lng}} icon={"/blue-circle.png"}/>
           </GoogleMap>
       );
 }
