@@ -1,8 +1,9 @@
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import React, {useState, useCallback} from 'react';
 
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const containerStyle = {
-  width: '1200px',
+  width: '1600px',
   height: '800px'
 };
 const markers = [];
@@ -12,7 +13,7 @@ function LocationSearch(){
   const [lng, setLng] = useState(0);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyCLEu_YtuPwWib7dyJSbRWzP0T2KvfAvpc',
+    googleMapsApiKey: `${API_KEY}`,
     libraries: ['places'],
   });
 
@@ -48,7 +49,6 @@ function LocationSearch(){
       console.log(results);
     });
   })
-  
       return (
           isLoaded&&<GoogleMap
             mapContainerStyle={containerStyle}
