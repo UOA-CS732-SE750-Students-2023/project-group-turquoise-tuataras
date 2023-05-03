@@ -1,16 +1,18 @@
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import axios from 'axios';
 import React, {useState, useCallback} from 'react';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const apiURL = "http://localhost:3000/api/google/nearbyStores";
 const containerStyle = {
-  width: '1600px',
-  height: '800px'
+  width: '1920px',
+  height: '1080px',
 };
 const markers = [];
 
 function LocationSearch(){
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const [lat, setLat] = useState(-36.8618);
+  const [lng, setLng] = useState(174.7696);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: `${API_KEY}`,
@@ -22,48 +24,35 @@ function LocationSearch(){
     setLng(position.coords.longitude);
   });
 
-  const request = {
-    type: ['supermarket'],
-    location:{
-      lat: lat,
-      lng: lng,
-    },
-    radius: '5000'
-  };
-  
-  const onLoad = useCallback(function onLoad(map){
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, function(results, status){
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          var place = results[i];
-          var marker = new google.maps.Marker({
-              map: map,
-              position:place.geometry.location,
-              title: place.formatted_address,
-          });
-          markers.push(marker);
-        }
-      }  
-      console.log(status);
-      console.log(results);
-    });
+  const onLoad = useCallback(async function onLoad(map){
+    const response = await axios.get(apiURL, {params: {lat:lat, lng:lng}});
+    console.log(response);
+    for (var i = 0; i < response.data.length; i++) {
+      var place = response.data[i];
+      var marker = new google.maps.Marker({
+          map: map,
+          position:place.geometry.location,
+          title: place.name,
+      });
+      markers.push(marker);
+    }
+
   })
       return (
           isLoaded&&<GoogleMap
-            mapContainerStyle={containerStyle}
-            center={{lat: lat, lng: lng}}
-            zoom={10}
-            onLoad={onLoad}
-          >
-            {markers.map(({ id, title, position }) => (
-              <MarkerF
-                key={id}
-                position={position}
-              />
-            ))}
-            <MarkerF key='user' position={{lat: lat, lng: lng}} icon={"/blue-circle.png"}/>
-          </GoogleMap>
+          mapContainerStyle={containerStyle}
+          center={{lat: lat, lng: lng}}
+          zoom={10}
+          onLoad={onLoad}
+        >
+          {markers.map(({ id, title, position }) => (
+            <MarkerF
+              key={id}
+              position={position}
+            />
+          ))}
+          <MarkerF key='user' position={{lat: lat, lng: lng}} icon={"/blue-circle.png"}/>
+        </GoogleMap>
       );
 }
 
