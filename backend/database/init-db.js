@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv'
 dotenv.config();
 import mongoose from 'mongoose';
-import { User } from './user-schema';
-import { Recipe } from './recipe-schema';
-import { DayMealPlan } from './day-meal-plan-schema';
+import { User } from './schema/user-schema.js';
+import { Recipe } from './schema/recipe-schema.js';
+import { DayMealPlan } from './schema/day-meal-plan-schema.js';
 import recipe from '../database/init-recipe.json' assert { type: "json" };
 
 async function run() {
