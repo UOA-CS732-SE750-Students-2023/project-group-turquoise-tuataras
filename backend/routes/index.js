@@ -1,8 +1,7 @@
+import api from './api';
 import express from "express";
 
 const router = express.Router();
-
-import mealPlanRoutes from './meal-plan'
-router.use('/meal-plan', mealPlanRoutes)
+router.use('/api', api);
 
 export default router;
