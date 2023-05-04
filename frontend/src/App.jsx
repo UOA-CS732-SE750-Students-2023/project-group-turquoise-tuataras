@@ -85,13 +85,13 @@ function App() {
     })
   };
 
-  useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
-    if (currentUser) {
-      setUser(currentUser);
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const currentUser = JSON.parse(localStorage.getItem("user"));
+  //   if (currentUser) {
+  //     setUser(currentUser);
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
 
   return (
     <BrowserRouter>

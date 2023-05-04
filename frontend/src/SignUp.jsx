@@ -2,14 +2,16 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useSignup } from './hooks/useSignup';
 
 function SignUp({ show, onHide, handleSignup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { signup, error, isLoading } = useSignup()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(username, password)
+        await signup(username, password)
         };
 
     return (
@@ -26,9 +28,10 @@ function SignUp({ show, onHide, handleSignup }) {
                         <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     
-                    <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
+                    <Button disabled={isLoading} variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
                         Sign up
                     </Button>
+                    {error && <div className='error'>{error}</div>}
                 </Form>
             </div>
         </Modal>
