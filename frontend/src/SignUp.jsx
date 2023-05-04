@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useSignup } from './hooks/useSignup';
 
-function SignUp({ show, onHide, handleSignup }) {
+function SignUp({ show, onHide}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { signup, error, isLoading } = useSignup()

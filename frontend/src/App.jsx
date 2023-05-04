@@ -51,25 +51,6 @@ function App() {
   //   setUser(username);
   // };
 
-  const handleSignup = (username, password) => {
-    axios.post(`${API_BASE_URL}/api/signup`,{
-      username,
-      password
-    })
-    .then((response) => {
-      if(response.status === 200) {
-        localStorage.setItem("user", JSON.stringify(username));
-        setSignUpModalShow(false);
-      } 
-    })
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser("");
-    setIsLoggedIn(false);
-  };
-
   const handleReset = (username, password) => {
     axios.put(`${API_BASE_URL}/api/reset`,{
       username,
@@ -96,9 +77,9 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} onSignUpShow={handleSignUpModalShow} 
+        <Navbar isLoggedIn={isLoggedIn} onSignUpShow={handleSignUpModalShow} 
           onLogInShow={handleLogInModalShow} user={user}/>
-        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} handleSignup={handleSignup}/>
+        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
         <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
         <Routes>
           <Route path="/search"

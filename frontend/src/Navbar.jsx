@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
 import { useLogout } from '../hooks/useLogout'
 
-function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
+function NavBar({isLoggedIn, onSignUpShow, onLogInShow, user}) {
 
   const handleSearch = (event) => {
     event.preventDefault();
