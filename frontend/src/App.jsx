@@ -27,30 +27,6 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = (username, password) => {
-      axios.post(`${API_BASE_URL}/api/login`,{
-        username,
-        password
-      })
-      .then((response) => {
-        if(response.status === 200) {
-          localStorage.setItem("user", JSON.stringify(username));
-          setIsLoggedIn(true);
-          setLogInModalShow(false);
-          setUser(username);
-        } 
-      })
-    console.log(username);
-    console.log(password);
-  };
-
-  // const handleLogin = (username, password) => {
-  //   localStorage.setItem("user", JSON.stringify(username));
-  //   setIsLoggedIn(true);
-  //   setLogInModalShow(false);
-  //   setUser(username);
-  // };
-
   const handleReset = (username, password) => {
     axios.put(`${API_BASE_URL}/api/reset`,{
       username,
@@ -80,7 +56,7 @@ function App() {
         <Navbar isLoggedIn={isLoggedIn} onSignUpShow={handleSignUpModalShow} 
           onLogInShow={handleLogInModalShow} user={user}/>
         <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
-        <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
+        <Login show={logInModalShow} onHide={handleLogInModalClose}/>
         <Routes>
           <Route path="/search"
             element={<AdvanceSearch/>}/>

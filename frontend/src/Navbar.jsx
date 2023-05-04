@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
-import { useLogout } from '../hooks/useLogout'
+import { useLogout } from './hooks/useLogout'
 
 function NavBar({isLoggedIn, onSignUpShow, onLogInShow, user}) {
 
