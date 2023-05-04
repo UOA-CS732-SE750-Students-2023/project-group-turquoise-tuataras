@@ -7,12 +7,9 @@ export default function SavedRecipePage() {
 
     const [recipes, setRecipes] = useState([]);
     
-    const [fetchResults, setFetchResults] = useState({});
-
-    useEffect(() => {
-      if (fetchResults){    
-        setRecipes(fetchResults);
-      }
+    function retrieveRecipeBySpoonacularId(id) {
+        return recipes.find(a => a.spoonacularId === parseInt(id));;
+    }
     }, [fetchResults]);
 
     const handleFetchRecipe = async () => {
