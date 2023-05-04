@@ -13,8 +13,6 @@ import LocationSearch from './LocationSearch';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
-  const [user, setUser] = useState("");
-
   const [signUpModalShow, setSignUpModalShow] = useState(false);
 
   const handleSignUpModalClose = () => setSignUpModalShow(false);
@@ -24,8 +22,6 @@ function App() {
 
   const handleLogInModalClose = () => setLogInModalShow(false);
   const handleLogInModalShow = () => setLogInModalShow(true);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleReset = (username, password) => {
     axios.put(`${API_BASE_URL}/api/reset`,{
@@ -53,8 +49,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} onSignUpShow={handleSignUpModalShow} 
-          onLogInShow={handleLogInModalShow} user={user}/>
+        <Navbar onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow}/>
         <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
         <Login show={logInModalShow} onHide={handleLogInModalClose}/>
         <Routes>
