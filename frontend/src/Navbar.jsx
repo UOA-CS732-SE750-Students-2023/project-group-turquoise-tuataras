@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './App.css';
+import { useLogout } from '../hooks/useLogout'
 
 function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
 
@@ -18,6 +19,12 @@ function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
       const searchUrl = `/search`;
       window.location.href = searchUrl;
     }
+  }
+
+  const { logout } = useLogout()
+
+  const handleClick = () => {
+    logout()
   }
 
   return (
@@ -50,7 +57,7 @@ function NavBar({isLoggedIn, handleLogout, onSignUpShow, onLogInShow, user}) {
                     My Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleLogout}>
+                <NavDropdown.Item onClick={handleClick}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
