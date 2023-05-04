@@ -1,0 +1,1441 @@
+[
+
+    {
+        "id": 1,
+        "recipe_name": "Caesar Salad",
+        "image": "/images/Caesar_Salad.jpg",
+        "recipe_url": "https://www.youtube.com/embed/IGlWE4AFQ5Q?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "romaine lettuce",
+                "quantity": 2,
+                "unit": "heads",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 2,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "anchovy fillets",
+                "quantity": 2,
+                "unit": "",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "lemon juice",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "Dijon mustard",
+                "quantity": 2,
+                "unit": "teaspoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "Worcestershire sauce",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "Parmesan cheese",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "croutons",
+                "quantity": 1,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 2,
+        "recipe_name": "Garlic Butter Shrimp",
+        "image": "/images/Garlic_Butter_Shrimp.jpg",
+        "recipe_url": "https://www.youtube.com/embed/JS12i22tk7A?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "shrimp",
+                "quantity": 1,
+                "unit": "pound",
+                "category": "seafood"
+            },
+            {
+                "ingredient_name": "unsalted butter",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 4,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "lemon",
+                "quantity": 1,
+                "unit": "",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "parsley",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "herbs"
+            }
+        ]
+    },
+
+    {
+        "id": 3,
+        "recipe_name": "Grilled Steak",
+        "image": "/images/Grilled_Steak.jpg",
+        "recipe_url": "https://www.youtube.com/embed/AmC9SmCBUj4?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "beef steak",
+                "quantity": 2,
+                "unit": "",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "garlic powder",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "onion powder",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "paprika",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 4,
+        "recipe_name": "Beef and Broccoli Stir Fry",
+        "image": "/images/Beef_and_Broccoli_Stir_Fry.jpg",
+        "recipe_url": "https://www.youtube.com/embed/5w9R2b3Br9E?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "flank steak",
+                "quantity": 1,
+                "unit": "pound",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "soy sauce",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "cornstarch",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "broccoli",
+                "quantity": 2,
+                "unit": "heads",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 4,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "ginger",
+                "quantity": 2,
+                "unit": "teaspoons",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "vegetable oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "rice",
+                "quantity": 2,
+                "unit": "cups",
+                "category": "grains"
+            },
+            {
+                "ingredient_name": "water",
+                "quantity": 4,
+                "unit": "cups",
+                "category": "beverages"
+            },
+            {
+                "ingredient_name": "brown sugar",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "sesame oil",
+                "quantity": 2,
+                "unit": "teaspoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "red pepper flakes",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 5,
+        "recipe_name": "Grilled Lamb Chops with Garlic",
+        "image": "/images/Grilled_Lamb_Chops_with_Garlic_and_Rosemary.jpg",
+        "recipe_url": "https://www.youtube.com/embed/KoI6dumcBS8?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "lamb chops",
+                "quantity": 8,
+                "unit": "",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 4,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "rosemary",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "herbs"
+            },
+            {
+                "ingredient_name": "lemon",
+                "quantity": 1,
+                "unit": "",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 6,
+        "recipe_name": "Mango Salsa",
+        "image": "/images/Mango_Salsa.jpg",
+        "recipe_url": "https://www.youtube.com/embed/AuoPudShiRw?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "mango",
+                "quantity": 2,
+                "unit": "",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "red bell pepper",
+                "quantity": 1,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "jalapeño",
+                "quantity": 0.5,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "red onion",
+                "quantity": 0.5,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "lime",
+                "quantity": 1,
+                "unit": "",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "cilantro",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "herbs"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 7,
+        "recipe_name": "Chicken Parmesan",
+        "image": "/images/Chicken_Parmesan.jpg",
+        "recipe_url": "https://www.youtube.com/embed/IAbFlWQnlD4?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "boneless chicken breasts",
+                "quantity": 4,
+                "unit": "",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "flour",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "eggs",
+                "quantity": 3,
+                "unit": "",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "bread crumbs",
+                "quantity": 1,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "Parmesan cheese",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "mozzarella cheese",
+                "quantity": 2,
+                "unit": "cups",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "marinara sauce",
+                "quantity": 3,
+                "unit": "cups",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 3,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 8,
+        "recipe_name": "Baked Salmon",
+        "image": "/images/Baked_Salmon.jpg",
+        "recipe_url": "https://www.youtube.com/embed/LkdY2W8l5dc?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "salmon",
+                "quantity": 1,
+                "unit": "pound",
+                "category": "seafood"
+            },
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "lemon",
+                "quantity": 1,
+                "unit": "",
+                "category": "fruit"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 2,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "fresh thyme",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "herbs"
+            }
+        ]
+    },
+
+    {
+        "id": 9,
+        "recipe_name": "Vegetable Soup",
+        "image": "/images/Vegetable_Soup.jpg",
+        "recipe_url": "https://www.youtube.com/embed/SE-DptWxDKw?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "olive oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "onion",
+                "quantity": 1,
+                "unit": "medium",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "carrots",
+                "quantity": 3,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "celery",
+                "quantity": 3,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 2,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "potatoes",
+                "quantity": 2,
+                "unit": "medium",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "zucchini",
+                "quantity": 2,
+                "unit": "medium",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "tomatoes",
+                "quantity": 2,
+                "unit": "cans",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "vegetable broth",
+                "quantity": 6,
+                "unit": "cups",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "bay leaves",
+                "quantity": 2,
+                "unit": "",
+                "category": "herbs"
+            },
+            {
+                "ingredient_name": "thyme",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "herbs"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+    
+    {
+        "id": 10,
+        "recipe_name": "Chicken Teriyaki",
+        "image": "/images/Chicken_Teriyaki.jpg",
+        "recipe_url": "https://www.youtube.com/embed/ie6GyJbtDP8?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "chicken thighs",
+                "quantity": 6,
+                "unit": "",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "soy sauce",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "mirin",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "sake",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "beverages"
+            },
+            {
+                "ingredient_name": "brown sugar",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "vegetable oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "green onions",
+                "quantity": 4,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 4,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "ginger",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "sesame seeds",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 11,
+        "recipe_name": "Braised Pork Knuckles",
+        "image": "/images/Braised_Pork_Knuckles.jpg",
+        "recipe_url": "https://www.youtube.com/embed/PDAcYQeXBcI?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "pork knuckles",
+                "quantity": 4,
+                "unit": "",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "vegetable oil",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "ginger",
+                "quantity": 1,
+                "unit": "thumb-sized piece",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 5,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "scallions",
+                "quantity": 4,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "dried chilies",
+                "quantity": 4,
+                "unit": "",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "Shaoxing wine",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "beverages"
+            },
+            {
+                "ingredient_name": "dark soy sauce",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "light soy sauce",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "rock sugar",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "star anise",
+                "quantity": 2,
+                "unit": "",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "cinnamon stick",
+                "quantity": 1,
+                "unit": "",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "water",
+                "quantity": 4,
+                "unit": "cups",
+                "category": "beverages"
+            }
+        ]
+    },
+
+    {
+        "id": 12,
+        "recipe_name": "Big Mac Hamburger",
+        "image": "/images/Big_Mac_Hamburger.jpg",
+        "recipe_url": "https://www.youtube.com/embed/7oJ_pIaSRtQ?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "ground chuck",
+                "quantity": 8,
+                "unit": "ounces",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "American cheese",
+                "quantity": 2,
+                "unit": "slices",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "sesame seed buns",
+                "quantity": 2,
+                "unit": "",
+                "category": "bread"
+            },
+            {
+                "ingredient_name": "pickles",
+                "quantity": 2,
+                "unit": "",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "onion",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "shredded lettuce",
+                "quantity": 0.25,
+                "unit": "cup",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "thousand island dressing",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 13,
+        "recipe_name": "Fried Chicken",
+        "image": "/images/Fried_Chicken.png",
+        "recipe_url": "https://www.youtube.com/embed/TagWVea_Nxk?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "chicken",
+                "quantity": 2,
+                "unit": "pounds",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "kosher salt",
+                "quantity": 2,
+                "unit": "teaspoons",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "garlic powder",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "onion powder",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "paprika",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "cayenne pepper",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "buttermilk",
+                "quantity": 2,
+                "unit": "cups",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "hot sauce",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "all-purpose flour",
+                "quantity": 2,
+                "unit": "cups",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "cornstarch",
+                "quantity": 1,
+                "unit": "cup",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "baking powder",
+                "quantity": 1,
+                "unit": "tablespoon",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "vegetable oil",
+                "quantity": 6,
+                "unit": "cups",
+                "category": "cooking oil"
+            }
+        ]
+    },
+
+    {
+        "id": 14,
+        "recipe_name": "Pizza Capricciosa",
+        "image": "/images/Pizza_Capricciosa.jpg",
+        "recipe_url": "https://www.youtube.com/embed/fqwfFYTioR0?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "pizza dough",
+                "quantity": 1,
+                "unit": "",
+                "category": "baking"
+            },
+            {
+                "ingredient_name": "tomato sauce",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "fresh mozzarella cheese",
+                "quantity": 4,
+                "unit": "ounces",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "cooked ham",
+                "quantity": 4,
+                "unit": "ounces",
+                "category": "meat"
+            },
+            {
+                "ingredient_name": "cooked artichoke hearts",
+                "quantity": 4,
+                "unit": "ounces",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "cooked mushrooms",
+                "quantity": 4,
+                "unit": "ounces",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "olives",
+                "quantity": 2,
+                "unit": "ounces",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "pepper",
+                "quantity": 0.1,
+                "unit": "cup",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "extra-virgin olive oil",
+                "quantity": 3,
+                "unit": "cup",
+                "category": "cooking oil"
+            }
+        ]
+    },
+
+    {
+        "id": 15,
+        "recipe_name": "Pumpkin Soup",
+        "image": "/images/Pumpkin_Soup.jpg",
+        "recipe_url": "https://www.youtube.com/embed/RPGBMkN-_Ys?autoplay=1",
+        "ingredients": [
+            {
+                "ingredient_name": "butter",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "onion",
+                "quantity": 1,
+                "unit": "medium",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "garlic",
+                "quantity": 3,
+                "unit": "cloves",
+                "category": "vegetable"
+            },
+            {
+                "ingredient_name": "fresh thyme leaves",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "chicken or vegetable broth",
+                "quantity": 4,
+                "unit": "cups",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "pumpkin puree",
+                "quantity": 1,
+                "unit": "can (15 ounces)",
+                "category": "canned goods"
+            },
+            {
+                "ingredient_name": "heavy cream",
+                "quantity": 0.5,
+                "unit": "cup",
+                "category": "dairy"
+            },
+            {
+                "ingredient_name": "maple syrup",
+                "quantity": 2,
+                "unit": "tablespoons",
+                "category": "condiments"
+            },
+            {
+                "ingredient_name": "cinnamon",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "nutmeg",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "salt",
+                "quantity": 1,
+                "unit": "teaspoon",
+                "category": "spices"
+            },
+            {
+                "ingredient_name": "black pepper",
+                "quantity": 0.25,
+                "unit": "teaspoon",
+                "category": "spices"
+            }
+        ]
+    },
+
+    {
+        "id": 16,
+        "recipe_name": "Fruit Salad",
+        "image": "/images/Fruit_Salad.jpg",
+        "recipe_url": "https://www.youtube.com/embed/Zp-F68Fa-ps?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "strawberries",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "fruit"
+          },
+          {
+            "ingredient_name": "blueberries",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "fruit"
+          },
+          {
+            "ingredient_name": "kiwi",
+            "quantity": 2,
+            "unit": "",
+            "category": "fruit"
+          },
+          {
+            "ingredient_name": "peach",
+            "quantity": 1,
+            "unit": "",
+            "category": "fruit"
+          },
+          {
+            "ingredient_name": "apple",
+            "quantity": 1,
+            "unit": "",
+            "category": "fruit"
+          },
+          {
+            "ingredient_name": "lime juice",
+            "quantity": 2,
+            "unit": "teaspoons",
+            "category": "beverages"
+          },
+          {
+            "ingredient_name": "grape",
+            "quantity": 10,
+            "unit": "",
+            "category": "fruit"
+          }
+        ]
+      },
+
+      {
+        "id": 17,
+        "recipe_name": "New Zealand Meat Pie",
+        "image": "/images/New_Zealand_Meat_Pie.jpg",
+        "recipe_url": "https://www.youtube.com/embed/YMYS1K6Z_eI?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "beef mince",
+            "quantity": 500,
+            "unit": "grams",
+            "category": "meat"
+          },
+          {
+            "ingredient_name": "onion",
+            "quantity": 1,
+            "unit": "large",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "carrot",
+            "quantity": 1,
+            "unit": "medium",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "beef stock",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "canned goods"
+          },
+          {
+            "ingredient_name": "tomato paste",
+            "quantity": 1,
+            "unit": "tablespoon",
+            "category": "canned goods"
+          },
+          {
+            "ingredient_name": "Worcestershire sauce",
+            "quantity": 1,
+            "unit": "tablespoon",
+            "category": "condiments"
+          },
+          {
+            "ingredient_name": "butter",
+            "quantity": 2,
+            "unit": "tablespoons",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "flour",
+            "quantity": 2,
+            "unit": "tablespoons",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "salt",
+            "quantity": 0.5,
+            "unit": "teaspoon",
+            "category": "spices"
+          },
+          {
+            "ingredient_name": "pepper",
+            "quantity": 0.25,
+            "unit": "teaspoon",
+            "category": "spices"
+          },
+          {
+            "ingredient_name": "puff pastry",
+            "quantity": 0.375,
+            "unit": "kilograms",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "egg",
+            "quantity": 1,
+            "unit": "",
+            "category": "dairy"
+          }
+        ]
+      },
+
+      {
+        "id": 18,
+        "recipe_name": "Scones",
+        "image": "/images/Scones.jpg",
+        "recipe_url": "https://www.youtube.com/embed/BVNhJXa5W74?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "self-raising flour",
+            "quantity": 350,
+            "unit": "grams",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "baking powder",
+            "quantity": 1,
+            "unit": "teaspoon",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "butter",
+            "quantity": 85,
+            "unit": "grams",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "caster sugar",
+            "quantity": 3,
+            "unit": "tablespoons",
+            "category": "sweeteners"
+          },
+          {
+            "ingredient_name": "milk",
+            "quantity": 175,
+            "unit": "ml",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "egg",
+            "quantity": 1,
+            "unit": "",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "flour",
+            "quantity": "for dusting",
+            "unit": "",
+            "category": "baking"
+          }
+        ]
+      },
+
+      {
+        "id": 19,
+        "recipe_name": "Lobster Bisque",
+        "image": "/images/Lobster_Bisque.jpg",
+        "recipe_url": "https://www.youtube.com/embed/mIfmSLptqsY?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "lobsters",
+            "quantity": 2,
+            "unit": "",
+            "category": "seafood"
+          },
+          {
+            "ingredient_name": "unsalted butter",
+            "quantity": 4,
+            "unit": "tablespoons",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "onion",
+            "quantity": 1,
+            "unit": "medium",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "celery",
+            "quantity": 1,
+            "unit": "stalk",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "carrot",
+            "quantity": 1,
+            "unit": "medium",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "garlic",
+            "quantity": 4,
+            "unit": "cloves",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "tomato paste",
+            "quantity": 2,
+            "unit": "tablespoons",
+            "category": "canned goods"
+          },
+          {
+            "ingredient_name": "brandy",
+            "quantity": 0.25,
+            "unit": "cup",
+            "category": "alcohol"
+          },
+          {
+            "ingredient_name": "dry white wine",
+            "quantity": 0.25,
+            "unit": "cup",
+            "category": "alcohol"
+          },
+          {
+            "ingredient_name": "fish stock",
+            "quantity": 4,
+            "unit": "cups",
+            "category": "canned goods"
+          },
+          {
+            "ingredient_name": "heavy cream",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "cayenne pepper",
+            "quantity": 0.125,
+            "unit": "teaspoon",
+            "category": "spices"
+          },
+          {
+            "ingredient_name": "salt",
+            "quantity": 1,
+            "unit": "teaspoon",
+            "category": "spices"
+          },
+          {
+            "ingredient_name": "black pepper",
+            "quantity": 0.25,
+            "unit": "teaspoon",
+            "category": "spices"
+          }
+        ]
+      }, 
+
+      {
+        "id": 20,
+        "recipe_name": "Oyako-Don",
+        "image": "/images/Oyako-Don.jpg",
+        "recipe_url": "https://www.youtube.com/embed/iChssoYXsuA?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "chicken thighs",
+            "quantity": 2,
+            "unit": "",
+            "category": "meat"
+          },
+          {
+            "ingredient_name": "onion",
+            "quantity": 1,
+            "unit": "medium",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "dashi stock",
+            "quantity": 240,
+            "unit": "ml",
+            "category": "canned goods"
+          },
+          {
+            "ingredient_name": "mirin",
+            "quantity": 2,
+            "unit": "tablespoons",
+            "category": "alcohol"
+          },
+          {
+            "ingredient_name": "soy sauce",
+            "quantity": 2,
+            "unit": "tablespoons",
+            "category": "condiments"
+          },
+          {
+            "ingredient_name": "sugar",
+            "quantity": 1,
+            "unit": "tablespoon",
+            "category": "sweeteners"
+          },
+          {
+            "ingredient_name": "eggs",
+            "quantity": 2,
+            "unit": "",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "green onions",
+            "quantity": 2,
+            "unit": "",
+            "category": "vegetable"
+          },
+          {
+            "ingredient_name": "cooked Japanese rice",
+            "quantity": 2,
+            "unit": "servings",
+            "category": "grains"
+          }
+        ]
+      }, 
+
+      {
+        "id": 21,
+        "recipe_name": "Tonkatsu Rice",
+        "image": "/images/Tonkatsu_Rice.jpg",
+        "recipe_url": "https://www.youtube.com/embed/kV4Aw6MpoSU?autoplay=1",
+        "ingredients": [
+          {
+            "ingredient_name": "pork loin",
+            "quantity": 2,
+            "unit": "",
+            "category": "meat"
+          },
+          {
+            "ingredient_name": "flour",
+            "quantity": 0.5,
+            "unit": "cup",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "eggs",
+            "quantity": 2,
+            "unit": "",
+            "category": "dairy"
+          },
+          {
+            "ingredient_name": "panko breadcrumbs",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "baking"
+          },
+          {
+            "ingredient_name": "vegetable oil",
+            "quantity": 1,
+            "unit": "cup",
+            "category": "condiments"
+          },
+          {
+            "ingredient_name": "cooked Japanese rice",
+            "quantity": 2,
+            "unit": "servings",
+            "category": "grains"
+          },
+          {
+            "ingredient_name": "Tonkatsu sauce",
+            "quantity": "",
+            "unit": "",
+            "category": "condiments"
+          },
+          {
+            "ingredient_name": "green onion",
+            "quantity": 1,
+            "unit": "",
+            "category": "vegetable"
+          }
+        ]
+      }
+]
+
+
+
+
+
+
+
+

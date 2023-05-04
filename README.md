@@ -29,5 +29,3 @@ npm start
 Create a .env file in the backend folder and put the following text in:
  
 MONGODB_CONNECTION_STRING=mongodb://127.0.0.1:27017/planmyplate
-
-123
