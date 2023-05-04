@@ -40,16 +40,17 @@ function AdvanceSearch() {
   const [searchResults, setSearchResults] = useState({});
 
   useEffect(() => {
-    if (Array.isArray(searchResults.results)) {
-      const recipeCards = searchResults.results.map((recipe)=>(
+    if (Array.isArray(searchResults)) {
+      const recipeCards = searchResults.map((recipe)=>(
         <Col key={recipe.id}>
-        <Card style={{ width: '18rem'}} key={recipe.id}>
+        <a href={`/recipe/${recipe.id}`} style={{textDecoration: 'none', color: 'black'}}>
+        <Card style={{ width: '18rem', height: '300px'}} key={recipe.id}>
           <Card.Img variant="top" src={recipe.image} height="160rem"/>
           <Card.Body>
             <Card.Title>{recipe.title}</Card.Title>
-            <Button variant="primary" href={`/recipe/${recipe.id}`}>View</Button>
           </Card.Body>
         </Card>
+        </a>
         </Col>
       ));
       setCardComponents(recipeCards);
@@ -75,10 +76,11 @@ function AdvanceSearch() {
 
     console.log(data);
     try {
-
-      const response = await axios.get(`${API_BASE_URL}/recipe/search`, data);
-      // const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=1414f1ede1c14cc3b2f498b8cfad8239&query=${inputText}`);
+      const response = await axios.get(`${API_BASE_URL}/recipes/search`, {
+        params: data,
+      });
       setSearchResults(response.data);
+      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
