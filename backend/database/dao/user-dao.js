@@ -1,4 +1,5 @@
 import {User} from "../schema/user-schema.js";
+import bcrypt from 'bcrypt';
 
 export function getIntolerances(userId) {
     User.findById(userId, (err, user) => {
@@ -21,4 +22,49 @@ export async function setUserIntolerances(userId, intolerances) {
     } else {
         return Promise.reject("User with userId " + userId + " not found");
     }
+}
+
+// login user
+export async function loginUser(username, password) {
+
+    // validation
+    if (!username || !password) {
+        throw Error('All fields must be filled');
+    }
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+        throw Error('Invalid login credentials');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+        throw Error('Invalid login credentials');
+    }
+
+    return user;
+}
+
+// signup user
+export async function signupUser(username, password) {
+    
+    // validation
+    if (!username || !password) {
+        throw Error('All fields must be filled');
+    }
+
+    const exists = await User.findOne({ username });
+
+    if (exists){
+        throw Error('Username already in use');
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+
+    const user = await User.create({ username, password: hash, savedRecipes: [], ratedRecipes: [] });
+
+    return user;
 }
