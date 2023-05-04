@@ -1,5 +1,5 @@
-import {Recipe} from "./recipe-schema.js";
-import {getRecipe} from "../spoonacular/queries.js";
+import {Recipe} from "../schema/recipe-schema.js";
+import {getRecipe} from "../../spoonacular/queries.js";
 
 export async function getRecipeById(recipeId) {
     const recipe = await Recipe.findOne({spoonacularId: recipeId});

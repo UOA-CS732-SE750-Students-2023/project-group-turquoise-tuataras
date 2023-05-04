@@ -22,6 +22,16 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const animatedComponents = makeAnimated();
 
 function AdvanceSearch() {
+
+  const [query, setQuery] = useState('');
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryParam = params.get('query');
+    setQuery(queryParam);
+  }, []);
+
+
   const [cardComponents, setCardComponents] = useState([]);
 
   const [selectedCuisines, setSelectedCuisines] = useState([]);
@@ -49,21 +59,31 @@ function AdvanceSearch() {
   const handleSearch = async () => {
     const inputText = document.querySelector('[aria-label="Complex Search Bar"]').value;
     const selectedMealType = document.querySelector('select').value;
+
     const data = {
-      selectedCuisines,
-      selectedDiets,
-      inputText,
-      selectedMealType,
-    };
-    // console.log(data);
+      recipeQuery: inputText,
+      cuisines: selectedCuisines,
+      diet: selectedDiets,
+      type: selectedMealType,
+      userId: JSON.parse(localStorage.getItem("user")),
+      intolerances: JSON.parse(localStorage.getItem(JSON.parse(localStorage.getItem("user")) + "_intolerances")),
+    }
+    if (data.userId === null) {
+      delete data.userId;
+      delete data.intolerances;
+    }
+
+    console.log(data);
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/complexSearch`, data);
-      // const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=1414f1ede1c14cc3b2f498b8cfad8239&query=chicken');
+
+      const response = await axios.get(`${API_BASE_URL}/recipe/search`, data);
+      // const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=1414f1ede1c14cc3b2f498b8cfad8239&query=${inputText}`);
       setSearchResults(response.data);
     } catch (err) {
       console.error(err);
     }
   };
+
 
 
   return (
@@ -77,7 +97,7 @@ function AdvanceSearch() {
             ))}
           </Form.Select>
         </div>
-        <Form.Control aria-label="Complex Search Bar" />
+        <Form.Control aria-label="Complex Search Bar" defaultValue={query}/>
         <Button variant="outline-secondary" id="button-addon2" onClick={handleSearch}>
           Search
         </Button>
