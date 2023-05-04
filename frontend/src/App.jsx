@@ -30,12 +30,10 @@ function App() {
 
                   <Route path=":id" element={<SingleRecipePage recipes = {recipes} recipesIsLoading = {recipesIsLoading}
                         onChangeComment = {onChangeComment} />} />
-
-                  <Route path="savedRecipes" element={<SavedRecipePage/>} />
-
                 </Route>
+
+                <Route path="savedRecipes" element={<SavedRecipePage/>}/>
           </Route>
-  
         </Routes>
     </div>
     )

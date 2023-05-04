@@ -6,7 +6,7 @@ export default function SingleRecipePage({recipes , recipesIsLoading , onChangeC
     const { id } = useParams();
 
     function retrieveRecipeBySpoonacularId(id) {
-        return recipes.find(a => a.spoonacularId === parseInt(id));;
+        return recipes.find(a => a.spoonacularId === parseInt(id));
     }
 
     if (recipesIsLoading) {
@@ -15,6 +15,7 @@ export default function SingleRecipePage({recipes , recipesIsLoading , onChangeC
 
     else {
         return (
+            
             <div>
                 <RecipeCard key={parseInt(id)} item= {retrieveRecipeBySpoonacularId(id)} onChangeComment= {onChangeComment}/>
             </div>

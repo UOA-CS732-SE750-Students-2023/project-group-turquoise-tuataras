@@ -53,7 +53,6 @@ export default function RecipeCard({ item , onChangeComment }) {
                 </div>
             </Card>
             <Link to={`../${item.spoonacularId}`}>
-            {/* <Link to={"../13"}>   */}
                 <Button type="primary" size="medium">Detail</Button>
             </Link>
         </div>

@@ -4,6 +4,8 @@ import SavedRecipeData from './SavedRecipeData.jsx'
 
 export default function SavedRecipePage() {
 
+  //Retrieve the users and recipes data automatically
+
   const [userData, setUserData] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
 
@@ -27,23 +29,20 @@ export default function SavedRecipePage() {
     fetchData();
   }, []);
 
+
+  //Set a conditonal statement to wait data receive
+   
   return (
     <div>
       {(recipeData && userData) ?
         (  <div>
+                <p>Data...</p>
                 <SavedRecipeData userData = {userData} recipeData = {recipeData} />
           </div>
         ) : 
         (
-          <LoadingImage/>
+          <p>Loading...</p>
         )}
     </div>
   );
-
-  function LoadingImage() {
-    return (
-        <img src="Loading_icon.gif" />
-    )
-}
-
 }
