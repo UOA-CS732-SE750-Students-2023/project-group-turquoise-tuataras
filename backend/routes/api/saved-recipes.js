@@ -2,7 +2,7 @@ import express from "express";
 import {User} from "../../database/schema/user-schema.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 router.get("/", async (req, res) => {
     const userId = req.params.userId;
@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/:recipeId", async (req, res) => {
+router.post("/", async (req, res) => {
     const userId = req.params.userId;
-    const spoonacularRecipeId = req.params.recipeId;
+    const spoonacularRecipeId = req.body.recipeId;
 
     let recipe = await getRecipeById(spoonacularRecipeId);
 
@@ -29,7 +29,7 @@ router.post("/:recipeId", async (req, res) => {
     const user = await User.findById(userId);
 
     if(user) {
-        user.savedRecipes.push(recipe);
+        user.savedRecipes.addToSet(recipe);
         await user.save();
         res.status(201).send();
     } else {
@@ -38,9 +38,9 @@ router.post("/:recipeId", async (req, res) => {
 
 });
 
-router.delete("/:recipeId", async (req, res) => {
+router.delete("/", async (req, res) => {
     const userId = req.params.userId;
-    const spoonacularRecipeId = req.params.recipeId;
+    const spoonacularRecipeId = req.body.recipeId;
 
     const recipe = await getRecipeById(spoonacularRecipeId);
 

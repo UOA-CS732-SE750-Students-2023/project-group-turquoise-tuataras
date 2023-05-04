@@ -1,7 +1,6 @@
 import express from "express";
-import {searchRecipes, getRecipe} from "../../spoonacular/queries.js";
-import {getRecipeById} from "../../database/dao/recipe-dao.js";
-import {Recipe} from "../../database/schema/recipe-schema.js";
+import {searchRecipes, getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
+import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
 import {getIntolerances} from "../../database/dao/user-dao.js";
 
 const router = express.Router();
@@ -17,25 +16,25 @@ router.get("/search", async (req, res) => {
     maxReadyTime && (searchQuery.maxReadyTime = maxReadyTime);
     number && (searchQuery.number = number);
     offset && (searchQuery.offset = offset);
-
-    res.json(searchRecipes(searchQuery));
+    const res1 = await searchRecipes(searchQuery)
+    res.json(res1);
 });
 
 router.get("/:spoonacularId", async (req, res) => {
     const spoonacularId = req.params.spoonacularId;
-    let recipe = await getRecipeById(spoonacularId);
+    let recipe = await getRecipe(spoonacularId, false);
 
     if (recipe) {
         res.json(recipe).status(200).send();
     } else {
-        res.json(getRecipe(spoonacularId)).status(200).send();
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
     }
 });
 
 router.post('/:spoonacularId/comment', async (req, res) => {
     const { spoonacularId } = req.params;
     const comment = req.body;
-    const recipe = await Recipe.findOne({'spoonacularId': spoonacularId});
+    const recipe = await getRecipe(spoonacularId, true);
     if (recipe){
         recipe.comments.push({
             username: comment.username,
@@ -45,14 +44,14 @@ router.post('/:spoonacularId/comment', async (req, res) => {
         res.status(201).json(comment);
     }
     else{
-        res.status(404).json({"message": "Recipe with that spoonacular ID not found"});
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
     }
 });
 
 router.post('/:spoonacularId/rating', async (req, res) => {
     const { spoonacularId } = req.params;
     const rating = req.body.rating;
-    const recipe = await Recipe.findOne({'spoonacularId': spoonacularId});
+    const recipe = await getRecipe(spoonacularId, true);
     if (recipe){
         const newCalculatedRating = (recipe.rating.rating*recipe.rating.numberOfRatings + rating)/(recipe.rating.numberOfRatings + 1);
         const newRating = {
@@ -66,8 +65,20 @@ router.post('/:spoonacularId/rating', async (req, res) => {
         });
     }
     else{
-        res.status(404).json({"message": "Recipe with that spoonacular ID not found"});
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
     }
 });
+
+async function getRecipe(spoonacularId, createIfNotExists = false) {
+    let recipe = await getRecipeById(spoonacularId);
+    if (recipe) {
+        return recipe;
+    }
+
+    if(createIfNotExists) {
+        return createRecipe(spoonacularId);
+    }
+    return getRecipeBySpoonacularId(spoonacularId);
+}
 
 export default router;
