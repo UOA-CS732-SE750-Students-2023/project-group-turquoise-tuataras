@@ -7,9 +7,9 @@ function Login({ show, onHide, handleLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        handleLogin(username, password);
+        console.log(username, password)
         };
 
     return (
