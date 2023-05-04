@@ -8,11 +8,11 @@ import moment from 'moment'
 
 const router = express.Router();
 
-// Todo: Implement JWT so that userId in req body isn't needed
+// Todo: Implement JWT so that userId isn't needed
 
 // Retrieve the user's meal plan for the current week
-router.get('/', async (req, res) => {
-    const { userId } = req.body;
+router.get('/:userId', async (req, res) => {
+    const { userId } = req.params;
 
     const startOfWeek = moment().utc().isoWeekday(1).startOf('day');
     const endOfWeek = moment().utc().isoWeekday(7).endOf('day');
