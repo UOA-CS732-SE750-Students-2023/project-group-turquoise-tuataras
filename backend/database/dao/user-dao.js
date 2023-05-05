@@ -68,3 +68,34 @@ export async function signupUser(username, password) {
 
     return user;
 }
+
+// reset user credentials
+export async function resetUserCredentials(userId, username, password) {
+
+    if (!username && !password) {
+        throw Error('Username and/or password must be provided')
+    }
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+        throw Error('User not found')
+    }
+
+    const filter = { _id: userId };
+    const update = {};
+
+    if (username) {
+        update.username = username
+    }
+
+    if (password) {
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(password, salt)
+        update.password = hash
+    }
+
+    const updatedUser = await User.findOneAndUpdate(filter, update, {new: true});
+
+    return updatedUser
+}
