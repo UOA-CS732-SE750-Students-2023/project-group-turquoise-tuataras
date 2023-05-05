@@ -25,4 +25,3 @@ dist-ssr
 
 # Environment
 .env
-backend/package-lock.json
