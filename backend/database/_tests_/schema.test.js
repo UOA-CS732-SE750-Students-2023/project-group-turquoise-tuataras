@@ -83,4 +83,5 @@ it('get a day meal plan', async () => {
     const mealPlan = await DayMealPlan.findOne({dateTime:'2025-10-06'}).populate('user').populate('recipe');
     console.log(mealPlan);
     expect(mealPlan.user.username).toBe('root');
+    expect(mealPlan.recipe[0].spoonacularId).toBe(650181);
 });
