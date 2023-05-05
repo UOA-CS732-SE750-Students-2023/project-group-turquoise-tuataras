@@ -85,7 +85,12 @@ export async function resetUserCredentials(userId, username, password) {
     const filter = { _id: userId };
     const update = {};
 
-    if (username) {
+    if (username && username !== user.username) {
+        const exists = await User.findOne({ username });
+        if (exists){
+            throw Error('Username already in use');
+        }
+        
         update.username = username
     }
 
