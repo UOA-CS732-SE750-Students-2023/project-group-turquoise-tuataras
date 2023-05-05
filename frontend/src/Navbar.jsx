@@ -36,15 +36,19 @@ function NavBar({onSignUpShow, onLogInShow}) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href={user ? "saved-recipes" : null} className="navbar_link">
-            Saved Recipes
-          </Nav.Link>
-          <Nav.Link href={user ? "meal-schedule" : null} className="navbar_link">
-            Meal Schedule
-          </Nav.Link>
-          <Nav.Link href={user ? "search" : null} className="navbar_link">
-            Advance Search
-          </Nav.Link>
+          {user && (
+            <>
+              <Nav.Link href={user ? "saved-recipes" : null} className="navbar_link">
+                Saved Recipes
+              </Nav.Link>
+              <Nav.Link href={user ? "meal-schedule" : null} className="navbar_link">
+                Meal Schedule
+              </Nav.Link>
+              <Nav.Link href={user ? "search" : null} className="navbar_link">
+                Advance Search
+              </Nav.Link>
+            </>
+          )}
         </Nav>
         </Navbar.Collapse>
         <form className="navbar_form" onSubmit={handleSearch}>
