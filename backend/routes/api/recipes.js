@@ -22,19 +22,25 @@ router.get("/search", async (req, res) => {
 
 router.get("/recommendations", async (req, res) => {
     const { userName } = req.query;
-    const {savedRecipes, intolerances} = await userData(userName);
-    let cuisines = [];
-    savedRecipes.forEach(recipe => {
-        cuisines = [...new Set([cuisines, ...recipe.cuisines])];
-    });
+
     const commonQuery = {};
-    commonQuery.cuisines = cuisines.toString();
-    commonQuery.intolerances = intolerances.toString();
     commonQuery.number = 10;
+    commonQuery.sort = 'random';
+    
+    if(userName) {
+        const {savedRecipes, intolerances} = await userData(userName);
+        let cuisines = [];
+        savedRecipes.forEach(recipe => {
+            cuisines = [...new Set([cuisines, ...recipe.cuisines])];
+        });
+
+        commonQuery.cuisines = cuisines.toString();
+        commonQuery.intolerances = intolerances.toString();
+    }
 
     const recommendations = {};
     const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
-        "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
+        "soup", "beverage", "fingerfood", "snack", "drink"]
         .sort(() => 0.5 - Math.random()).slice(0, 3);
     for (const mealType of mealTypes) {
         recommendations[mealType] = await searchRecipes({...commonQuery, type: mealType});
