@@ -68,3 +68,8 @@ export async function signupUser(username, password) {
 
     return user;
 }
+
+export async function userData(userName) {
+    const user = await User.findOne({username: userName}).populate('savedRecipes');
+    return user;
+}

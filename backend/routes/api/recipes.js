@@ -1,7 +1,7 @@
 import express from "express";
 import {searchRecipes, getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
-import {getIntolerances} from "../../database/dao/user-dao.js";
+import {getIntolerances, userData} from "../../database/dao/user-dao.js";
 
 const router = express.Router();
 
@@ -18,6 +18,29 @@ router.get("/search", async (req, res) => {
     offset && (searchQuery.offset = offset);
     const res1 = await searchRecipes(searchQuery)
     res.json(res1);
+});
+
+router.get("/recommendations", async (req, res) => {
+    const { userName } = req.query;
+    const {savedRecipes, intolerances} = await userData(userName);
+    let cuisines = [];
+    savedRecipes.forEach(recipe => {
+        cuisines = [...new Set([cuisines, ...recipe.cuisines])];
+    });
+    const commonQuery = {};
+    commonQuery.cuisines = cuisines.toString();
+    commonQuery.intolerances = intolerances.toString();
+    commonQuery.number = 10;
+
+    const recommendations = {};
+    const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
+        "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
+        .sort(() => 0.5 - Math.random()).slice(0, 3);
+    for (const mealType of mealTypes) {
+        recommendations[mealType] = await searchRecipes({...commonQuery, type: mealType});
+    }
+
+    res.json(recommendations);
 });
 
 router.get("/:spoonacularId", async (req, res) => {
