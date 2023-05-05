@@ -26,7 +26,7 @@ router.get("/recommendations", async (req, res) => {
     const commonQuery = {};
     commonQuery.number = 10;
     commonQuery.sort = 'random';
-    
+
     if(userName) {
         const {savedRecipes, intolerances} = await userData(userName);
         let cuisines = [];
@@ -37,7 +37,6 @@ router.get("/recommendations", async (req, res) => {
         commonQuery.cuisines = cuisines.toString();
         commonQuery.intolerances = intolerances.toString();
     }
-
     const recommendations = {};
     const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
         "soup", "beverage", "fingerfood", "snack", "drink"]
@@ -54,7 +53,7 @@ router.get("/:spoonacularId", async (req, res) => {
     let recipe = await getRecipe(spoonacularId, false);
 
     if (recipe) {
-        res.json(recipe).status(200).send();
+        res.json(recipe).status(200);
     } else {
         res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
     }
