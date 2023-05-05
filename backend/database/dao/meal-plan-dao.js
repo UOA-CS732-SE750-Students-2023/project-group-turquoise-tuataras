@@ -33,7 +33,7 @@ async function updateDayMealPlan(dayMealPlan) {
         }
 
         if (dayMealPlan.recipe && dayMealPlan.recipe.length > 0){
-            update.$push = { recipe: { $each: dayMealPlan.recipe } };
+            update.recipe = dayMealPlan.recipe;
         }
 
         const result = await DayMealPlan.updateOne(filter, update);
