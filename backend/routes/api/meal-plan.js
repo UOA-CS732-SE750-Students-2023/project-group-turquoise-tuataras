@@ -5,8 +5,12 @@ import {
     updateDayMealPlan,
     deleteDayMealPlanRecipe } from '../../database/dao/meal-plan-dao.js';
 import moment from 'moment'
+import requireAuth from '../../middleware/requireAuth.js'
 
 const router = express.Router();
+
+// require auth for all meal-plan routes
+router.use(requireAuth)
 
 // Todo: Implement JWT so that userId isn't needed
 
