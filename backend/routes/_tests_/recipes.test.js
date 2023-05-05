@@ -117,3 +117,34 @@ describe('POST /:spoonacularId/comment', () => {
         });
     }, 10000);
 })
+
+describe('POST /:spoonacularId/rating', () => {
+
+    /**
+     * Tests that, when posting a rating, a 201 Created response is returned,
+     * with the response body containing the new rating.
+     */
+    it('post rating', (done) => {
+        request(app)
+        .post('/650181/rating')
+        .send({"rating": 5})
+        .expect(201)
+        .end(async (err, res) => {
+            if (err) {
+                return done(err);
+            }
+            const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
+            const dbRating = dbRecipe.rating;
+            const response = res.body;
+            console.log(response);
+            expect(response).toEqual({message:"New rating: 4.583333333333333"});
+            expect(dbRating).toEqual(
+                {
+                    rating: 4.583333333333333,
+                    numberOfRatings: 6
+                }
+            );
+            return done();
+        });
+    }, 10000);
+})
