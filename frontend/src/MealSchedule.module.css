@@ -1,0 +1,167 @@
+.meal_schedule_title {
+    position: relative;
+    width: 1000px;
+    height: 80px;
+    top: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.meal_schedule_time_picker {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 80px;
+    border-radius: 15px;
+    vertical-align: bottom;
+    border: lightgrey 2px solid;
+    overflow: hidden;
+}
+
+.meal_schedule_title ul {
+    margin: 0;
+    padding: 0;
+}
+
+.meal_schedule_title li {
+    position: relative;
+    display: inline-block;
+    left: -1px;
+    width: 14.285%;
+    height: 80px;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.meal_schedule_title li a {
+    position: relative;
+    display: block;
+    padding-top: 5px;
+    top: 15px;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    border-left: lightgrey 1px solid;
+    border-right: lightgrey 1px solid;
+}
+
+.meal_schedule_title li:hover {
+    background-color: lightgrey;
+}
+
+.meal_schedule_content {
+    position: relative;
+    width: 1000px;
+    height: 450px;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 15px;
+    border: lightgrey 2px solid;
+}
+
+.meal_schedule_content_date {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 50px;
+    margin: auto;
+    font-size: 55px;
+    line-height: 120px;
+    text-align: center;
+    border-radius: 15px;
+    border: #F68D8F 2px solid;
+}
+
+.meal_schedule_content_date_month {
+    position: absolute;
+    width: 45px;
+    height: 25px;
+    bottom: -2px;
+    right: -2px;
+    margin: auto;
+    background-color: #F68D8F;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 5px 0 15px 0;
+}
+
+.meal_schedule_content_table {
+    position: absolute;
+    width: 750px;
+    height: 350px;
+    top: 50px;
+    right: 50px;
+    margin: auto;
+    border-radius: 15px;
+    border: lightgrey 2px solid;
+}
+
+.meal_schedule_button {
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    top: 210px;
+    left: 50px;
+    margin: auto;
+    font-size: 15px;
+    line-height: 47px;
+    text-align: center;
+    border-radius: 15px;
+    border: #F68D8F 2px solid;
+    overflow: hidden;
+}
+
+.meal_schedule_button:hover {
+    background-color: #F68D8F;
+}
+
+.meal_schedule_items_group {
+    position: absolute;
+    top: 60px;
+    width: 96%;
+    height: 270px;
+    left: 2%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.meal_schedule_items {
+    height: 50px;
+    line-height: 35px;
+    font-size: 20px;
+}
+
+.meal_schedule_items:hover {
+    background-color: #F68D8F;
+}
+
+.meal_schedule_items_none {
+    position: absolute;
+    width: 400px;
+    height: 30px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 30px;
+    font-size: 24px;
+    color: dimgray;
+}
+
+.meal_schedule_delete_button {
+    position: absolute;
+    width: 12%;
+    top: 5px;
+    right: 3%;
+}
