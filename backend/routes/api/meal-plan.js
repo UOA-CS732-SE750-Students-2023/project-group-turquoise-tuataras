@@ -18,8 +18,8 @@ router.use(requireAuth)
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
 
-    const startOfWeek = moment().utc().isoWeekday(1).startOf('day');
-    const endOfWeek = moment().utc().isoWeekday(7).endOf('day');
+    const startOfWeek = moment().utc().startOf('day');
+    const endOfWeek = moment().utc().add(6, 'days').endOf('day');
 
     const mealPlan = await getMealPlanByUserAndCurrentWeek(userId, startOfWeek, endOfWeek);
     res.json(mealPlan);
