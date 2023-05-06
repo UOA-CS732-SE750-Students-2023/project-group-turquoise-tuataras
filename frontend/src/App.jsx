@@ -9,6 +9,7 @@ import Login from './Login';
 import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
+import MealSchedule from "./MealSchedule.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -109,6 +110,8 @@ function App() {
             element={<p>Home Page</p>}/>
           <Route path="/stores-near-me" 
             element={<LocationSearch/>}/>
+          <Route path="/meal-schedule"
+                 element={<MealSchedule isLoggedIn={isLoggedIn}/>}/>
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
