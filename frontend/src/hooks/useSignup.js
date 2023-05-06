@@ -13,7 +13,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        axios.post(`${API_BASE_URL}/api/users/signup`,{
+        axios.post(`${API_BASE_URL}/users/signup`,{
             username,
             password
           })
