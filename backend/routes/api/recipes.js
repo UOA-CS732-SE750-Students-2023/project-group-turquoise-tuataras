@@ -38,7 +38,8 @@ router.post('/:spoonacularId/comment', async (req, res) => {
     if (recipe){
         recipe.comments.push({
             username: comment.username,
-            comment: comment.comment
+            comment: comment.comment,
+            date: comment.date
         });
         recipe.save();
         res.status(201).json(comment);
