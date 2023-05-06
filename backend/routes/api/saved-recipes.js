@@ -1,8 +1,12 @@
 import express from "express";
 import {User} from "../../database/schema/user-schema.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
+import requireAuth from '../../middleware/requireAuth.js'
 
 const router = express.Router({mergeParams: true});
+
+// require auth for all meal-plan routes
+router.use(requireAuth)
 
 router.get("/", async (req, res) => {
     const userId = req.params.userId;
