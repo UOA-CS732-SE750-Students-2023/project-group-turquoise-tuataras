@@ -71,7 +71,7 @@ function App() {
   };
 
   const handleReset = (username, password) => {
-    axios.put(`${API_BASE_URL}/api/reset`,{
+    axios.put(`${API_BASE_URL}/reset`,{
       username,
       password
     })
@@ -80,7 +80,7 @@ function App() {
   const handleIntolerances = (intolerances) => {
     const userId = JSON.parse(localStorage.getItem("user"));
     localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
-    axios.post(`${API_BASE_URL}/api/intolerances`,{
+    axios.put(`${API_BASE_URL}/users/${userId}/intolerances`,{
       intolerances
     })
   };
