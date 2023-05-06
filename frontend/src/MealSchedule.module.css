@@ -167,3 +167,62 @@
     top: 5px;
     right: 3%;
 }
+
+.meal_schedule_show {
+    position: absolute;
+    width: 1000px;
+    height: 550px;
+    background: white;
+    top: 90px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: none;
+}
+
+.meal_schedule_show_content {
+    position: absolute;
+    width: 950px;
+    height: 460px;
+    background: #EC6E70;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.meal_schedule_show_items {
+    position: absolute;
+    top: 20px;
+    width: 915px;
+    height: 360px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.meal_schedule_show_items_item {
+    position: relative;
+    display: inline-block;
+    width: 14%;
+    vertical-align: top;
+    margin-left: 0.143%;
+    margin-right: 0.142%;
+}
+
+.meal_schedule_show_items_bottom {
+    position: absolute;
+    width: 20%;
+    top: 400px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
