@@ -3,7 +3,8 @@ import express from "express";
 import {
     setUserIntolerances,
     signupUser,
-    loginUser } from "../../database/dao/user-dao.js";
+    loginUser,
+    resetUserCredentials } from "../../database/dao/user-dao.js";
 import jwt from 'jsonwebtoken'
 
 const router = express.Router({mergeParams: true});
@@ -54,6 +55,20 @@ router.post('/signup', async (req, res) => {
         res.status(201).json({username, token});
     } catch (error) {
         res.status(400).json({error: error.message});
+    }
+})
+
+// reset route
+router.patch('/:userId/reset', async (req, res) => {
+    const { userId } = req.params
+    const { username, password} = req.body
+
+    try {
+        const updatedUser = await resetUserCredentials(userId, username, password);
+
+        res.status(200).json(updatedUser)
+    } catch (error) {
+        res.status(400).json({error: error.message})
     }
 })
 
