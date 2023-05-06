@@ -17,8 +17,9 @@
     height: 80px;
     border-radius: 15px;
     vertical-align: bottom;
-    border: lightgrey 2px solid;
+    border: gray 2px solid;
     overflow: hidden;
+    background-color: rgba(211, 211, 211, 0.3);
 }
 
 .meal_schedule_title ul {
@@ -46,24 +47,25 @@
     font-size: 15px;
     line-height: 20px;
     text-align: center;
-    border-left: lightgrey 1px solid;
-    border-right: lightgrey 1px solid;
+    border-left: gray 1px solid;
+    border-right: gray 1px solid;
 }
 
 .meal_schedule_title li:hover {
-    background-color: lightgrey;
+    background-color: rgba(128, 128, 128, 0.45);
 }
 
 .meal_schedule_content {
     position: relative;
     width: 1000px;
     height: 450px;
-    top: 50px;
+    top: 65px;
     left: 0;
     right: 0;
-    margin: auto;
     border-radius: 15px;
-    border: lightgrey 2px solid;
+    border: gray 2px solid;
+    margin: auto auto 100px;
+    background-color: rgba(211, 211, 211, 0.3);
 }
 
 .meal_schedule_content_date {
@@ -103,7 +105,7 @@
     right: 50px;
     margin: auto;
     border-radius: 15px;
-    border: lightgrey 2px solid;
+    border: gray 1px solid;
     background-color: white;
 }
 
@@ -119,6 +121,7 @@
     text-align: center;
     border-radius: 15px;
     border: #F68D8F 2px solid;
+    background-color: white;
     overflow: hidden;
 }
 
@@ -166,4 +169,63 @@
     width: 12%;
     top: 5px;
     right: 3%;
+}
+
+.meal_schedule_show {
+    position: absolute;
+    width: 1000px;
+    height: 570px;
+    background: white;
+    top: 90px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: none;
+}
+
+.meal_schedule_show_content {
+    position: absolute;
+    width: 950px;
+    height: 460px;
+    background: #EC6E70;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.meal_schedule_show_items {
+    position: absolute;
+    top: 20px;
+    width: 915px;
+    height: 360px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.meal_schedule_show_items_item {
+    position: relative;
+    display: inline-block;
+    width: 14%;
+    vertical-align: top;
+    margin-left: 0.143%;
+    margin-right: 0.142%;
+}
+
+.meal_schedule_show_items_bottom {
+    position: absolute;
+    width: 20%;
+    top: 400px;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
