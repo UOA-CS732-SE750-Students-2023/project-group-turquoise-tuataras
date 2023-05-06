@@ -3,10 +3,7 @@ import style from "./MealSchedule.module.css"
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import {forEach} from "react-bootstrap/ElementChildren";
-import {ListGroup} from "react-bootstrap";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import {ListGroup, ListGroupItem} from "react-bootstrap";
 
 function MealSchedule({isLoggedIn, user}) {
     // JUST FOR TEST
@@ -15,6 +12,17 @@ function MealSchedule({isLoggedIn, user}) {
     // constants
     const WEEKS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let [tag, setTag] = useState(false);
+    // function add
+    const funAdd = () => {
+        //发送请求
+        setTag(!tag);
+    }
+    // function delete
+    const funDelete = () => {
+        //发送请求
+        setTag(!tag);
+    }
     // select date
     const [select, setSelect] = useState(0);
     // get current date
@@ -25,29 +33,49 @@ function MealSchedule({isLoggedIn, user}) {
     }
     // get schedule
     const [data, setData] = useState(new Map());
-    const url = 'http://localhost:3000/api/meal-plan/';
+    const [savedRecipes, setSavedRecipes] = useState(new Map());
+    const [mealPlanId, setMealPlanId] = useState([]);
+    const mealPlanUrl = 'http://localhost:3000/api/meal-plan/';
+    const savedRecipesUrl = 'http://localhost:3000/api/users/' + user + '/savedRecipes';
     useEffect(() => {
         try {
-            axios.get(url + user)
+            axios.get(savedRecipesUrl)
+                .then(response => {
+                    console.log(response)
+                })
+        } catch (err) {
+            console.error(err);
+        }
+    })
+
+    useEffect(() => {
+        try {
+            axios.get(mealPlanUrl + user)
                 .then(response => {
                     let arrayData = response.data;
                     let mapData = new Map();
                     for (let i = 0; i < 7; i++) {
-                        mapData.set(dateArray[i].getDate(), new Array())
+                        mapData.set(dateArray[i].getDate(), new Map())
                     }
+                    let tempArray = []
                     arrayData.forEach((item) => {
+                        tempArray.push(item._id);
                         let date = new Date(item.dateTime).getDate();
                         if (mapData.has(date)) {
-                            mapData.get(date).push(item)
+                            item.recipe.forEach((tempItem) => {
+                                if (!mapData.get(date).has(tempItem._id)) {
+                                    mapData.get(date).set(tempItem._id, tempItem);
+                                }
+                            })
                         }
                     })
                     setData(mapData);
-                    console.log(mapData)
+                    setMealPlanId(tempArray);
                 });
         } catch (err) {
             console.error(err);
         }
-    }, []);
+    }, [tag]);
     return (
         <div>
             {isLoggedIn ? <div>
@@ -58,7 +86,9 @@ function MealSchedule({isLoggedIn, user}) {
                             dateArray.map((item, index) => <li style={{color: index === select ? 'red' : 'black'}}
                                                                key={index} onClick={() => {
                                 setSelect(index)
-                            }}><a>{WEEKS[item.getDay()]}<br/>{item.getDate()} {MONTH[item.getMonth()]}</a></li>)
+                            }}>
+                                <a>{index === 0 ? 'Today' : WEEKS[item.getDay()]}<br/>{item.getDate()} {MONTH[item.getMonth()]}
+                                </a></li>)
                         }
                     </ul>
 
@@ -72,16 +102,25 @@ function MealSchedule({isLoggedIn, user}) {
                     <div className={style.meal_schedule_button}>Shopping List</div>
                     <div className={style.meal_schedule_button} style={{top: "280px"}}>Meal Schedule</div>
                     <div className={style.meal_schedule_content_table}>
-                        <div style={{position: "absolute", top: "60px", width: "96%", left: "2%"}}>
+                        <div className={style.meal_schedule_items_group}>
+                            <ListGroup as="ul">
                                 {
                                     data.get(dateArray[select].getDate()) &&
-                                    data.get(dateArray[select].getDate()).map((item,index) =>
-                                        {
-                                            console.log(item)
-                                        }
-                                        // <p key={index}>item</p>
+                                    Array.from(data.get(dateArray[select].getDate()).values()).map((item, index) =>
+                                        <ListGroupItem as="li" key={index} className={style.meal_schedule_items}>
+                                            {item.title}
+                                            <Button variant="danger"
+                                                    className={style.meal_schedule_delete_button}
+                                                    onClick={funDelete}>DELETE</Button>
+                                        </ListGroupItem>
                                     )
                                 }
+                                {
+                                    data.get(dateArray[select].getDate()) &&
+                                    Array.from(data.get(dateArray[select].getDate()).values()).length === 0 &&
+                                    <div className={style.meal_schedule_items_none}>Add recipes to your schedule</div>
+                                }
+                            </ListGroup>
                         </div>
                         <div style={{position: "absolute", top: "10px", width: "100%"}}>
                             <div style={{position: "relative", display: "inline-block", width: "85%", left: "2%"}}>
@@ -98,7 +137,8 @@ function MealSchedule({isLoggedIn, user}) {
                                 top: "-2px",
                                 left: "3%"
                             }}>
-                                <Button variant="outline-secondary" style={{width: "100%"}}>ADD</Button>
+                                <Button variant="outline-secondary" style={{width: "100%"}}
+                                        onClick={funAdd}>ADD</Button>
                             </div>
                         </div>
                     </div>
