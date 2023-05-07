@@ -67,10 +67,10 @@ function AdvanceSearch() {
       cuisines: selectedCuisines,
       diet: selectedDiets,
       type: selectedMealType,
-      username: user.username,
     }
-    if (data.username === null) {
-      delete data.username;
+
+    if (user) {
+      data.userName = user.username
     }
 
     console.log(data);
