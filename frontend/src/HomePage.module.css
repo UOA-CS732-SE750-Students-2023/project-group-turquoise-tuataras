@@ -24,6 +24,7 @@
 }
 
 .navbar_form {
+    width: 630px;
     height: 50px;
     line-height: 30px;
     background-color: white;
@@ -68,9 +69,11 @@
 }
 
 .home_bottom {
+    position: relative;
     height: 350px;
-    margin-top: 50px;
+    margin-top: -3px;
     background: #EC6E70;
+    z-index: 0;
 }
 
 .home_bottom_title {
@@ -119,4 +122,34 @@
     background: url("images/icon_vertical.png");
     background-size: cover;
     z-index: 0;
+}
+.home_cover{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    animation-name: vanish;
+    animation-play-state: paused;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+@keyframes vanish {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.home_cover_img{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:-60px;
+    bottom:0;
+    width: 400px;
+    height:300px;
+    margin: auto;
 }
