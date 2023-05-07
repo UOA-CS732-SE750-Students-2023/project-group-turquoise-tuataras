@@ -38,7 +38,8 @@ function App() {
   };
 
   const handleIntolerances = (intolerances) => {
-    localStorage.setItem("intolerances", JSON.stringify(intolerances));
+    const userId = JSON.parse(localStorage.getItem("user"));
+    localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
     axios.put(`${API_BASE_URL}/users/intolerances`,{
       intolerances
     }, {
