@@ -24,17 +24,26 @@ function App() {
   const handleLogInModalClose = () => setLogInModalShow(false);
   const handleLogInModalShow = () => setLogInModalShow(true);
 
-  const { user } = useAuthContext()
-
-  const handleReset = (username, password) => {
-    axios.patch(`${API_BASE_URL}/users/reset`,{
-      username,
-      password
-    }, {
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    })
+  const handleReset = async (username, password, user) => {
+    try{
+      const response = await axios.patch(`${API_BASE_URL}/users/reset`,{
+        username,
+        password
+      }, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      })
+  
+      // update username within local storage
+      const updatedUser = response.data;
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      storedUser.username = updatedUser.username;
+      localStorage.setItem('user', JSON.stringify(storedUser));
+  
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const handleIntolerances = (intolerances) => {

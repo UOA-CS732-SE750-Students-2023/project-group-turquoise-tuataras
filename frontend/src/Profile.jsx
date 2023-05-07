@@ -24,7 +24,7 @@ function Profile({ handleReset, handleIntolerances }) {
             return
         }
 
-        handleReset(username, password);
+        handleReset(username, password, user);
     };
 
     const handleIntolerancesSubmit = (event) => {
