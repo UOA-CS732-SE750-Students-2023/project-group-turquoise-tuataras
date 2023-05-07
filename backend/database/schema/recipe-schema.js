@@ -10,7 +10,7 @@ const recipeSchema = new Schema({
     },
     ingredients: [{
         name: String,
-        amount: String,
+        amount: Number,
         unit: String
     }],
     title: String,
@@ -19,7 +19,7 @@ const recipeSchema = new Schema({
     servings: Number,
     nutrition: [{
         name: String,
-        amount: String,
+        amount: Number,
         unit: String,
         percentOfDailyNeeds: Number
     }],
@@ -32,7 +32,8 @@ const recipeSchema = new Schema({
     },
     comments: [{
         username: String,
-        comment: String
+        comment: String,
+        date: Date
     }]
 });
 
