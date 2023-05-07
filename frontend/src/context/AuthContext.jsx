@@ -1,13 +1,13 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer, useEffect, useState } from 'react'
 
 export const AuthContext = createContext()
 
 export const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
-            return { user: action.payload }
+            return { user: action.payload, loading: false}
         case 'LOGOUT':
-            return { user: null }
+            return { user: null, loading: false}
         default:
             return state
     }
@@ -15,8 +15,11 @@ export const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        user: null,
+        loading: true
     })
+
+    const [loading, setLoading] = useState(true)
 
     // Setting inital auth status
     useEffect(() => {
@@ -24,7 +27,11 @@ export const AuthContextProvider = ({ children }) => {
 
         if (user) {
             dispatch({type: 'LOGIN', payload: user})
+        } else {
+            dispatch({type: 'LOGOUT'})
         }
+
+        setLoading(false)
     }, [])
 
     console.log('AuthContext state ', state)

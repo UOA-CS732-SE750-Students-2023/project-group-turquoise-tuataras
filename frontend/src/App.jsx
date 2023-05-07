@@ -1,7 +1,7 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar'
 import SignUp from './SignUp';
@@ -23,6 +23,8 @@ function App() {
 
   const handleLogInModalClose = () => setLogInModalShow(false);
   const handleLogInModalShow = () => setLogInModalShow(true);
+
+  const { user, loading } = useAuthContext()
 
   const handleReset = async (username, password, user) => {
     try{
@@ -57,6 +59,12 @@ function App() {
     })
   };
 
+  // ToDo: Provide feedback when a loading state is present
+  // when loading show a blank screen
+  if (loading) {
+    return
+  }
+
   return (
     <BrowserRouter>
       <div>
@@ -67,7 +75,7 @@ function App() {
           <Route path="/search"
             element={<AdvanceSearch/>}/>
           <Route path="/profile"
-            element={<Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
+            element={user ? <Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/> : <Navigate to="/" />}/>
           <Route path="/"
             element={<p>Home Page</p>}/>
           <Route path="/stores-near-me" 
