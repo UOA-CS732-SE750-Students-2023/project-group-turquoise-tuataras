@@ -13,8 +13,8 @@ const authRouter = express.Router();
 // Apply requireAuth middleware to all routes on the auth router
 authRouter.use(requireAuth);
 
-authRouter.put('/:userId/intolerances', async (req, res) => {
-    const { userId } = req.params;
+authRouter.put('/intolerances', async (req, res) => {
+    const userId = req.user._id
     const intolerances = req.body;
     setUserIntolerances(userId, intolerances).then(() => {
         res.status(201).json({
@@ -26,8 +26,8 @@ authRouter.put('/:userId/intolerances', async (req, res) => {
 });
 
 // reset route
-authRouter.patch('/:userId/reset', async (req, res) => {
-    const { userId } = req.params
+authRouter.patch('/reset', async (req, res) => {
+    const userId = req.user._id
     const { username, password} = req.body
 
     try {

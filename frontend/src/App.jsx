@@ -9,6 +9,7 @@ import Login from './Login';
 import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -23,18 +24,27 @@ function App() {
   const handleLogInModalClose = () => setLogInModalShow(false);
   const handleLogInModalShow = () => setLogInModalShow(true);
 
+  const { user } = useAuthContext()
+
   const handleReset = (username, password) => {
-    axios.patch(`${API_BASE_URL}/users/${userId}/reset`,{
+    axios.patch(`${API_BASE_URL}/users/reset`,{
       username,
       password
+    }, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
     })
   };
 
   const handleIntolerances = (intolerances) => {
-    const userId = JSON.parse(localStorage.getItem("user"));
-    localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
-    axios.put(`${API_BASE_URL}/users/${userId}/intolerances`,{
+    localStorage.setItem("intolerances", JSON.stringify(intolerances));
+    axios.put(`${API_BASE_URL}/users/intolerances`,{
       intolerances
+    }, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
     })
   };
 
