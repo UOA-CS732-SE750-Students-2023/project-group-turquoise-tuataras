@@ -6,12 +6,12 @@ import {getIntolerances, userData} from "../../database/dao/user-dao.js";
 const router = express.Router();
 
 router.get("/search", async (req, res) => {
-    const { recipeQuery, cuisines, diet, userId, type, maxReadyTime, number, offset } = req.query;
+    const { recipeQuery, cuisines, diet, userName, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
     recipeQuery && (searchQuery.query = recipeQuery);
     cuisines && (searchQuery.cuisines = cuisines.toString());
     diet && (searchQuery.diet = diet.join('|'));
-    userId && (searchQuery.intolerances = getIntolerances(userId).toString());
+    userName && (searchQuery.intolerances = getIntolerances(userName).toString());
     type && (searchQuery.type = type);
     maxReadyTime && (searchQuery.maxReadyTime = maxReadyTime);
     number && (searchQuery.number = number);
