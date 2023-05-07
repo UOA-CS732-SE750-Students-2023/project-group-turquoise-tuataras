@@ -9,7 +9,7 @@ const router = express.Router({mergeParams: true});
 router.use(requireAuth)
 
 router.get("/", async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.user._id;
     const user = await User
         .findById(userId)
         .populate("savedRecipes");
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.user._id;
     const spoonacularRecipeId = req.body.recipeId;
 
     let recipe = await getRecipeById(spoonacularRecipeId);
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/", async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.user._id;
     const spoonacularRecipeId = req.body.recipeId;
 
     const recipe = await getRecipeById(spoonacularRecipeId);

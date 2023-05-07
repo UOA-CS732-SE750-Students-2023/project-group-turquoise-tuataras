@@ -40,7 +40,7 @@ authRouter.patch('/reset', async (req, res) => {
 })
 
 const router = express.Router({mergeParams: true});
-router.use('/:userId/savedRecipes', savedRecipesRoutes)
+router.use('/savedRecipes', savedRecipesRoutes)
 
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
