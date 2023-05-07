@@ -12,11 +12,9 @@ const router = express.Router();
 // require auth for all meal-plan routes
 router.use(requireAuth)
 
-// Todo: Implement JWT so that userId isn't needed
-
 // Retrieve the user's meal plan for the current week
-router.get('/:userId', async (req, res) => {
-    const { userId } = req.params;
+router.get('/', async (req, res) => {
+    const userId = req.user._id
 
     const startOfWeek = moment().utc().startOf('day');
     const endOfWeek = moment().utc().add(6, 'days').endOf('day');
@@ -27,10 +25,12 @@ router.get('/:userId', async (req, res) => {
 
 // Create new day meal plan
 router.post('/', async (req, res) => {
+    const userId = req.user._id
+    const newDayMealPlan = req.body
+    newDayMealPlan.user = userId
+    const dayMealPlan = await createDayMealPlan(newDayMealPlan);
 
-    const newDayMealPlan = await createDayMealPlan(req.body);
-
-    if (newDayMealPlan) return res.status(201).json(newDayMealPlan)
+    if (dayMealPlan) return res.status(201).json(dayMealPlan)
     return res.sendStatus(422)
 })
 
