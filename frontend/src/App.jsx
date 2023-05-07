@@ -1,6 +1,4 @@
-import {useState} from 'react'
 import './App.css'
-import Navbar from './Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from "./HomePage.jsx";
 import React, { useEffect, useState } from 'react';
@@ -16,11 +14,6 @@ import LocationSearch from './LocationSearch';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
-    const [count, setCount] = useState(0)
-    return (<div>
-        <Navbar/>
-        <HomePage/>
-    </div>)
   const [user, setUser] = useState("");
 
   const [signUpModalShow, setSignUpModalShow] = useState(false);
@@ -114,7 +107,7 @@ function App() {
           <Route path="/profile"
             element={<Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
           <Route path="/"
-            element={<p>Home Page</p>}/>
+            element={<HomePage/>}/>
           <Route path="/stores-near-me"
             element={<LocationSearch/>}/>
           <Route path="*"

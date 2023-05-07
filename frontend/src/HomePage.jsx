@@ -4,9 +4,11 @@ import * as basicScroll from "basicscroll";
 import Button from "react-bootstrap/Button";
 import HomeCardGroup from "./HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
+import axios from "axios";
 
 
-function homePage() {
+function homePage(userName) {
+    userName = "root";
     // --check window width--
     const [windowWidth, setWindowWidth] = useState(getWindowWidth());
     useEffect(() => {
@@ -18,6 +20,20 @@ function homePage() {
         return () => {
             window.removeEventListener('resize', handleWindowResize);
         };
+    }, []);
+    // get data from backend
+    const [data, setData] = useState([]);
+    const url = 'http://localhost:3000/api/recipes/recommendations?userName=';
+    useEffect(() => {
+        try {
+            axios.get(url+userName)
+                .then(response => {
+                    let data = response.data;
+                    console.log(data)
+                });
+        } catch (err) {
+            console.error(err);
+        }
     }, []);
 
     function getWindowWidth() {
@@ -35,16 +51,7 @@ function homePage() {
         if (info.length === 0) {
             return;
         }
-        window.location.href = "./search?value=" + info;
-    }
-    // advance search
-    const advSearch = () => {
-        let info = searchInfo.current.value
-        if (info.length === 0) {
-            window.location.href = "./advance_search";
-        } else {
-            window.location.href = "./advance_search?value=" + info;
-        }
+        window.location.href = "./search?query=" + info;
     }
     // --according to time, recommend breakfast/lunch/dinner--
     let time = new Date().getHours();
@@ -139,7 +146,6 @@ function homePage() {
                     <input ref={searchInfo} type="text" placeholder="Search" className={style.navbar_input}/>
                     <ButtonGroup className={style.navbar_button_group}>
                         <Button type={"submit"} className={style.navbar_button} onClick={search}>Search</Button>
-                        <Button type={"submit"} className={style.navbar_button} onClick={advSearch}>Advance</Button>
                     </ButtonGroup>
                 </div>
             </div>

@@ -14,20 +14,20 @@ function homeCardGroup(props) {
     // get data from backend
     const [data, setData] = useState([]);
     // const url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=1414f1ede1c14cc3b2f498b8cfad8239';
-    const url = API_BASE_URL+'/api/complexSearch';
-    useEffect(() => {
-        try {
-            axios.get(url + "&query=" + props.type)
-                .then(response => {
-                    let data = response.data.results;
-                    if (data.length > 7) {
-                        setData(data.slice(0, 8))
-                    }
-                });
-        } catch (err) {
-            console.error(err);
-        }
-    }, []);
+    // const url = API_BASE_URL+'/api/complexSearch';
+    // useEffect(() => {
+    //     try {
+    //         axios.get(url + "&query=" + props.type)
+    //             .then(response => {
+    //                 let data = response.data.results;
+    //                 if (data.length > 7) {
+    //                     setData(data.slice(0, 8))
+    //                 }
+    //             });
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }, []);
     return (<div>
             {data.length === 8 ?
                 <div className={style.card_group}>
