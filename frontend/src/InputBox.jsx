@@ -3,14 +3,14 @@ import axios from 'axios';
 import React, { useState, } from "react";
 
 
-function InputBox({ recipe , onChangeComment}) {
+function InputBox({ recipe , onChangeComment , users}) {
 
   const [inputValue, setInputValue] = useState("");
   
   const insertComment = async (newComment) => {
 
     const innertComment = {
-        username: "Username",
+        username: users[0].username,
         comment: newComment,
         date: new Date()
     }

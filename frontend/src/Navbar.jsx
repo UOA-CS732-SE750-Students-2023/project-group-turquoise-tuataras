@@ -21,7 +21,7 @@ function navbar() {
   return (
     <Navbar className='navbar_color' expand="lg">
       <Container>
-        <Navbar.Brand href="#home"><img src={icon} width="200"></img></Navbar.Brand>
+        <Navbar.Brand href="/"><img src={icon} width="200"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

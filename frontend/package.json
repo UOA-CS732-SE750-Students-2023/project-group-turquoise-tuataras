@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^5.4.2",
+    "@ant-design/plots": "^1.2.5",
+    "antd": "^5.4.7",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",

@@ -1,19 +1,20 @@
-import useGet from './useGet';
+
 import { Divider , Input } from 'antd';
 import React from "react";
 import InputBox from './InputBox';
+import styles from './Comment.module.css';
 
 
-export default function Comment({recipe , onChangeComment}) {
+export default function Comment({recipe , onChangeComment , users }) {
     
     return(
         <div >
-            <ListComment recipe= {recipe} onChangeComment = {onChangeComment} />                       
+            <ListComment recipe= {recipe} onChangeComment = {onChangeComment} users={ users }/>                       
         </div>
     );
 }
 
-export function ListComment({ recipe , onChangeComment}) {
+export function ListComment({ recipe , onChangeComment , users }) {
 
     return (
     <div>
@@ -21,17 +22,17 @@ export function ListComment({ recipe , onChangeComment}) {
             <div key={index}>
                 <div>
                     <div>
-                        <span >{eachComment.username}: </span>
-                        <span >{eachComment.comment}</span>
+                        <span className={styles.username_comment} >{eachComment.username}: </span>
                     </div>
-                    <div>{eachComment.date}</div>
+                    <span className={styles.context_comment} >{eachComment.comment}</span>
+                    <div className={styles.date_comment} >{eachComment.date}</div>
                 </div>
                 <Divider />
             </div> 
             ))}
 
-            <div >
-                <InputBox recipe = {recipe} onChangeComment = {onChangeComment}/>
+            <div>
+                <InputBox recipe = {recipe} onChangeComment = {onChangeComment} users = {users} />
             </div>
     </div>    
     )            

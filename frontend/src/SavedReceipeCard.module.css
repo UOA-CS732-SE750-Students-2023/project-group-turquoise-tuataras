@@ -22,11 +22,10 @@
     margin-bottom: 5px;
 }
 
-.detail_button{
-    border-radius: 8px;
-    color: white;
-    background-color: #84a459;
-    padding-left: 10px;
-    padding-right: 10px;
+#like_button{
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 

@@ -1,4 +1,4 @@
-import styles from './ReceipeCard.module.css';
+import styles from './SavedReceipeCard.module.css';
 import React, { useState } from 'react'
 import Comment from './Comment.jsx'
 import { Card } from 'antd';
@@ -10,9 +10,9 @@ import axios from 'axios';
 
 const { Meta } = Card;
 
-export default function RecipeCard({ item , onChangeComment , onChangeFavorite , users}) {
+export default function SavedReceipeCard({ item , onChangeComment , onChangeFavorite , users}) {
 
-    const [favoriteStatus, setFavoriteStatus] = useState( getRecipeSavedStatus(item,users));
+    const [favoriteStatus, setFavoriteStatus] = useState(true);
 
     const [open, setOpen] = useState(false);
 
@@ -26,7 +26,6 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
     const insertSavedRecipe = async () => {
         setFavoriteStatus(true);
-
         // add the selected SavedRecipe to databse , then call the refresh favorite
         const addNewSavedRecipeData = await axios.post(
               `http://localhost:3000/api/users/savedrecipes/${users[0].id}`, item)
@@ -35,8 +34,7 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
     const deleteSavedRecipe = async () => {
         setFavoriteStatus(false);
-        
-        // delete the selected SavedRecipe to databse , then call the refresh favorite
+            // delete the selected SavedRecipe to databse , then call the refresh favorite
         const deleteNewSavedRecipeData = await axios.post(
             `http://localhost:3000/api/users/deleteSavedrecipes/${users[0].id}`, item)
             .then(()=> onChangeFavorite());
@@ -55,7 +53,7 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
                 <div id="ingredients_button">
                     <Space>
-                    <Button onClick={ (favoriteStatus) ? deleteSavedRecipe :insertSavedRecipe } type="primary" size="medium" id="like_button" shape="circle" 
+                        <Button onClick={ (favoriteStatus) ? deleteSavedRecipe :insertSavedRecipe } type="primary" size="medium" id="like_button" shape="circle" 
                                 icon={(favoriteStatus) ? <DislikeOutlined /> : <LikeOutlined />} style={(favoriteStatus) ? { background: "#b0aeb0"}:{ background: "#f64747"}}/>
 
                         <Tooltip title="Show Comments">
@@ -64,11 +62,11 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
                                 <Drawer title={item.recipe_name} placement="right" onClose={onClose} open={open}>
                                     <h4>Comments:</h4>
-                                    <Comment recipe = {item} onChangeComment ={onChangeComment} users ={users} />
+                                    <Comment recipe = {item} onChangeComment ={onChangeComment} users = {users} />
                                 </Drawer>
                         </Tooltip>
-                        <Link to={`../${item.spoonacularId}`}>
-                            <Button className={styles.detail_button} type="primary" size="medium">Detail</Button>
+                        <Link to={`../recipes/${item.spoonacularId}`}>
+                            <Button type="primary" size="medium">Detail</Button>
                         </Link>
                     </Space>
                 </div>
@@ -76,16 +74,5 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
         </div>
     )
-}
-
-export function getRecipeSavedStatus (recipeData , userData) {
-
-    for (let i = 0; i < (userData[0].savedRecipes.length); i++) {
-        if((recipeData._id) === (userData[0].savedRecipes[i])){
-            return true;
-        }
-    }
-
-    return false;
 }
 

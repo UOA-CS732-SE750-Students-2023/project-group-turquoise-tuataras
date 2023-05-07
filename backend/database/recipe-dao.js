@@ -8,6 +8,12 @@ async function updateRecipe(recipe) {
     return dbRecipe !== undefined;
 }
 
+async function getRecipeById(recipeId) {
+    const recipe = await Recipe.findOne({spoonacularId: recipeId});
+    return recipe;
+}
+
 export {
-    updateRecipe
+    updateRecipe,
+    getRecipeById
 }

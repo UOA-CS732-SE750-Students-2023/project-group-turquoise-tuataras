@@ -1,5 +1,6 @@
 import React from "react";
 import useGet from './useGet';
+import { useLocalStorage } from "./useLocalStorage";
 
 export const AppContext = React.createContext({});
 
@@ -12,15 +13,23 @@ export function AppContextProvider({ children }) {
     
     // Retreieve the data again after new comment create
     function onChangeComment(){
+        console.log("Call onChangeComment");
         refreshRecipes();
     }
 
+    // Retreieve the data again after new comment create
+    function onChangeFavorite(){
+        console.log("Call onChangeFavorite");
+        refreshUsers();
+    }
+    
     const context = {
         recipes,
         users,
         recipesIsLoading,
         usersIsLoading,
-        onChangeComment
+        onChangeComment,
+        onChangeFavorite       
     }
 
     return (

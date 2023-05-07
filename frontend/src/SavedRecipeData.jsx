@@ -1,12 +1,40 @@
-export default function SavedRecipePage({userData , recipeData}) {
+import React from "react";
+import styles from './SavedRecipeData.module.css';
+import SavedReceipeCard from './SavedReceipeCard';
 
-    console.log(userData)
+export default function SavedRecipePage({userData , recipeData ,onChangeComment , onChangeFavorite}) {
+
+
+
+    const savedRecipeData = getSavedRecipeData (userData , recipeData);
 
     return (
         <div>
-            <h2>{userData[0].username}</h2>
-            <h2>{userData[0].savedRecipes[0]}</h2>
-            <h2>{recipeData[0].title}</h2>
+            {(savedRecipeData) ? (
+            <div className={styles.mainGrid}>
+                <div className={styles.productContainer}>
+                    {savedRecipeData.map((recipe) => (
+                        <SavedReceipeCard key={recipe.spoonacularId} item= {recipe} users = {userData} 
+                                          onChangeComment= {onChangeComment} onChangeFavorite= { onChangeFavorite }/>
+                    ))}
+                </div>
+            </div>) : (
+                <div/>
+            )}
         </div>
     );
 }
+
+export function getSavedRecipeData (userData , recipeData) {
+
+    let savedRecipeArray = [];
+
+        for (let i = 0; i < (userData[0].savedRecipes.length); i++) {
+            const savedRecipe = recipeData.find(recipe => (recipe._id) === (userData[0].savedRecipes[i]));
+            savedRecipeArray = [...savedRecipeArray,savedRecipe];
+        }
+    
+        return savedRecipeArray
+}
+
+
