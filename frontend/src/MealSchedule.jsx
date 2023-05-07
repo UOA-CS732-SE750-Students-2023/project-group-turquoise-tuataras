@@ -15,7 +15,7 @@ function inputValueChangeHandler(event) {
 function MealSchedule({isLoggedIn, user}) {
     // JUST FOR TEST, DELETE IN FINAL VERSION
     isLoggedIn = true;
-    user = '64565d5a79fb1a04100f27c2';
+    user = '64577aac3dd4152d8e8a7515';
     // constants
     const WEEKS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -102,34 +102,37 @@ function MealSchedule({isLoggedIn, user}) {
     }, [])
     // get current date schedule
     useEffect(() => {
-        try {
-            axios.get(mealPlanUrl + user)
-                .then(response => {
-                    let arrayData = response.data;
-                    let mapData = new Map();
-                    for (let i = 0; i < 7; i++) {
-                        mapData.set(dateArray[i].getDate(), new Map())
-                    }
-                    let tempArray = []
-                    arrayData.forEach((item) => {
-                        let date = new Date(item.dateTime).getDate();
-                        if (date === dateArray[select].getDate()) {
-                            tempArray.push(item._id);
+        setTimeout(() => {
+            try {
+                axios.get(mealPlanUrl + user)
+                    .then(response => {
+                        let arrayData = response.data;
+                        let mapData = new Map();
+                        for (let i = 0; i < 7; i++) {
+                            mapData.set(dateArray[i].getDate(), new Map())
                         }
-                        if (mapData.has(date)) {
-                            item.recipe.forEach((tempItem) => {
-                                if (!mapData.get(date).has(tempItem._id)) {
-                                    mapData.get(date).set(tempItem._id, tempItem);
-                                }
-                            })
-                        }
-                    })
-                    setData(mapData);
-                    setMealPlanId(tempArray);
-                });
-        } catch (err) {
-            console.error(err);
-        }
+                        let tempArray = []
+                        arrayData.forEach((item) => {
+                            let date = new Date(item.dateTime).getDate();
+                            if (date === dateArray[select].getDate()) {
+                                tempArray.push(item._id);
+                            }
+                            if (mapData.has(date)) {
+                                item.recipe.forEach((tempItem) => {
+                                    if (!mapData.get(date).has(tempItem._id)) {
+                                        mapData.get(date).set(tempItem._id, tempItem);
+                                    }
+                                })
+                            }
+                        })
+                        setData(mapData);
+                        setMealPlanId(tempArray);
+                    });
+            } catch (err) {
+                console.error(err);
+            }
+        }, 100);
+
     }, [tag]);
     return (<div>
         {isLoggedIn ? <div>
