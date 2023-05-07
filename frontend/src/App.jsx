@@ -40,9 +40,8 @@ function App() {
   const handleIntolerances = (intolerances) => {
     const user = JSON.parse(localStorage.getItem("user"));
     localStorage.setItem(user.username + "_intolerances", JSON.stringify(intolerances));
-    axios.put(`${API_BASE_URL}/users/intolerances`,{
-      intolerances
-    }, {
+    axios.put(`${API_BASE_URL}/users/intolerances`,
+      intolerances, {
       headers: {
         Authorization: `Bearer ${user.token}`
       }
