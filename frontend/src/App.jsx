@@ -24,7 +24,7 @@ function App() {
   const handleLogInModalShow = () => setLogInModalShow(true);
 
   const handleReset = (username, password) => {
-    axios.put(`${API_BASE_URL}/users/${userId}/reset`,{
+    axios.patch(`${API_BASE_URL}/users/${userId}/reset`,{
       username,
       password
     })
