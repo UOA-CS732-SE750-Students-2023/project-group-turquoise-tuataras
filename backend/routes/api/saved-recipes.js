@@ -5,7 +5,7 @@ import requireAuth from '../../middleware/requireAuth.js'
 
 const router = express.Router({mergeParams: true});
 
-// require auth for all meal-plan routes
+// require auth for all saved-recipes routes
 router.use(requireAuth)
 
 router.get("/", async (req, res) => {
