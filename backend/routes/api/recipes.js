@@ -76,7 +76,7 @@ router.get("/:spoonacularId", async (req, res) => {
 });
 
 // Mount the auth router onto the main router for the routes that require authentication
-router.use(['/:spoonacularId/comment', '/:spoonacularId/rating'], authRouter);
+router.use(authRouter);
 
 async function getRecipe(spoonacularId, createIfNotExists = false) {
     let recipe = await getRecipeById(spoonacularId);

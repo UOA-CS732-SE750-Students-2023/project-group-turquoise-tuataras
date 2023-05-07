@@ -30,7 +30,7 @@ function Profile({ handleReset, handleIntolerances }) {
     const handleIntolerancesSubmit = (event) => {
         event.preventDefault();
 
-        // dont send reset request if user isn't logged in
+        // dont send intolerances request if user isn't logged in
         if (!user) {
             return
         }
@@ -47,7 +47,7 @@ function Profile({ handleReset, handleIntolerances }) {
         if (!storedList) {
             return
         }
-        
+
         const convertedList = storedList.map(item => ({
             value: item,
             label: item

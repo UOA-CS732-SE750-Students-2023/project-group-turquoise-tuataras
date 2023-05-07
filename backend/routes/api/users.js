@@ -79,6 +79,6 @@ router.post('/signup', async (req, res) => {
 })
 
 // Mount the auth router onto the main router for the routes that require authentication
-router.use(['/:userId/intolerances', '/:userId/reset'], authRouter);
+router.use(authRouter);
 
 export default router;
