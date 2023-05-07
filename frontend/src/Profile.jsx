@@ -41,8 +41,8 @@ function Profile({ handleReset, handleIntolerances }) {
     const [storedIntolerances, setStoredIntolerances] = useState([]);
 
     useEffect(() => {
-        const userId = JSON.parse(localStorage.getItem("user"));
-        const storedList = JSON.parse(localStorage.getItem(userId + "_intolerances"));
+        const user = JSON.parse(localStorage.getItem("user"));
+        const storedList = JSON.parse(localStorage.getItem(user.username + "_intolerances"));
         
         if (!storedList) {
             return

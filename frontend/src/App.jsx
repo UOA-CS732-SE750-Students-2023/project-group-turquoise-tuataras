@@ -38,8 +38,8 @@ function App() {
   };
 
   const handleIntolerances = (intolerances) => {
-    const userId = JSON.parse(localStorage.getItem("user"));
-    localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
+    const user = JSON.parse(localStorage.getItem("user"));
+    localStorage.setItem(user.username + "_intolerances", JSON.stringify(intolerances));
     axios.put(`${API_BASE_URL}/users/intolerances`,{
       intolerances
     }, {
@@ -48,14 +48,6 @@ function App() {
       }
     })
   };
-
-  // useEffect(() => {
-  //   const currentUser = JSON.parse(localStorage.getItem("user"));
-  //   if (currentUser) {
-  //     setUser(currentUser);
-  //     setIsLoggedIn(true);
-  //   }
-  // }, []);
 
   return (
     <BrowserRouter>
