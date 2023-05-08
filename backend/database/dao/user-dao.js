@@ -1,13 +1,10 @@
 import {User} from "../schema/user-schema.js";
 import bcrypt from 'bcrypt';
 
-export function getIntolerances(userId) {
-    User.findById(userId, (err, user) => {
-        if (err) {
-            return err;
-        }
-        return user.intolerances;
-    });
+export async function getIntolerances(userName) {
+    const user = await User.findOne({username: userName});
+    return user.intolerances;
+
 }
 
 export async function setUserIntolerances(userId, intolerances) {
