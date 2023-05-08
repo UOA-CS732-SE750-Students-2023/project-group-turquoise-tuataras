@@ -1,0 +1,30 @@
+/* .mainGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 10px;
+    justify-items: center;
+}
+
+.productContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-direction: row;
+    gap: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(238, 238, 20);
+    background-color: #34416a;
+} */
+
+.shoppingListTable
+{
+    color: red;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* justify-items: center; */
+    /* align-items: center;
+    text-align: center; */
+}

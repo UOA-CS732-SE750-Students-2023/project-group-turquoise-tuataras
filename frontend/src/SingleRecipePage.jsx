@@ -66,7 +66,7 @@ export function ButtonTable({recipe, onChangeComment, onChangeFavorite , users})
             <table className={styles.table}>
                 <tbody>
                         <tr>
-                          <td><CommentButton recipe = {recipe} onChangeComment={onChangeComment} /></td>  
+                          <td><CommentButton recipe = {recipe} onChangeComment={onChangeComment} users = {users}/></td>  
                           <td><FavoriteButton recipe = {recipe} users = {users} onChangeFavorite={onChangeFavorite}/></td>
                           <td className={styles.Rating} >Rating: {recipe.rating.rating}</td>
                         </tr>

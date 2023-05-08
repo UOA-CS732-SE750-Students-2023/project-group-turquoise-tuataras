@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table } from 'antd';
 import getShoppingListIngredients from "./getShoppingListIngredients";
 import shoppingListRecipes from './Recipes.json'
+import styles from './ShoppingList.module.css';
 
 export default function ShoppingList() {
 
@@ -17,12 +18,7 @@ export default function ShoppingList() {
     {
       title: 'Amount',
       dataIndex: 'totalAmount',
-      sorter: (a, b) => a.totalAmount - b.totalAmount,
-    },
-    {
-      title: 'Unit',
-      dataIndex: 'unit',
-    },
+    }
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -31,7 +27,12 @@ export default function ShoppingList() {
 
   return (
       <>
-        <Table columns={columns} dataSource={tableData} onChange={onChange} />
+        <div>
+          <img src="" alt="" />
+        </div>
+        <div>
+        <Table className={styles.shoppingListTable} columns={columns} dataSource={tableData} onChange={onChange} />
+        </div>
       </>
   );
 }

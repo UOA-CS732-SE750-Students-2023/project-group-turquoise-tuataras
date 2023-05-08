@@ -33,8 +33,7 @@ export function getShoppingListData(allIngredients) {
               tableData[index] = {
                   name:         newIngredientData[index].ingredient.name,
                   amount:       newIngredientData[index].ingredient.amount,
-                  unit:         newIngredientData[index].ingredient.unit,
-                  totalAmount:  newIngredientData[index].totalAmount,
+                  totalAmount:  newIngredientData[index].totalAmount + " " +newIngredientData[index].ingredient.unit,
               }
       };
 
