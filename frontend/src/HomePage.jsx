@@ -6,10 +6,16 @@ import HomeCardGroup from "./HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import testValue from "./__test__/test.json"
+import {useAuthContext} from "./hooks/useAuthContext.js";
 
 
-function homePage(userName) {
-    userName = "root";
+function homePage() {
+    const {user,loading} = useAuthContext();
+    const config = {
+        headers: {
+            Authorization: `Bearer ${user.token}`
+        }
+    }
     // --check window width--
     const [windowWidth, setWindowWidth] = useState(getWindowWidth());
     useEffect(() => {
@@ -26,8 +32,9 @@ function homePage(userName) {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    const url = 'http://localhost:3000/api/recipes/recommendations?userName=';
+    const url = 'http://localhost:3000/api/recipes/recommendations?userName=root';
     useEffect(() => {
+        console.log(config)
         setTimeout(() => {
             coverBox.current.style.animationPlayState = "running";
             searchBox.current.style.display = "block";
@@ -36,7 +43,7 @@ function homePage(userName) {
             coverBox.current.style.display = "none";
         }, 4000);
         try {
-            axios.get(url + userName)
+            axios.get(url,config)
                 .then(response => {
                     let data = response.data;
                     let dataArray = [];
@@ -79,21 +86,6 @@ function homePage(userName) {
             return;
         }
         window.location.href = "./search?query=" + info;
-    }
-    // --according to time, recommend breakfast/lunch/dinner--
-    let time = new Date().getHours();
-    if (time > 3) {
-        if (time > 9) {
-            if (time > 15) {
-                time = "Dinner";
-            } else {
-                time = "Lunch"
-            }
-        } else {
-            time = "Breakfast"
-        }
-    } else {
-        time = "Dinner";
     }
     // --animation--
     // animation for search box
