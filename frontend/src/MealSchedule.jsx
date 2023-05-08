@@ -28,6 +28,10 @@ function MealSchedule({isLoggedIn, user}) {
     const funOpen = () => {
         refObject.current.style.display = "block";
     }
+    // shopping list
+    const funShopping = () => {
+        window.location.href = "./api/shoppingList";
+    }
     // function add
     const funAdd = () => {
         //send request
@@ -155,7 +159,7 @@ function MealSchedule({isLoggedIn, user}) {
                     <div
                         className={style.meal_schedule_content_date_month}>{MONTH[dateArray[select].getMonth()]}</div>
                 </div>
-                <div className={style.meal_schedule_button}>Shopping List</div>
+                <div className={style.meal_schedule_button} onClick={funShopping}>Shopping List</div>
                 <div className={style.meal_schedule_button} style={{top: "280px"}} onClick={funOpen}>Meal Schedule</div>
                 <div className={style.meal_schedule_content_table}>
                     <div className={style.meal_schedule_items_group}>
