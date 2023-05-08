@@ -1,30 +1,38 @@
-/* .mainGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    gap: 10px;
-    justify-items: center;
-}
-
-.productContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    flex-direction: row;
-    gap: 10px;
-}
-
-h1 {
-    text-align: center;
-    color: rgb(238, 238, 20);
-    background-color: #34416a;
+/* *{
+    border: 1px solid black
 } */
 
-.shoppingListTable
+.custom_table 
 {
-    color: red;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* justify-items: center; */
-    /* align-items: center;
-    text-align: center; */
+    margin: auto;
+    width: 80%;
+    height: 100%
+} 
+
+.shopping_list_title {
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    gap: 10px;
+
 }
+
+.shopping_list_img {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+.ShoppinListButtonTable {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 10px auto 10px auto;
+
+}
+.shopping_list_date {
+    color: #6ebe04;
+    font-size: large;
+    font-weight: bolder;
+}
+
