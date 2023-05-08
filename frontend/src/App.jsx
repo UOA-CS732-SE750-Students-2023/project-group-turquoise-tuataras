@@ -10,6 +10,7 @@ import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
 import { useAuthContext } from './hooks/useAuthContext';
+import HomePage from "./HomePage.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
