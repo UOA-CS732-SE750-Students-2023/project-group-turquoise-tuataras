@@ -1,7 +1,7 @@
 import express from "express";
 import {searchRecipes, getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
-import {getIntolerances} from "../../database/dao/user-dao.js";
+import {getIntolerances, userData} from "../../database/dao/user-dao.js";
 import requireAuth from '../../middleware/requireAuth.js'
 
 const authRouter = express.Router();
@@ -16,7 +16,8 @@ authRouter.post('/:spoonacularId/comment', async (req, res) => {
     if (recipe){
         recipe.comments.push({
             username: comment.username,
-            comment: comment.comment
+            comment: comment.comment,
+            date: comment.date
         });
         recipe.save();
         res.status(201).json(comment);
@@ -50,12 +51,12 @@ authRouter.post('/:spoonacularId/rating', async (req, res) => {
 const router = express.Router();
 
 router.get("/search", async (req, res) => {
-    const { recipeQuery, cuisines, diet, userId, type, maxReadyTime, number, offset } = req.query;
+    const { recipeQuery, cuisines, diet, userName, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
     recipeQuery && (searchQuery.query = recipeQuery);
     cuisines && (searchQuery.cuisines = cuisines.toString());
     diet && (searchQuery.diet = diet.join('|'));
-    userId && (searchQuery.intolerances = getIntolerances(userId).toString());
+    userName && (searchQuery.intolerances = getIntolerances(userName).toString());
     type && (searchQuery.type = type);
     maxReadyTime && (searchQuery.maxReadyTime = maxReadyTime);
     number && (searchQuery.number = number);
@@ -69,10 +70,38 @@ router.get("/:spoonacularId", async (req, res) => {
     let recipe = await getRecipe(spoonacularId, false);
 
     if (recipe) {
-        res.json(recipe).status(200).send();
+        res.json(recipe).status(200);
     } else {
         res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
     }
+});
+
+router.get("/recommendations", async (req, res) => {
+    const { userName } = req.query;
+
+    const commonQuery = {};
+    commonQuery.number = 10;
+    commonQuery.sort = 'random';
+
+    if(userName) {
+        const {savedRecipes, intolerances} = await userData(userName);
+        let cuisines = [];
+        savedRecipes.forEach(recipe => {
+            cuisines = [...new Set([cuisines, ...recipe.cuisines])];
+        });
+
+        commonQuery.cuisines = cuisines.toString();
+        commonQuery.intolerances = intolerances.toString();
+    }
+    const recommendations = {};
+    const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
+        "soup", "beverage", "fingerfood", "snack", "drink"]
+        .sort(() => 0.5 - Math.random()).slice(0, 3);
+    for (const mealType of mealTypes) {
+        recommendations[mealType] = await searchRecipes({...commonQuery, type: mealType});
+    }
+
+    res.json(recommendations);
 });
 
 // Mount the auth router onto the main router for the routes that require authentication

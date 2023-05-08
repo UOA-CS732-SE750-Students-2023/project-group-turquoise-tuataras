@@ -1,13 +1,10 @@
 import {User} from "../schema/user-schema.js";
 import bcrypt from 'bcrypt';
 
-export function getIntolerances(userId) {
-    User.findById(userId, (err, user) => {
-        if (err) {
-            return err;
-        }
-        return user.intolerances;
-    });
+export async function getIntolerances(userName) {
+    const user = await User.findOne({username: userName});
+    return user.intolerances;
+
 }
 
 export async function setUserIntolerances(userId, intolerances) {
@@ -66,6 +63,11 @@ export async function signupUser(username, password) {
 
     const user = await User.create({ username, password: hash, savedRecipes: [], ratedRecipes: [] });
 
+    return user;
+}
+
+export async function userData(userName) {
+    const user = await User.findOne({username: userName}).populate('savedRecipes');
     return user;
 }
 
