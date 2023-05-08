@@ -2,7 +2,7 @@ import React from "react";
 import styles from './SavedRecipeData.module.css';
 import SavedReceipeCard from './SavedReceipeCard';
 
-export default function SavedRecipePage({userData , recipeData ,onChangeComment , onChangeFavorite}) {
+export default function SavedRecipePage({userData , recipeData , onChangeFavorite}) {
 
 
 
@@ -15,7 +15,7 @@ export default function SavedRecipePage({userData , recipeData ,onChangeComment 
                 <div className={styles.productContainer}>
                     {savedRecipeData.map((recipe) => (
                         <SavedReceipeCard key={recipe.spoonacularId} item= {recipe} users = {userData} 
-                                          onChangeComment= {onChangeComment} onChangeFavorite= { onChangeFavorite }/>
+                                           onChangeFavorite= { onChangeFavorite }/>
                     ))}
                 </div>
             </div>) : (

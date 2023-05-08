@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const { Meta } = Card;
 
-export default function SavedReceipeCard({ item , onChangeComment , onChangeFavorite , users}) {
+export default function SavedReceipeCard({ item , onChangeFavorite , users}) {
 
     const [open, setOpen] = useState(false);
 

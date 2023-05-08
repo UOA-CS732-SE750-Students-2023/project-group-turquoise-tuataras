@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const { Meta } = Card;
 
-export default function RecipeCard({ item , onChangeComment , onChangeFavorite , users}) {
+export default function RecipeCard({ item , onChangeFavorite , users}) {
 
     const [favoriteStatus, setFavoriteStatus] = useState( getRecipeSavedStatus(item,users));
 
@@ -64,7 +64,7 @@ export default function RecipeCard({ item , onChangeComment , onChangeFavorite ,
 
                                 <Drawer title={item.recipe_name} placement="right" onClose={onClose} open={open}>
                                     <h4>Comments:</h4>
-                                    <Comment recipe = {item} onChangeComment ={onChangeComment} users ={users} />
+                                    <Comment recipe = {item} users ={users} />
                                 </Drawer>
                         </Tooltip>
                         <Link to={`../${item.spoonacularId}`}>

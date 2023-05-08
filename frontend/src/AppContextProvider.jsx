@@ -12,11 +12,6 @@ export function AppContextProvider({ children }) {
     const { data: users, refresh: refreshUsers, isLoading: usersIsLoading } = useGet(`http://localhost:3000/api/users`);
     
     // Retreieve the data again after new comment create
-    function onChangeComment(){
-        refreshRecipes();
-    }
-
-    // Retreieve the data again after new comment create
     function onChangeFavorite(){
         refreshUsers();
     }
@@ -26,7 +21,6 @@ export function AppContextProvider({ children }) {
         users,
         recipesIsLoading,
         usersIsLoading,
-        onChangeComment,
         onChangeFavorite       
     }
 

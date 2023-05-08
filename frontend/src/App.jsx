@@ -12,7 +12,7 @@ import { AppContext } from './AppContextProvider';
 
 function App() {
 
-  const { recipes, recipesIsLoading , onChangeComment , users , onChangeFavorite} = useContext(AppContext);
+  const { recipes, recipesIsLoading , users , onChangeFavorite} = useContext(AppContext);
   
   return (
     <div>
@@ -27,13 +27,13 @@ function App() {
 
                   <Route index element={<Navigate to="gallery" replace />} />
 
-                  <Route path="gallery" element={<RecipePage recipes = {recipes} users = {users} recipesIsLoading = {recipesIsLoading} onChangeFavorite = {onChangeFavorite}/>}/>
+                  <Route path="gallery" element={<RecipePage users = {users} recipesIsLoading = {recipesIsLoading} onChangeFavorite = {onChangeFavorite}/>}/>
 
-                  <Route path=":id" element={<SingleRecipePage recipes = {recipes} users = {users} recipesIsLoading = {recipesIsLoading}
-                        onChangeComment = {onChangeComment} onChangeFavorite={onChangeFavorite} />} />
+                  <Route path=":id" element={<SingleRecipePage recipes = {recipes} users = {users} 
+                                              recipesIsLoading = {recipesIsLoading} onChangeFavorite={onChangeFavorite} />} />
               </Route>
 
-              <Route path="savedRecipes" element={<SavedRecipePage onChangeComment = {onChangeComment} onChangeFavorite={onChangeFavorite} />}/>
+              <Route path="savedRecipes" element={<SavedRecipePage onChangeFavorite={onChangeFavorite} />}/>
               <Route path="shoppingList" element={<ShoppingList />}/>  
           </Route>
         </Routes>

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import RecipeCard from './ReceipeCard';
 import styles from './RecipePage.module.css';
 
 
-export default function RecipePage({ onChangeComment , onChangeFavorite , users }) {
+export default function RecipePage({ onChangeFavorite , users }) {
 
     const [recipeData, setRecipeData] = useState(null);
 
@@ -26,7 +25,7 @@ export default function RecipePage({ onChangeComment , onChangeFavorite , users 
                 <div className={styles.productContainer}>
                     {recipeData.map((recipe) => (
                         <RecipeCard key={recipe.spoonacularId} item= {recipe} users={users} 
-                         onChangeComment= {onChangeComment} onChangeFavorite={onChangeFavorite}/>
+                                    onChangeFavorite={onChangeFavorite}/>
                     ))}
                 </div>
             </div>) : (

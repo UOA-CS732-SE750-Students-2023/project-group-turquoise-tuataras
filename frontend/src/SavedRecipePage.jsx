@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SavedRecipeData from './SavedRecipeData.jsx'
 
-export default function SavedRecipePage( {onChangeComment,onChangeFavorite} ) {
+export default function SavedRecipePage( {onChangeFavorite} ) {
 
   const [userData, setUserData] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
@@ -31,7 +31,7 @@ export default function SavedRecipePage( {onChangeComment,onChangeFavorite} ) {
     <div>
       {(recipeData && userData) ?
         (  <div>
-                <SavedRecipeData userData = {userData} recipeData = {recipeData} onChangeComment = {onChangeComment} onChangeFavorite={onChangeFavorite}/>
+                <SavedRecipeData userData = {userData} recipeData = {recipeData} onChangeFavorite={onChangeFavorite}/>
           </div>
         ) : 
         (

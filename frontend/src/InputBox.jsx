@@ -28,8 +28,7 @@ function InputBox({ recipe , onChangeComment , users}) {
 
     // Save the recipe data to databse when new comment added , then call the refresh function
     const recipeData = await axios.put(
-          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe)
-          .then(()=> onChangeComment());
+          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe);
   };
 
   const handleKeyDown = (event) => {
