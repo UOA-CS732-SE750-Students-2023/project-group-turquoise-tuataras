@@ -12,6 +12,21 @@ async function getMealPlanByUserAndCurrentWeek(userId, start, end) {
     return mealPlan
 }
 
+async function getShoppingListByUserAndCurrentWeek(userId, start, end) {
+    const dayMealPlans = await DayMealPlan.find({
+        user: userId,
+        dateTime: {
+            $gte: start,
+            $lte: end
+        }
+    }).populate('recipe');
+
+    return dayMealPlans.map((dayMealPlan) => ({
+        dateTime: dayMealPlan.dateTime,
+        recipes: dayMealPlan.recipe,
+    }));
+}
+
 async function createDayMealPlan(dayMealPlan) {
 
     const dbDayMealPlan = new DayMealPlan(dayMealPlan);
@@ -53,6 +68,7 @@ async function deleteDayMealPlanRecipe(id, recipeId) {
 
 export {
     getMealPlanByUserAndCurrentWeek,
+    getShoppingListByUserAndCurrentWeek,
     createDayMealPlan,
     updateDayMealPlan,
     deleteDayMealPlanRecipe
