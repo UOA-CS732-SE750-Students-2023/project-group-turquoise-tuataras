@@ -35,7 +35,7 @@ export default function ShoppingList() {
           </div>
           <div className={styles.ShoppinListButtonTable}>
               <div className={styles.shopping_list_date}>
-                <span> Date:  {date} (One Week)</span>
+                <span> Date: (One Week)</span>
               </div>  
               <div className={styles.shopping_list_button}>            
                 <Link to={`../stores-near-me`}>
