@@ -29,7 +29,6 @@ function homePage() {
     const searchBox = useRef();
     const coverBox = useRef();
     const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
-    console.log(url)
     useEffect(() => {
         setTimeout(() => {
             coverBox.current.style.animationPlayState = "running";
