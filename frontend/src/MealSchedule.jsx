@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import {ListGroup, ListGroupItem, Table} from "react-bootstrap";
 import * as url from "url";
-import { useAuthContext } from './hooks/useAuthContext';
+import {useAuthContext} from './hooks/useAuthContext';
 
 let inputValue = "-1";
 
@@ -15,8 +15,8 @@ function inputValueChangeHandler(event) {
 
 function MealSchedule() {
 
-    const { user, loading } = useAuthContext()
-    
+    const {user, loading} = useAuthContext()
+
     // constants
     const WEEKS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -31,7 +31,7 @@ function MealSchedule() {
     }
     // shopping list
     const funShopping = () => {
-        window.location.href = "./api/shoppingList";
+        window.location.href = "./shoppingList";
     }
     // function add
     const funAdd = () => {
@@ -43,9 +43,9 @@ function MealSchedule() {
                 try {
                     axios.patch(url + mealPlanId[0], {"recipe": [inputValue]}, {
                         headers: {
-                          Authorization: `Bearer ${user.token}`
+                            Authorization: `Bearer ${user.token}`
                         }
-                      })
+                    })
                         .then(response => {
                             console.log(response)
                         })
@@ -56,9 +56,9 @@ function MealSchedule() {
                 try {
                     axios.post(url, {"dateTime": dateArray[select], "recipe": [inputValue]}, {
                         headers: {
-                          Authorization: `Bearer ${user.token}`
+                            Authorization: `Bearer ${user.token}`
                         }
-                      })
+                    })
                         .then(response => {
                             console.log(response)
                         })
@@ -78,9 +78,9 @@ function MealSchedule() {
             try {
                 axios.delete(url + obj + "/" + item._id, {
                     headers: {
-                      Authorization: `Bearer ${user.token}`
+                        Authorization: `Bearer ${user.token}`
                     }
-                  })
+                })
                     .then(response => {
                         console.log(response)
                     })
@@ -109,9 +109,9 @@ function MealSchedule() {
         try {
             axios.get(savedRecipesUrl, {
                 headers: {
-                  Authorization: `Bearer ${user.token}`
+                    Authorization: `Bearer ${user.token}`
                 }
-              })
+            })
                 .then(response => {
                     response.data.forEach((item) => {
                         savedRecipes.set(item._id, item.title)
@@ -127,9 +127,9 @@ function MealSchedule() {
             try {
                 axios.get(mealPlanUrl, {
                     headers: {
-                      Authorization: `Bearer ${user.token}`
+                        Authorization: `Bearer ${user.token}`
                     }
-                  })
+                })
                     .then(response => {
                         let arrayData = response.data;
                         let mapData = new Map();
@@ -235,7 +235,19 @@ function MealSchedule() {
                             onClick={funClose}>CLOSE</Button>
                 </div>
             </div>
-        </div> : <div>False</div>}
+        </div> : <div style={{
+            position: "absolute",
+            left: "0",
+            right: "0",
+            top: "0",
+            bottom: "0",
+            margin: "auto",
+            width: "600px",
+            height: "100px",
+            textAlign: "center",
+            lineHeight: "100px",
+            fontSize:"25px"
+        }}>PLEASE LOGIN TO PLAN YOUR MEAL SCHEDULE</div>}
     </div>);
 }
 
