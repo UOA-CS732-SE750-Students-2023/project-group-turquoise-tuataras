@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { Button , Table} from 'antd';
 import getShoppingListIngredients from "./getShoppingListIngredients";
-import shoppingListRecipes from './Recipes.json'
+// import shoppingListData from './Recipes.json'
 import styles from './ShoppingList.module.css';
 
 export default function ShoppingList() {
 
+  // fetch api http://localhost:3000/api/shopping-list 
   const [ shoppingListData, setShoppingListData] = useState(null);
 
   useEffect(() => {
@@ -18,8 +19,6 @@ export default function ShoppingList() {
       };
       fetchData();
     }, [shoppingListData]);
-
-
   //---------------------------------------------------  
   const recipes = [...shoppingListData[0].recipes];
 
