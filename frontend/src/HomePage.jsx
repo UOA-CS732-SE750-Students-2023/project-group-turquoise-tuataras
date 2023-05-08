@@ -11,11 +11,7 @@ import {useAuthContext} from "./hooks/useAuthContext.js";
 
 function homePage() {
     const {user,loading} = useAuthContext();
-    const config = {
-        headers: {
-            Authorization: `Bearer ${user.token}`
-        }
-    }
+
     // --check window width--
     const [windowWidth, setWindowWidth] = useState(getWindowWidth());
     useEffect(() => {
@@ -32,9 +28,9 @@ function homePage() {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    const url = 'http://localhost:3000/api/recipes/recommendations?userName=root';
+    const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
+    console.log(url)
     useEffect(() => {
-        console.log(config)
         setTimeout(() => {
             coverBox.current.style.animationPlayState = "running";
             searchBox.current.style.display = "block";
@@ -43,7 +39,7 @@ function homePage() {
             coverBox.current.style.display = "none";
         }, 4000);
         try {
-            axios.get(url,config)
+            axios.get(url)
                 .then(response => {
                     let data = response.data;
                     let dataArray = [];
