@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import {ListGroup, ListGroupItem, Table} from "react-bootstrap";
 import * as url from "url";
+import { useAuthContext } from './hooks/useAuthContext';
 
 let inputValue = "-1";
 
@@ -12,10 +13,10 @@ function inputValueChangeHandler(event) {
     inputValue = event.target.value
 }
 
-function MealSchedule({isLoggedIn, user}) {
-    // JUST FOR TEST, DELETE IN FINAL VERSION
-    isLoggedIn = true;
-    user = '64577aac3dd4152d8e8a7515';
+function MealSchedule() {
+
+    const { user, loading } = useAuthContext()
+    
     // constants
     const WEEKS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -40,7 +41,11 @@ function MealSchedule({isLoggedIn, user}) {
             console.log(mealPlanId)
             if (mealPlanId.length > 0) {
                 try {
-                    axios.patch(url + mealPlanId[0], {"recipe": [inputValue]})
+                    axios.patch(url + mealPlanId[0], {"recipe": [inputValue]}, {
+                        headers: {
+                          Authorization: `Bearer ${user.token}`
+                        }
+                      })
                         .then(response => {
                             console.log(response)
                         })
@@ -49,7 +54,11 @@ function MealSchedule({isLoggedIn, user}) {
                 }
             } else {
                 try {
-                    axios.post(url, {"dateTime": dateArray[select], "recipe": [inputValue], "user": user})
+                    axios.post(url, {"dateTime": dateArray[select], "recipe": [inputValue]}, {
+                        headers: {
+                          Authorization: `Bearer ${user.token}`
+                        }
+                      })
                         .then(response => {
                             console.log(response)
                         })
@@ -67,7 +76,11 @@ function MealSchedule({isLoggedIn, user}) {
         mealPlanId.forEach((obj) => {
             console.log(obj)
             try {
-                axios.delete(url + obj + "/" + item._id)
+                axios.delete(url + obj + "/" + item._id, {
+                    headers: {
+                      Authorization: `Bearer ${user.token}`
+                    }
+                  })
                     .then(response => {
                         console.log(response)
                     })
@@ -90,11 +103,15 @@ function MealSchedule({isLoggedIn, user}) {
     const [savedRecipes, setSavedRecipes] = useState(new Map());
     const [mealPlanId, setMealPlanId] = useState([]);
     const mealPlanUrl = 'http://localhost:3000/api/meal-plan/';
-    const savedRecipesUrl = 'http://localhost:3000/api/users/' + user + '/savedRecipes';
+    const savedRecipesUrl = 'http://localhost:3000/api/users' + '/savedRecipes';
     // get saved recipes
     useEffect(() => {
         try {
-            axios.get(savedRecipesUrl)
+            axios.get(savedRecipesUrl, {
+                headers: {
+                  Authorization: `Bearer ${user.token}`
+                }
+              })
                 .then(response => {
                     response.data.forEach((item) => {
                         savedRecipes.set(item._id, item.title)
@@ -108,7 +125,11 @@ function MealSchedule({isLoggedIn, user}) {
     useEffect(() => {
         setTimeout(() => {
             try {
-                axios.get(mealPlanUrl + user)
+                axios.get(mealPlanUrl, {
+                    headers: {
+                      Authorization: `Bearer ${user.token}`
+                    }
+                  })
                     .then(response => {
                         let arrayData = response.data;
                         let mapData = new Map();
@@ -139,7 +160,7 @@ function MealSchedule({isLoggedIn, user}) {
 
     }, [tag]);
     return (<div>
-        {isLoggedIn ? <div>
+        {user ? <div>
             <div className={style.meal_schedule_title}>
                 <div className={style.meal_schedule_time_picker}></div>
                 <ul>
