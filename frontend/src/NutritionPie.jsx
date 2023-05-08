@@ -9,8 +9,6 @@ export default function NutritionPie({recipe}) {
 
     const data = getNutrituionData(recipe);
 
-    console.log("data = " , data)
-
     function getNutrituionData(recipe) {
 
         const PieData = [];
@@ -19,8 +17,6 @@ export default function NutritionPie({recipe}) {
             PieData[index] = {type:recipe.nutrition[index+1]["name"] , 
                               value: Math.floor(recipe.nutrition[index].amount)}
         };
-
-        console.log("PieData = " , PieData)
 
         return PieData;
     } 

@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import RecipePage from "./RecipePage";
 import SavedRecipePage from "./SavedRecipePage";
 import SingleRecipePage from "./SingleRecipePage";
+import ShoppingList from "./ShoppingList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext } from 'react';
 import { AppContext } from './AppContextProvider';
@@ -33,7 +34,7 @@ function App() {
               </Route>
 
               <Route path="savedRecipes" element={<SavedRecipePage onChangeComment = {onChangeComment} onChangeFavorite={onChangeFavorite} />}/>
-                
+              <Route path="shoppingList" element={<ShoppingList />}/>  
           </Route>
         </Routes>
     </div>

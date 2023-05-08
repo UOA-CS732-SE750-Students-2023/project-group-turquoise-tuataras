@@ -72,6 +72,10 @@ export default function SavedReceipeCard({ item , onChangeComment , onChangeFavo
                 </div>
             </Card>
 
+            <Link to={`../shoppingList`}>
+                <Button type="primary" size="medium">shoppingList</Button>
+            </Link>
+
         </div>
     )
 }

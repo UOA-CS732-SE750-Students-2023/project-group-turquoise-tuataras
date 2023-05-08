@@ -1,0 +1,304 @@
+[{
+  "_id": {
+    "$oid": "6452eda493f0a4aa0de4c197"
+  },
+  "spoonacularId": 650181,
+  "types": {
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": false,
+    "dairyFree": false
+  },
+  "ingredients": [
+    {
+      "name": "ground beef",
+      "amount": "453.592",
+      "unit": "grams",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c198"
+      }
+    },
+    {
+      "name": "pancetta",
+      "amount": "8",
+      "unit": "slices",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c199"
+      }
+    },
+    {
+      "name": "pesto",
+      "amount": "1",
+      "unit": "jar",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19a"
+      }
+    },
+    {
+      "name": "mozzarella",
+      "amount": "1",
+      "unit": "large ball",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19b"
+      }
+    },
+    {
+      "name": "onion",
+      "amount": "1",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19c"
+      }
+    },
+    {
+      "name": "butter",
+      "amount": "3",
+      "unit": "Tbsps",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19d"
+      }
+    },
+    {
+      "name": "tomato paste",
+      "amount": "2",
+      "unit": "teaspoons",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19e"
+      }
+    },
+    {
+      "name": "anchovy paste",
+      "amount": "1",
+      "unit": "teaspoon",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19f"
+      }
+    },
+    {
+      "name": "baby arugula",
+      "amount": "4",
+      "unit": "servings",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a0"
+      }
+    },
+    {
+      "name": "tomato",
+      "amount": "1",
+      "unit": "slice",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a1"
+      }
+    },
+    {
+      "name": "ciabatta buns",
+      "amount": "4",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a2"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6454e6d7ff896090a4fe286e"
+  },
+  "spoonacularId": 650182,
+  "types": {
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": false,
+    "dairyFree": false
+  },
+  "ingredients": [
+    {
+      "name": "ground beef",
+      "amount": "453.592",
+      "unit": "grams",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c198"
+      }
+    },
+    {
+      "name": "pancetta",
+      "amount": "8",
+      "unit": "slices",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c199"
+      }
+    },
+    {
+      "name": "pesto",
+      "amount": "1",
+      "unit": "jar",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19a"
+      }
+    },
+    {
+      "name": "mozzarella",
+      "amount": "1",
+      "unit": "large ball",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19b"
+      }
+    },
+    {
+      "name": "onion",
+      "amount": "1",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19c"
+      }
+    },
+    {
+      "name": "butter",
+      "amount": "3",
+      "unit": "Tbsps",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19d"
+      }
+    },
+    {
+      "name": "tomato paste",
+      "amount": "2",
+      "unit": "teaspoons",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19e"
+      }
+    },
+    {
+      "name": "anchovy paste",
+      "amount": "1",
+      "unit": "teaspoon",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19f"
+      }
+    },
+    {
+      "name": "baby arugula",
+      "amount": "4",
+      "unit": "servings",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a0"
+      }
+    },
+    {
+      "name": "tomato",
+      "amount": "1",
+      "unit": "slice",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a1"
+      }
+    },
+    {
+      "name": "ciabatta buns",
+      "amount": "4",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a2"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6452eda493f0a4aa0de4c197"
+  },
+  "spoonacularId": 650181,
+  "types": {
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": false,
+    "dairyFree": false
+  },
+  "ingredients": [
+    {
+      "name": "ground beef",
+      "amount": "453.592",
+      "unit": "grams",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c198"
+      }
+    },
+    {
+      "name": "pancetta",
+      "amount": "8",
+      "unit": "slices",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c199"
+      }
+    },
+    {
+      "name": "pesto",
+      "amount": "1",
+      "unit": "jar",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19a"
+      }
+    },
+    {
+      "name": "mozzarella",
+      "amount": "1",
+      "unit": "large ball",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19b"
+      }
+    },
+    {
+      "name": "onion",
+      "amount": "1",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19c"
+      }
+    },
+    {
+      "name": "butter",
+      "amount": "3",
+      "unit": "Tbsps",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19d"
+      }
+    },
+    {
+      "name": "tomato paste",
+      "amount": "2",
+      "unit": "teaspoons",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19e"
+      }
+    },
+    {
+      "name": "anchovy paste",
+      "amount": "1",
+      "unit": "teaspoon",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c19f"
+      }
+    },
+    {
+      "name": "baby arugula",
+      "amount": "4",
+      "unit": "servings",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a0"
+      }
+    },
+    {
+      "name": "tomato",
+      "amount": "1",
+      "unit": "slice",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a1"
+      }
+    },
+    {
+      "name": "ciabatta buns",
+      "amount": "4",
+      "unit": "",
+      "_id": {
+        "$oid": "6452eda493f0a4aa0de4c1a2"
+      }
+    }
+  ]
+}]
