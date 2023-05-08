@@ -1,7 +1,7 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar'
 import SignUp from './SignUp';
@@ -9,12 +9,11 @@ import Login from './Login';
 import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
-  const [user, setUser] = useState("");
-
   const [signUpModalShow, setSignUpModalShow] = useState(false);
 
   const handleSignUpModalClose = () => setSignUpModalShow(false);
@@ -25,86 +24,58 @@ function App() {
   const handleLogInModalClose = () => setLogInModalShow(false);
   const handleLogInModalShow = () => setLogInModalShow(true);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, loading } = useAuthContext()
 
-  const handleLogin = (username, password) => {
-      axios.post(`${API_BASE_URL}/api/login`,{
+  const handleReset = async (username, password, user) => {
+    try{
+      const response = await axios.patch(`${API_BASE_URL}/users/reset`,{
         username,
         password
+      }, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
       })
-      .then((response) => {
-        if(response.status === 200) {
-          localStorage.setItem("user", JSON.stringify(username));
-          setIsLoggedIn(true);
-          setLogInModalShow(false);
-          setUser(username);
-        } 
-      })
-    console.log(username);
-    console.log(password);
-  };
-
-  // const handleLogin = (username, password) => {
-  //   localStorage.setItem("user", JSON.stringify(username));
-  //   setIsLoggedIn(true);
-  //   setLogInModalShow(false);
-  //   setUser(username);
-  // };
-
-  const handleSignup = (username, password) => {
-    axios.post(`${API_BASE_URL}/api/signup`,{
-      username,
-      password
-    })
-    .then((response) => {
-      if(response.status === 200) {
-        localStorage.setItem("user", JSON.stringify(username));
-        setSignUpModalShow(false);
-      } 
-    })
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser("");
-    setIsLoggedIn(false);
-  };
-
-  const handleReset = (username, password) => {
-    axios.put(`${API_BASE_URL}/api/reset`,{
-      username,
-      password
-    })
+  
+      // update username within local storage
+      const updatedUser = response.data;
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      storedUser.username = updatedUser.username;
+      localStorage.setItem('user', JSON.stringify(storedUser));
+  
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const handleIntolerances = (intolerances) => {
-    const userId = JSON.parse(localStorage.getItem("user"));
-    localStorage.setItem(userId + "_intolerances", JSON.stringify(intolerances));
-    axios.post(`${API_BASE_URL}/api/intolerances`,{
-      intolerances
+    const user = JSON.parse(localStorage.getItem("user"));
+    localStorage.setItem(user.username + "_intolerances", JSON.stringify(intolerances));
+    axios.put(`${API_BASE_URL}/users/intolerances`,
+      intolerances, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
     })
   };
 
-  useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
-    if (currentUser) {
-      setUser(currentUser);
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // ToDo: Provide feedback when a loading state is present
+  // when loading show a blank screen
+  if (loading) {
+    return
+  }
 
   return (
     <BrowserRouter>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} onSignUpShow={handleSignUpModalShow} 
-          onLogInShow={handleLogInModalShow} user={user}/>
-        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} handleSignup={handleSignup}/>
-        <Login show={logInModalShow} onHide={handleLogInModalClose} handleLogin={handleLogin}/>
+        <Navbar onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow}/>
+        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
+        <Login show={logInModalShow} onHide={handleLogInModalClose}/>
         <Routes>
           <Route path="/search"
             element={<AdvanceSearch/>}/>
           <Route path="/profile"
-            element={<Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/>}/>
+            element={user ? <Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/> : <Navigate to="/" />}/>
           <Route path="/"
             element={<p>Home Page</p>}/>
           <Route path="/stores-near-me" 
