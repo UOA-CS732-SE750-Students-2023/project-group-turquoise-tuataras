@@ -40,17 +40,8 @@ export default function SavedReceipeCard({ item , onChangeComment , onChangeFavo
                        
                         <FavoriteButton recipe ={item} users = {users }onChangeFavorite = {onChangeFavorite} />
                         
-                        <Tooltip title="Show Comments">
-                            <Button type="primary" onClick={showDrawer} className={styles.pressButton} 
-                                    style={{ background: "#2183d8"}}>Comments</Button>
-
-                                <Drawer title={item.recipe_name} placement="right" onClose={onClose} open={open}>
-                                    <h4>Comments:</h4>
-                                    <Comment recipe = {item} onChangeComment ={onChangeComment} users = {users} />
-                                </Drawer>
-                        </Tooltip>
                         <Link to={`../recipes/${item.spoonacularId}`}>
-                            <Button type="primary" size="medium">Detail</Button>
+                            <Button type="primary" size="medium" style={{ background: "#a27d27"}} >Recipe Detail</Button>
                         </Link>
                     </Space>
                 </div>
@@ -59,6 +50,7 @@ export default function SavedReceipeCard({ item , onChangeComment , onChangeFavo
             <Link to={`../shoppingList`}>
                 <Button type="primary" size="medium">shoppingList</Button>
             </Link>
+            
 
         </div>
     )

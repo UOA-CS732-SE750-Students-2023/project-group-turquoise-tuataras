@@ -13,13 +13,11 @@ export function AppContextProvider({ children }) {
     
     // Retreieve the data again after new comment create
     function onChangeComment(){
-        console.log("Call onChangeComment");
         refreshRecipes();
     }
 
     // Retreieve the data again after new comment create
     function onChangeFavorite(){
-        console.log("Call onChangeFavorite");
         refreshUsers();
     }
     

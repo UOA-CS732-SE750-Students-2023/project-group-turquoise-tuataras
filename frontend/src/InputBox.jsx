@@ -9,12 +9,21 @@ function InputBox({ recipe , onChangeComment , users}) {
   
   const insertComment = async (newComment) => {
 
+    const dateTime = new Date();
+
+    const year = dateTime.getFullYear(); 
+    const month = dateTime.getMonth() + 1; 
+    const day = dateTime.getDate(); // 
+    const hour = dateTime.getHours(); 
+    const minute = dateTime.getMinutes(); 
+    const second = dateTime.getSeconds();
+
     const innertComment = {
         username: users[0].username,
         comment: newComment,
-        date: new Date()
+        date: `${year}/${month}/${day} ${hour}:${minute}:${second}`
     }
-
+    console.log("date = ",innertComment.date);
     recipe.comments = [...(recipe.comments) , innertComment];
 
     // Save the recipe data to databse when new comment added , then call the refresh function
