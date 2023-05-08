@@ -7,7 +7,21 @@ import styles from './ShoppingList.module.css';
 
 export default function ShoppingList() {
 
-  const recipes = [...shoppingListRecipes[0].recipes];
+  const [ shoppingListData, setShoppingListData] = useState(null);
+
+  useEffect(() => {
+      const fetchData = async () => {
+        const response = await axios(
+          'http://localhost:3000/api/shopping-list',
+        );
+        setShoppingListData(response.data);
+      };
+      fetchData();
+    }, [shoppingListData]);
+
+
+  //---------------------------------------------------  
+  const recipes = [...shoppingListData[0].recipes];
 
   const tableData = getShoppingListIngredients(recipes);
 
