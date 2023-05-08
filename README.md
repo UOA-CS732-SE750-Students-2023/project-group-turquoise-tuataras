@@ -32,4 +32,5 @@ MONGODB_CONNECTION_STRING=mongodb://127.0.0.1:27017/planmyplate
 
 ### Environment Variables
 Create a .env file in the frontend folder and put the following text in:
+
 VITE_API_BASE_URL=http://localhost:3000/api
