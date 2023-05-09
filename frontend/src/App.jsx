@@ -11,6 +11,7 @@ import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
 import Alerts from './Alerts';
 import { useAuthContext } from './hooks/useAuthContext';
+import MealSchedule from "./MealSchedule.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -48,14 +49,13 @@ function App() {
           Authorization: `Bearer ${user.token}`
         }
       })
-  
+
       // update username within local storage
       const updatedUser = response.data;
       const storedUser = JSON.parse(localStorage.getItem('user'));
       storedUser.username = updatedUser.username;
       localStorage.setItem('user', JSON.stringify(storedUser));
       handleAlert("Account Updated","success");
-  
     } catch (error) {
       console.error(error)
       handleAlert(error.response.data.error,"danger");
@@ -96,12 +96,13 @@ function App() {
             element={<p>Home Page</p>}/>
           <Route path="/stores-near-me" 
             element={<LocationSearch/>}/>
+           <Route path="/meal-schedule"
+            element={user ? <MealSchedule/> : <Navigate to="/" />}/>
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
       </div>
     </BrowserRouter>
-
   )
 }
 
