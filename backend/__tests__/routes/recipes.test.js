@@ -5,10 +5,16 @@ import express from 'express';
 import request from 'supertest';
 import recipe from '../../src/database/init-recipe.json'
 import { Recipe } from '../../src/database/schema/recipe-schema.js';
+import jwt from 'jsonwebtoken'
+import { User } from '../../src/database/schema/user-schema.js';
 let mongod;
 const app = express();
 app.use(express.json());
 app.use('/', routes);
+
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
+}
 
 beforeAll(async () => {
     mongod = await MongoMemoryServer.create();
@@ -19,6 +25,11 @@ beforeAll(async () => {
 beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
     const collection = await mongoose.connection.db.createCollection('recipes');
+    const user = new User({
+        username: "test",
+        password: "test"
+    });
+    await User.create(user);
     await collection.insertOne(recipe);
 });
 
@@ -86,35 +97,42 @@ describe('GET /:spoonacularId', () => {
 });
 
 describe('POST /:spoonacularId/comment', () => {
-
     /**
      * Tests that, when posting a comment, a 201 Created response is returned,
      * with the response body containing the comment.
      */
-    it('post comment', (done) => {
-        request(app)
-        .post('/650181/comment')
-        .send({
-            "username": "BenG",
-            "comment": "Delicious",
-            "date": "2023-06-06"
-         })
-        .expect(201)
-        .end(async (err, res) => {
-            if (err) {
-                return done(err);
-            }
-            const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
-            const dbComment = dbRecipe.comments[dbRecipe.comments.length-1];
-            const dbCommentNoId = {
-                "username": dbComment.username,
-                "comment": dbComment.comment,
-                "date": dbComment.date.toISOString().split('T')[0]
-            }
-            const comment = res.body;
-            expect(dbCommentNoId).toEqual(comment);
-            return done();
-        });
+    it('post comment', async() => {
+        try{
+            const userDB = await User.findOne({username:"test"})
+            const token = createToken(userDB._id);
+            request(app)
+            .post('/650181/comment')
+            .set('Authorization', `Bearer ${token}`)
+            .send({
+                "username": "BenG",
+                "comment": "Delicious",
+                "date": "2023-06-06"
+            })
+            .expect(201)
+            .end(async (err, res) => {
+                if (err) {
+                    throw new Error(err);
+                }
+                const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
+                const dbComment = dbRecipe.comments[dbRecipe.comments.length-1];
+                const dbCommentNoId = {
+                    "username": dbComment.username,
+                    "comment": dbComment.comment,
+                    "date": dbComment.date.toISOString().split('T')[0]
+                }
+                const comment = res.body;
+                expect(dbCommentNoId).toEqual(comment);
+            });
+        }
+        catch(err){
+            console.log(err);
+            throw new Error(err);
+        }
     }, 10000);
 })
 
