@@ -6,9 +6,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './App.css';
+import { useLogout } from './hooks/useLogout'
+import { useAuthContext } from './hooks/useAuthContext'
 
-function navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function NavBar({onSignUpShow, onLogInShow}) {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -18,36 +19,48 @@ function navbar() {
     setIsLoggedIn(false);
   };
 
+  const { logout } = useLogout()
+  const { user } = useAuthContext()
+
+  const handleClick = () => {
+    logout()
+  }
+
   return (
     <Navbar className='navbar_color' expand="lg">
       <Container>
         <Navbar.Brand href="/"><img src={icon} width="200"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/savedRecipes" className="navbar_link">Saved Recipes</Nav.Link>
-            <Nav.Link href="#link" className="navbar_link">Meal Schedule</Nav.Link>
-          </Nav>
+        <Nav className="me-auto">
+          {user && (
+            <>
+              <Nav.Link href={user ? "saved-recipes" : null} className="navbar_link">
+                Saved Recipes
+              </Nav.Link>
+              <Nav.Link href={user ? "meal-schedule" : null} className="navbar_link">
+                Meal Schedule
+              </Nav.Link>
+              <Nav.Link href={user ? "search" : null} className="navbar_link">
+                Advance Search
+              </Nav.Link>
+            </>
+          )}
+        </Nav>
         </Navbar.Collapse>
         <form className="navbar_form">
           <input type="text" placeholder="Search" className="navbar_input" />
           <button type="submit" className="navbar_button">Search</button>
         </form>
         <Navbar.Collapse className="justify-content-end">
-          {isLoggedIn ? (
+          {user ? (
             <>
-              <NavDropdown className="navbar_username" title="Username" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  My Profile
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  ...
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  ...
+              <NavDropdown className="navbar_username" title={user.username} id="basic-nav-dropdown">
+                <NavDropdown.Item href={`profile?user=${user.username}`}>
+                    My Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+                <NavDropdown.Item onClick={handleClick}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
