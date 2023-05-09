@@ -2,12 +2,12 @@
   "name": "cs732-turqoise-tuataras-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-specifier-resolution=node ./server.js",
-    "production": "cross-env NODE_ENV=production node --experimental-specifier-resolution=node ./server.js",
-    "init-db": "node --experimental-specifier-resolution=node ./database/init-db.js",
+    "start": "node --experimental-specifier-resolution=node src/server.js",
+    "production": "cross-env NODE_ENV=production node --experimental-specifier-resolution=node src/server.js",
+    "init-db": "node --experimental-specifier-resolution=node src/database/init-db.js",
     "test": "jest"
   },
   "keywords": [],

@@ -1,10 +1,10 @@
-import routes from '../api/recipes'
+import routes from '../../src/routes/api/recipes.js'
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import express from 'express';
 import request from 'supertest';
-import recipe from '../../database/init-recipe.json'
-import { Recipe } from '../../database/schema/recipe-schema';
+import recipe from '../../src/database/init-recipe.json'
+import { Recipe } from '../../src/database/schema/recipe-schema.js';
 let mongod;
 const app = express();
 app.use(express.json());
