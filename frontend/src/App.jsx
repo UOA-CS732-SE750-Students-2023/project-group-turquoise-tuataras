@@ -69,8 +69,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Navbar onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow}/>
-        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
-        <Login show={logInModalShow} onHide={handleLogInModalClose}/>
+        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} setSignUpModalShow={setSignUpModalShow}/>
+        <Login show={logInModalShow} onHide={handleLogInModalClose} setLogInModalShow={setLogInModalShow}/>
         <Routes>
           <Route path="/search"
             element={<AdvanceSearch/>}/>
