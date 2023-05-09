@@ -9,7 +9,7 @@ export const useSignup = () => {
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
 
-    const signup = async (username, password) => {
+    const signup = async (username, password, setSignUpModalShow) => {
         setIsLoading(true)
         setError(null)
 
@@ -26,6 +26,7 @@ export const useSignup = () => {
             dispatch({type: 'LOGIN', payload: response.data})
         
             setIsLoading(false)
+            setSignUpModalShow(false)
 
           })
           .catch((error) => {
