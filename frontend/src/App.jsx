@@ -58,7 +58,7 @@ function App() {
   
     } catch (error) {
       console.error(error)
-      handleAlert("Updated Failed","danger");
+      handleAlert(error.response.data.error,"danger");
     }
   };
 
