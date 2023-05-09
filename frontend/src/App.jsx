@@ -82,7 +82,7 @@ function App() {
             <Route path="/stores-near-me"
                    element={<LocationSearch/>}/>
             <Route path="/meal-schedule"
-                   element={<MealSchedule/>}/>
+                   element={user ? <MealSchedule/> : <Navigate to="/" />}/>
             <Route path="*"
                    element={<p>404 Page</p>}/>
           </Routes>

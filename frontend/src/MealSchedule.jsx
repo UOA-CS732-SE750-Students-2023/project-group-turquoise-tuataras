@@ -159,8 +159,8 @@ function MealSchedule() {
         }, 100);
 
     }, [tag]);
-    return (<div>
-        {user ? <div>
+    return (
+        <div>
             <div className={style.meal_schedule_title}>
                 <div className={style.meal_schedule_time_picker}></div>
                 <ul>
@@ -235,20 +235,8 @@ function MealSchedule() {
                             onClick={funClose}>CLOSE</Button>
                 </div>
             </div>
-        </div> : <div style={{
-            position: "absolute",
-            left: "0",
-            right: "0",
-            top: "0",
-            bottom: "0",
-            margin: "auto",
-            width: "600px",
-            height: "100px",
-            textAlign: "center",
-            lineHeight: "100px",
-            fontSize:"25px"
-        }}>PLEASE LOGIN TO PLAN YOUR MEAL SCHEDULE</div>}
-    </div>);
+        </div>
+    );
 }
 
 export default MealSchedule;
