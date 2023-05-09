@@ -8,6 +8,7 @@ import { Recipe } from '../../src/database/schema/recipe-schema.js';
 import jwt from 'jsonwebtoken'
 import { User } from '../../src/database/schema/user-schema.js';
 let mongod;
+let token;
 const app = express();
 app.use(express.json());
 app.use('/', routes);
@@ -30,6 +31,7 @@ beforeEach(async () => {
         password: "test"
     });
     await User.create(user);
+    token = createToken(user._id);
     await collection.insertOne(recipe);
 });
 
@@ -101,11 +103,9 @@ describe('POST /:spoonacularId/comment', () => {
      * Tests that, when posting a comment, a 201 Created response is returned,
      * with the response body containing the comment.
      */
-    it('post comment', async() => {
-        try{
-            const userDB = await User.findOne({username:"test"})
-            const token = createToken(userDB._id);
-            request(app)
+    it('post comment', (done) => {
+        
+        request(app)
             .post('/650181/comment')
             .set('Authorization', `Bearer ${token}`)
             .send({
@@ -116,24 +116,23 @@ describe('POST /:spoonacularId/comment', () => {
             .expect(201)
             .end(async (err, res) => {
                 if (err) {
-                    throw new Error(err);
+                  return done(err)
                 }
                 const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
                 const dbComment = dbRecipe.comments[dbRecipe.comments.length-1];
                 const dbCommentNoId = {
-                    "username": dbComment.username,
-                    "comment": dbComment.comment,
-                    "date": dbComment.date.toISOString().split('T')[0]
+                  "username": dbComment.username,
+                  "comment": dbComment.comment,
+                  "date": dbComment.date.toISOString().split('T')[0]
                 }
                 const comment = res.body;
+                console.log(comment)
+                console.log(dbCommentNoId)
                 expect(dbCommentNoId).toEqual(comment);
+                done();
+
             });
-        }
-        catch(err){
-            console.log(err);
-            throw new Error(err);
-        }
-    }, 10000);
+    })
 })
 
 describe('POST /:spoonacularId/rating', () => {
