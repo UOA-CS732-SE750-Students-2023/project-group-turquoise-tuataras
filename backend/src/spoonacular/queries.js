@@ -1,10 +1,10 @@
 import axios from "axios";
 import * as dotenv from "dotenv";
-import * as fs from "fs";
 
 dotenv.config();
 const SPOONACULAR_URL = process.env.SPOONACULAR_URL ?? '';
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY ?? '';
+
 
 export async function searchRecipes(query) {
     const response = await axios.get(`${SPOONACULAR_URL}/complexSearch`, {
@@ -24,6 +24,7 @@ export async function getRecipeBySpoonacularId(id) {
             includeNutrition: true,
         }
     })
+
     const recipe = response.data;
     const returnRecipe = {
         spoonacularId: recipe.id,
