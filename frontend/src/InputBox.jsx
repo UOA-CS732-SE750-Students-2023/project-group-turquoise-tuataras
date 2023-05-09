@@ -2,6 +2,7 @@ import { Input } from 'antd';
 import axios from 'axios';
 import React, { useState, } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function InputBox({ recipe, users, setCommentStatus}) {
 
@@ -23,12 +24,12 @@ function InputBox({ recipe, users, setCommentStatus}) {
         comment: newComment,
         date: `${year}/${month}/${day} ${hour}:${minute}:${second}`
     }
-    console.log("date = ",innertComment.date);
+
     recipe.comments = [...(recipe.comments) , innertComment];
 
     // Save the recipe data to databse when new comment added , then call the refresh function
     const recipeData = await axios.put(
-          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe)
+          `${API_BASE_URL}/recipes/${recipe.spoonacularId}/comment`, innertComment)
           .then(setCommentStatus(true));
 
   };

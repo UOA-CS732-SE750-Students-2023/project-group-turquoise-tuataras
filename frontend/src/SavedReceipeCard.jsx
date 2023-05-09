@@ -1,27 +1,14 @@
 import styles from './SavedReceipeCard.module.css';
 import React, { useState } from 'react'
-import Comment from './Comment.jsx'
 import { FavoriteButton } from './FavoriteButton';
 import { Card } from 'antd';
 import { Image } from 'antd';
 import { Button, Tooltip, Drawer, Space} from 'antd';
-import { LikeOutlined , DislikeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const { Meta } = Card;
 
-export default function SavedReceipeCard({ item , onChangeFavorite , users}) {
-
-    const [open, setOpen] = useState(false);
-
-    const showDrawer = () => {
-      setOpen(true);
-    };
-
-    const onClose = () => {
-      setOpen(false);
-    };
+export default function SavedReceipeCard({ item , userData , favoriteStatus , setFavoriteStatus}) {
 
     return (
         <div id={styles.popularCards} className={styles.popularBlock}>
@@ -38,7 +25,10 @@ export default function SavedReceipeCard({ item , onChangeFavorite , users}) {
                     
                     <Space>
                        
-                        <FavoriteButton recipe ={item} users = {users }onChangeFavorite = {onChangeFavorite} />
+                        <FavoriteButton recipe = {item} 
+                                        userData = { userData} 
+                                        favoriteStatus = {favoriteStatus}
+                                        setFavoriteStatus ={ setFavoriteStatus}/>
                         
                         <Link to={`../recipes/${item.spoonacularId}`}>
                             <Button type="primary" size="medium" style={{ background: "#a27d27"}} >Recipe Detail</Button>
@@ -50,8 +40,6 @@ export default function SavedReceipeCard({ item , onChangeFavorite , users}) {
             <Link to={`../shoppingList`}>
                 <Button type="primary" size="medium">shoppingList</Button>
             </Link>
-            
-
         </div>
     )
 }

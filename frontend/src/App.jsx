@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import './App.css'
 import Navbar from './Navbar'
-import RecipePage from "./RecipePage";
 import SavedRecipePage from "./SavedRecipePage";
 import SingleRecipePage from "./SingleRecipePage";
 import ShoppingList from "./ShoppingList";
@@ -24,17 +23,11 @@ function App() {
               <Route index element={<Navigate to="recipes" replace />} />
 
               <Route path="/recipes" element={<PageLayout />}>
-
-                  <Route index element={<Navigate to="gallery" replace />} />
-
-                  <Route path="gallery" element={<RecipePage users = {users} recipesIsLoading = {recipesIsLoading} onChangeFavorite = {onChangeFavorite}/>}/>
-
-                  <Route path=":id" element={<SingleRecipePage recipes = {recipes} users = {users} 
-                                              recipesIsLoading = {recipesIsLoading} onChangeFavorite={onChangeFavorite} />} />
+                  <Route path=":spoonacularId" element={<SingleRecipePage userData = {userData} />} />
               </Route>
 
-              <Route path="savedRecipes" element={<SavedRecipePage onChangeFavorite={onChangeFavorite} />}/>
-              <Route path="shoppingList" element={<ShoppingList />}/>  
+              <Route path="savedRecipes" element={<SavedRecipePage userData = {userData} />}/>
+              <Route path="shoppingList" element={<ShoppingList userData = {userData} />}/>  
           </Route>
         </Routes>
     </div>

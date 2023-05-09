@@ -7,12 +7,14 @@ import NutritionPie from './NutritionPie';
 import RecipeInfo from './RecipeInfo';
 import { CommentButton } from './CommentButton';
 import { FavoriteButton } from './FavoriteButton';
-
 import styles from './SingleRecipePage.module.css';
 
-export default function SingleRecipePage({onChangeFavorite , users }) {
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const { id } = useParams();
+export default function SingleRecipePage({onChangeFavorite , userData }) {
+
+    const { spoonacularId } = useParams();
+
     const [commentStatus , setCommentStatus] = useState(false);
 
     const [recipeData, setRecipeData] = useState(null);
@@ -20,7 +22,7 @@ export default function SingleRecipePage({onChangeFavorite , users }) {
     useEffect(() => {
         const fetchData = async () => {
           const response = await axios(
-            'http://localhost:3000/api/recipes',
+            `${API_BASE_URL}/recipes/${spoonacularId}`
           );
           setRecipeData(response.data);
         };
@@ -28,9 +30,6 @@ export default function SingleRecipePage({onChangeFavorite , users }) {
         setCommentStatus(false);
       }, [commentStatus]);
 
-    function retrieveRecipeBySpoonacularId(id) {
-        return recipeData.find(a => a.spoonacularId === parseInt(id));
-    }
 
     return (
     <div>
