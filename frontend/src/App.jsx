@@ -9,12 +9,24 @@ import Login from './Login';
 import Profile from './Profile';
 import AdvanceSearch from './AdvanceSearch';
 import LocationSearch from './LocationSearch';
+import Alerts from './Alerts';
 import { useAuthContext } from './hooks/useAuthContext';
 import MealSchedule from "./MealSchedule.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertVariant, setAlertVariant] = useState("");
+  const [alertMessage, setAlertMessage] = useState("")
+
+  const handleAlert = (message, variant) => {
+    setShowAlert(true);
+    setAlertMessage(message);
+    setAlertVariant(variant);
+  }
+
   const [signUpModalShow, setSignUpModalShow] = useState(false);
 
   const handleSignUpModalClose = () => setSignUpModalShow(false);
@@ -43,9 +55,10 @@ function App() {
       const storedUser = JSON.parse(localStorage.getItem('user'));
       storedUser.username = updatedUser.username;
       localStorage.setItem('user', JSON.stringify(storedUser));
-
+      handleAlert("Account Updated","success");
     } catch (error) {
       console.error(error)
+      handleAlert(error.response.data.error,"danger");
     }
   };
 
@@ -53,11 +66,12 @@ function App() {
     const user = JSON.parse(localStorage.getItem("user"));
     localStorage.setItem(user.username + "_intolerances", JSON.stringify(intolerances));
     axios.put(`${API_BASE_URL}/users/intolerances`,
-        intolerances, {
-          headers: {
-            Authorization: `Bearer ${user.token}`
-          }
-        })
+      intolerances, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+    handleAlert("Intolerances Updated","success")
   };
 
   // ToDo: Provide feedback when a loading state is present
@@ -67,28 +81,28 @@ function App() {
   }
 
   return (
-      <BrowserRouter>
-        <div>
-          <Navbar onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow}/>
-          <SignUp show={signUpModalShow} onHide={handleSignUpModalClose}/>
-          <Login show={logInModalShow} onHide={handleLogInModalClose}/>
-          <Routes>
-            <Route path="/search"
-                   element={<AdvanceSearch/>}/>
-            <Route path="/profile"
-                   element={user ? <Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/> : <Navigate to="/" />}/>
-            <Route path="/"
-                   element={<p>Home Page</p>}/>
-            <Route path="/stores-near-me"
-                   element={<LocationSearch/>}/>
-            <Route path="/meal-schedule"
-                   element={user ? <MealSchedule/> : <Navigate to="/" />}/>
-            <Route path="*"
-                   element={<p>404 Page</p>}/>
-          </Routes>
-        </div>
-      </BrowserRouter>
-
+    <BrowserRouter>
+      <div>
+        <Navbar onSignUpShow={handleSignUpModalShow} onLogInShow={handleLogInModalShow}/>
+        <Alerts showAlert={showAlert} setShowAlert={setShowAlert} alertVariant={alertVariant} alertMessage={alertMessage}/>
+        <SignUp show={signUpModalShow} onHide={handleSignUpModalClose} setSignUpModalShow={setSignUpModalShow}/>
+        <Login show={logInModalShow} onHide={handleLogInModalClose} setLogInModalShow={setLogInModalShow}/>
+        <Routes>
+          <Route path="/search"
+            element={<AdvanceSearch/>}/>
+          <Route path="/profile"
+            element={user ? <Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/> : <Navigate to="/" />}/>
+          <Route path="/"
+            element={<p>Home Page</p>}/>
+          <Route path="/stores-near-me" 
+            element={<LocationSearch/>}/>
+           <Route path="/meal-schedule"
+            element={user ? <MealSchedule/> : <Navigate to="/" />}/>
+          <Route path="*"
+            element={<p>404 Page</p>}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 

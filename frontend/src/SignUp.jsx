@@ -4,14 +4,14 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useSignup } from './hooks/useSignup';
 
-function SignUp({ show, onHide}) {
+function SignUp({ show, onHide, setSignUpModalShow}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { signup, error, isLoading } = useSignup()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await signup(username, password)
+        await signup(username, password, setSignUpModalShow)
         };
 
     return (
@@ -27,11 +27,11 @@ function SignUp({ show, onHide}) {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
-                    
+                    {error && <div className='error'>{error}</div>}
                     <Button disabled={isLoading} variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
                         Sign up
                     </Button>
-                    {error && <div className='error'>{error}</div>}
+
                 </Form>
             </div>
         </Modal>
