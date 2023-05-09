@@ -5,13 +5,11 @@ import Button from "react-bootstrap/Button";
 import HomeCardGroup from "./HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import testValue from "./__test__/test.json"
 import {useAuthContext} from "./hooks/useAuthContext.js";
 
 
 function homePage() {
-    const {user,loading} = useAuthContext();
-
+    const {user, loading} = useAuthContext();
     // --check window width--
     const [windowWidth, setWindowWidth] = useState(getWindowWidth());
     useEffect(() => {
@@ -30,38 +28,31 @@ function homePage() {
     const coverBox = useRef();
     const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
     useEffect(() => {
-        setTimeout(() => {
-            coverBox.current.style.animationPlayState = "running";
-            searchBox.current.style.display = "block";
-        }, 3000);
-        setTimeout(() => {
-            coverBox.current.style.display = "none";
-        }, 4000);
         try {
             axios.get(url)
                 .then(response => {
+                    console.log("get data")
                     let data = response.data;
                     let dataArray = [];
                     for (let propName in data) {
                         dataArray.push({name: propName, value: data[propName]})
                     }
                     setData(dataArray)
+                    coverBox.current.style.animationPlayState = "running";
+                    searchBox.current.style.display = "block";
+                    setTimeout(() => {
+                        coverBox.current.style.display = "none";
+                    }, 1000);
                 }).catch(err => {
-                let data = testValue;
-                let dataArray = [];
-                for (let propName in data) {
-                    dataArray.push({name: propName, value: data[propName]})
-                }
-                setData(dataArray)
+                console.error(err);
+                coverBox.current.style.animationPlayState = "running";
+                searchBox.current.style.display = "block";
+                setTimeout(() => {
+                    coverBox.current.style.display = "none";
+                }, 1000);
             });
         } catch (err) {
-            console.error(err);
-            let data = testValue;
-            let dataArray = [];
-            for (let propName in data) {
-                dataArray.push({name: propName, value: data[propName]})
-            }
-            setData(dataArray)
+            console.log(err)
         }
     }, []);
 
