@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, } from "react";
 
 
-function InputBox({ recipe , onChangeComment , users}) {
+function InputBox({ recipe, users, setCommentStatus}) {
 
   const [inputValue, setInputValue] = useState("");
   
@@ -28,7 +28,9 @@ function InputBox({ recipe , onChangeComment , users}) {
 
     // Save the recipe data to databse when new comment added , then call the refresh function
     const recipeData = await axios.put(
-          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe);
+          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe)
+          .then(setCommentStatus(true));
+
   };
 
   const handleKeyDown = (event) => {

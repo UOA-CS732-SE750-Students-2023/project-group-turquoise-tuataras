@@ -9,6 +9,8 @@ export default function NutritionPie({recipe}) {
 
     const data = getNutrituionData(recipe);
 
+
+
     function getNutrituionData(recipe) {
 
         const PieData = [];

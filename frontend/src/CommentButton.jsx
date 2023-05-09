@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Tooltip, Drawer} from 'antd';
 import Comment from './Comment';
 
-export function CommentButton({recipe , users}) {
+export function CommentButton({recipe , users , setCommentStatus }) {
 
 
     const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ export function CommentButton({recipe , users}) {
             style={{ background: "#20a4da"}}>Comments</Button>
   
         <Drawer title="Comments:" placement="right" onClose={onClose} open={open}>
-            <Comment recipe = {recipe} users = {users}/>
+            <Comment recipe = {recipe} users = {users} setCommentStatus = {setCommentStatus} />
         </Drawer>
     </Tooltip>
     )

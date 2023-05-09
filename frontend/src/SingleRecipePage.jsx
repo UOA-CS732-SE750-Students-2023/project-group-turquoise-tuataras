@@ -10,9 +10,11 @@ import { FavoriteButton } from './FavoriteButton';
 
 import styles from './SingleRecipePage.module.css';
 
-export default function SingleRecipePage({onChangeFavorite , users}) {
+export default function SingleRecipePage({onChangeFavorite , users }) {
 
     const { id } = useParams();
+    const [commentStatus , setCommentStatus] = useState(false);
+
     const [recipeData, setRecipeData] = useState(null);
 
     useEffect(() => {
@@ -23,7 +25,8 @@ export default function SingleRecipePage({onChangeFavorite , users}) {
           setRecipeData(response.data);
         };
         fetchData();
-      }, [recipeData]);
+        setCommentStatus(false);
+      }, [commentStatus]);
 
     function retrieveRecipeBySpoonacularId(id) {
         return recipeData.find(a => a.spoonacularId === parseInt(id));
@@ -39,8 +42,8 @@ export default function SingleRecipePage({onChangeFavorite , users}) {
                     <h1>{retrieveRecipeBySpoonacularId(id).title}</h1>
                     <img src = {retrieveRecipeBySpoonacularId(id).image}/>
                   </div>
-                  <ButtonTable  recipe = {retrieveRecipeBySpoonacularId(id)} users = {users} 
-                                onChangeFavorite ={onChangeFavorite}/>
+                  <ButtonTable  recipe = {retrieveRecipeBySpoonacularId(id)} users = {users} setCommentStatus = {setCommentStatus}
+                                onChangeFavorite ={onChangeFavorite} commentStatus = {commentStatus}/>
                   <div className={styles.RecipeInfo}> 
                     <RecipeInfo  recipe = {retrieveRecipeBySpoonacularId(id)} />
                   </div> 
@@ -60,13 +63,13 @@ export default function SingleRecipePage({onChangeFavorite , users}) {
   );
 }
 
-export function ButtonTable({recipe, onChangeFavorite , users}){
+export function ButtonTable({recipe, onChangeFavorite , users , setCommentStatus }){
   return(
       <div className={styles.ButtonTable}>
             <table className={styles.table}>
                 <tbody>
                         <tr>
-                          <td><CommentButton recipe = {recipe} users = {users}/></td>  
+                          <td><CommentButton recipe = {recipe} users = {users} setCommentStatus = {setCommentStatus} /></td>  
                           <td><FavoriteButton recipe = {recipe} users = {users} onChangeFavorite={onChangeFavorite}/></td>
                           <td className={styles.Rating} >Rating: {recipe.rating.rating}</td>
                         </tr>
