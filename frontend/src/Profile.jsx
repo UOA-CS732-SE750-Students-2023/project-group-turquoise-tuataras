@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { intolerances } from './intolerances';
