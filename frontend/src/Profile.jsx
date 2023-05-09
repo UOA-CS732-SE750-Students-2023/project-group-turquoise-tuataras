@@ -10,6 +10,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 const animatedComponents = makeAnimated();
 
 function Profile({ handleReset, handleIntolerances }) {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { user } = useAuthContext()
