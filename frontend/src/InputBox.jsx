@@ -4,7 +4,7 @@ import React, { useState, } from "react";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-function InputBox({ recipe, users, setCommentStatus}) {
+function InputBox({ recipe, userData , setCommentStatus}) {
 
   const [inputValue, setInputValue] = useState("");
   
@@ -20,7 +20,7 @@ function InputBox({ recipe, users, setCommentStatus}) {
     const second = dateTime.getSeconds();
 
     const innertComment = {
-        username: users[0].username,
+        username: userData.username,
         comment: newComment,
         date: `${year}/${month}/${day} ${hour}:${minute}:${second}`
     }

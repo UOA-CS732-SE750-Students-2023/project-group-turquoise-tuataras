@@ -11,7 +11,7 @@ import { AppContext } from './AppContextProvider';
 
 function App() {
 
-  const { recipes, recipesIsLoading , users , onChangeFavorite} = useContext(AppContext);
+  const { userData } = useContext(AppContext);
   
   return (
     <div>

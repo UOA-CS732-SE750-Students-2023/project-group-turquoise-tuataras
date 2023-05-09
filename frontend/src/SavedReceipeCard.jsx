@@ -1,9 +1,9 @@
 import styles from './SavedReceipeCard.module.css';
-import React, { useState } from 'react'
+import React from 'react'
 import { FavoriteButton } from './FavoriteButton';
 import { Card } from 'antd';
 import { Image } from 'antd';
-import { Button, Tooltip, Drawer, Space} from 'antd';
+import { Button, Space } from 'antd';
 import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
@@ -36,10 +36,6 @@ export default function SavedReceipeCard({ item , userData , favoriteStatus , se
                     </Space>
                 </div>
             </Card>
-
-            <Link to={`../shoppingList`}>
-                <Button type="primary" size="medium">shoppingList</Button>
-            </Link>
         </div>
     )
 }

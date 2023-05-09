@@ -5,6 +5,8 @@ import getShoppingListIngredients from "./getShoppingListIngredients";
 // import shoppingListData from './Recipes.json'
 import styles from './ShoppingList.module.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function ShoppingList() {
 
   // fetch api http://localhost:3000/api/shopping-list 
@@ -13,13 +15,13 @@ export default function ShoppingList() {
   useEffect(() => {
       const fetchData = async () => {
         const response = await axios(
-          'http://localhost:3000/api/shopping-list',
+          `${API_BASE_URL}/shopping-list`,
         );
         setShoppingListData(response.data);
       };
       fetchData();
-    }, [shoppingListData]);
-  //---------------------------------------------------  
+    }, []);
+  // ---------------------------------------------------  
   const recipes = [...shoppingListData[0].recipes];
 
   const tableData = getShoppingListIngredients(recipes);
@@ -79,7 +81,7 @@ export default function ShoppingList() {
       </div>
         </div>
         <div className={styles.custom_table} >
-        <Table   columns={columns} dataSource={tableData} onChange={onChange} />
+          <Table   columns={columns} dataSource={tableData} onChange={onChange} />
         </div>
       </div>
   );

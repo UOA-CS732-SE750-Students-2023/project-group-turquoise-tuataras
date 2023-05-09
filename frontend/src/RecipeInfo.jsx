@@ -1,5 +1,3 @@
-
-import { Divider , Input } from 'antd';
 import React from "react";
 import styles from './RecipeInfo.module.css';
 
