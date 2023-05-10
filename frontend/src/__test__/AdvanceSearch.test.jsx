@@ -1,8 +1,9 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { it, expect } from 'vitest';
+import { it, describe, expect } from 'vitest';
 import AdvanceSearch from '../AdvanceSearch';
 
 const mockAxios = new MockAdapter(axios);
