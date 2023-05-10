@@ -182,7 +182,6 @@ function homePage() {
                         <li>Cameron Nathan: cnat307@aucklanduni.ac.nz</li>
                         <li>Yasith Udagedara: yuda947@aucklanduni.ac.nz</li>
                         <li>Hok Lai Frankie Yu: yhok562@aucklanduni.ac.nz</li>
-
                     </ul>
                 </div>
             </div>
