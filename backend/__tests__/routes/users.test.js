@@ -5,8 +5,10 @@ import express from 'express';
 import request from 'supertest';
 import jwt from 'jsonwebtoken'
 import { signupUser } from '../../src/database/dao/user-dao.js';
+import { User } from '../../src/database/schema/user-schema.js';
 let mongod;
 let token;
+let user;
 const app = express();
 app.use(express.json());
 app.use('/', routes);
@@ -23,7 +25,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
-    const user = await signupUser("test", "test");
+    user = await signupUser("test", "test");
     token = createToken(user._id);
 });
 
@@ -150,5 +152,57 @@ describe('no authentication needed', () => {
             return done();
         })
     })
+})
 
+describe('authentication needed', () => {
+    it('reset username', (done) => {
+        request(app)
+        .patch('/reset')
+        .set('Authorization', `Bearer: ${token}`)
+        .send({
+            "username": "test2" 
+        })
+        .expect(200)
+        .end(async(err, res) => {
+            if (err) {
+                return done(err);
+            }
+            const userDB = await User.findById(user._id);
+            expect(res.body.username).toBe(userDB.username);
+            return done();
+        })
+    })
+
+    it('reset password', (done) => {
+        request(app)
+        .patch('/reset')
+        .set('Authorization', `Bearer: ${token}`)
+        .send({
+            "password": "test2" 
+        })
+        .expect(200)
+        .end(async(err, res) => {
+            if (err) {
+                return done(err);
+            }
+            const userDB = await User.findById(user._id);
+            expect(res.body.password).toBe(userDB.password);
+            return done();
+        })
+    })
+
+    it('reset missing fields', (done) => {
+        request(app)
+        .patch('/reset')
+        .set('Authorization', `Bearer: ${token}`)
+        .send()
+        .expect(400)
+        .end(async(err, res) => {
+            if (err) {
+                return done(err);
+            }
+            expect(res.body.error).toBe('Username and/or password must be provided');
+            return done();
+        })
+    })
 })
