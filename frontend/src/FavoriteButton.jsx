@@ -13,7 +13,8 @@ export function FavoriteButton({ recipe , favoriteStatus , setFavoriteStatus}) {
         
         try {
             const response = await axios.post(`${API_BASE_URL}/users/savedRecipes`, {
-                data: { recipeId: recipe.spoonacularId },
+                recipeId: recipe.spoonacularId
+            }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
