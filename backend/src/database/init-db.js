@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { User } from './schema/user-schema.js';
 import { Recipe } from './schema/recipe-schema.js';
 import { DayMealPlan } from './schema/day-meal-plan-schema.js';
-import recipe from '../database/init-recipe.json' assert { type: "json" };
+import recipe from './init-recipe.json' assert { type: "json" };
 
 async function run() {
     console.log(`Connecting to database at ${process.env.MONGODB_CONNECTION_STRING}...`);

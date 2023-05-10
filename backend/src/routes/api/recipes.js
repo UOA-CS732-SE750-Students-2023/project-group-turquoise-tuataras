@@ -68,7 +68,7 @@ router.get("/search", async (req, res) => {
     const { recipeQuery, cuisines, diet, userName, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
     recipeQuery && (searchQuery.query = recipeQuery);
-    cuisines && (searchQuery.cuisines = cuisines.toString());
+    cuisines && (searchQuery.cuisine = cuisines.toString());
     diet && (searchQuery.diet = diet.join('|'));
     userName && (searchQuery.intolerances = getIntolerances(userName).toString());
     type && (searchQuery.type = type);
@@ -79,7 +79,22 @@ router.get("/search", async (req, res) => {
     res.json(res1);
 });
 
+<<<<<<< HEAD:backend/routes/api/recipes.js
 router.get("/recommendations", async (req, res) => {
+=======
+router.get("/:spoonacularId", async (req, res) => {
+    const spoonacularId = req.params.spoonacularId;
+    let recipe = await getRecipe(spoonacularId, false);
+
+    if (recipe) {
+        res.json(recipe).status(200);
+    } else {
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
+    }
+});
+
+router.get("/search/recommendations", async (req, res) => {
+>>>>>>> backend-database-endpoint-testing:backend/src/routes/api/recipes.js
     const { userName } = req.query;
 
     const commonQuery = {};
@@ -93,7 +108,7 @@ router.get("/recommendations", async (req, res) => {
             cuisines = [...new Set([cuisines, ...recipe.cuisines])];
         });
 
-        commonQuery.cuisines = cuisines.toString();
+        commonQuery.cuisine = cuisines.toString();
         commonQuery.intolerances = intolerances.toString();
     }
     const recommendations = {};

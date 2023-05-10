@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import recipe from '../init-recipe.json'
-import { Recipe } from '../schema/recipe-schema';
-import { User } from '../schema/user-schema';
-import { DayMealPlan } from '../schema/day-meal-plan-schema';
+import recipe from '../../src/database/init-recipe.json'
+import { Recipe } from '../../src/database/schema/recipe-schema.js';
+import { User } from '../../src/database/schema/user-schema.js';
+import { DayMealPlan } from '../../src/database/schema/day-meal-plan-schema.js';
 
 let mongod;
 
