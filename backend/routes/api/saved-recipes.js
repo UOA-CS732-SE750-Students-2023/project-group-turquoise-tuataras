@@ -1,7 +1,7 @@
 import express from "express";
-import {User} from "../../database/schema/user-schema.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
 import requireAuth from '../../middleware/requireAuth.js'
+import { saveRecipe, deleteSavedRecipe, getSavedRecipes } from "../../database/dao/user-dao.js";
 
 const router = express.Router({mergeParams: true});
 
@@ -9,22 +9,27 @@ const router = express.Router({mergeParams: true});
 router.use(requireAuth)
 
 router.get("/", async (req, res) => {
-    const userId = req.user._id;
-    const user = await User
-        .findById(userId)
-        .populate("savedRecipes");
-
-    if(user) {
-        res.json(user.savedRecipes).status(200);
-    } else {
-        res.status(404);
+    let userId;
+    try{userId = req.user._id;}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
     }
+    const savedRecipes = await getSavedRecipes(userId);
+
+    res.json(savedRecipes).status(200);
+
 });
 
 router.post("/", async (req, res) => {
     let userId;
     try{userId = req.user._id;}
-    catch{console.log("User was null");}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
+    }
 
     const spoonacularRecipeId = req.body.recipeId;
     let recipe = await getRecipeById(spoonacularRecipeId);
@@ -32,33 +37,25 @@ router.post("/", async (req, res) => {
     if (recipe === null) {
         recipe = await createRecipe(spoonacularRecipeId);
     }
-    const user = await User.findById(userId);
+    await saveRecipe(userId, recipe);
+    res.sendStatus(201);
 
-    if(user) {
-        user.savedRecipes.addToSet(recipe);
-        await user.save();
-        res.sendStatus(201);
-    } else {
-        res.status(404).send("User not found");
-    }
 });
 
 router.delete("/", async (req, res) => {
     let userId;
     try{userId = req.user._id;}
-    catch{console.log("User was null");}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
+    }
 
     const spoonacularRecipeId = req.body.recipeId;
     const recipe = await getRecipeById(spoonacularRecipeId);
-    const user = await User.findById(userId);
+    await deleteSavedRecipe(userId, recipe);
+    res.sendStatus(204);
 
-    if(user) {
-        user.savedRecipes.pull(recipe);
-        await user.save();
-        res.sendStatus(204);
-    } else {
-        res.status(404).send("User not found");
-    }
 });
 
 export default router;
