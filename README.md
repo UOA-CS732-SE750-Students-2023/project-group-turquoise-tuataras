@@ -28,7 +28,8 @@ In the frontend folder
 ```
 npm run dev
 ```
-
+#### Google Maps Note
+Google Maps API does not work in China. To remedy this issue, try to use a VPN before launching our application.
 
 ## Backend Environment Variables
 Create a .env file in the backend folder and put the following text in:
