@@ -80,16 +80,17 @@ export default function SingleRecipePage() {
   );
 }
 
-export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus }){
+export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus}){
+  const { user, loading } = useAuthContext()
   return(
       <div className={styles.ButtonTable}>
             <table className={styles.table}>
                 <tbody>
                         <tr>
-                          <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} /></td>  
-                          <td><FavoriteButton recipe = { recipe } 
+                          { user && <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} /></td> }
+                          { user && <td><FavoriteButton recipe = { recipe } 
                                               favoriteStatus = {favoriteStatus}
-                                              setFavoriteStatus = {setFavoriteStatus}/></td>
+                                              setFavoriteStatus = {setFavoriteStatus}/></td> }
                           <td className={styles.Rating}>Rating: {recipe?.rating?.rating}</td>
                         </tr>
                 </tbody>
@@ -97,6 +98,7 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
       </div>
   )
 }
+
    
 
 
