@@ -15,7 +15,15 @@ function Profile({ handleReset, handleIntolerances }) {
     const [password, setPassword] = useState('');
     const { user } = useAuthContext()
 
-    const [selectedIntolerances, setSelectedIntolerances] = useState([]);
+    const [selectedIntolerances, setSelectedIntolerances] = useState(() => {
+        const storedList = JSON.parse(localStorage.getItem(user.username + "_intolerances"));
+      
+        if (storedList) {
+          return storedList;
+        }
+      
+        return [];
+      });
 
     const handleResetSubmit = (event) => {
         event.preventDefault();
