@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { Button , Table} from 'antd';
 import getShoppingListIngredients from "./getShoppingListIngredients";
-// import shoppingListData from './Recipes.json'
 import styles from './ShoppingList.module.css';
 import { useAuthContext } from "./hooks/useAuthContext";
 import axios from 'axios'
