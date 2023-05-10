@@ -41,8 +41,11 @@ export async function getRecipeBySpoonacularId(id) {
         servings: recipe.servings,
         nutrition: recipe.nutrition.nutrients,
         summary: recipe.summary,
-        cuisines: recipe.cuisines,
-        instructions: recipe.analyzedInstructions[0].steps.map(step => step.step)
+        cuisines: recipe.cuisines
+    }
+    console.log(recipe.analyzedInstructions)
+    if(recipe.analyzedInstructions[0]) {
+        returnRecipe.instructions = recipe.analyzedInstructions[0].steps.map(step => step.step)
     }
     return returnRecipe;
 }
