@@ -6,6 +6,7 @@ import path from 'path';
 import cors from 'cors';
 import * as url from 'url';
 import mongoose from 'mongoose';
+import routes from './routes/index.js';
 
 // Setup Express
 const app = express();
@@ -17,8 +18,8 @@ app.use(cors());
 app.use(express.json());
 
 // Setup our API routes.
-import api from './routes';
-app.use('/api', api);
+
+app.use('/', routes);
 
 // Make the "public" folder available statically
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
