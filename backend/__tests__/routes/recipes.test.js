@@ -233,6 +233,87 @@ it('post comment', (done) => {
     })  
 })
 
+
+describe('search endpoint', () => {
+    const results = [
+        {
+            "id": 631814,
+            "title": "$50,000 Burger",
+            "image": "https://spoonacular.com/recipeImages/631814-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 642539,
+            "title": "Falafel Burger",
+            "image": "https://spoonacular.com/recipeImages/642539-312x231.png",
+            "imageType": "png"
+        },
+        {
+            "id": 663050,
+            "title": "Tex-Mex Burger",
+            "image": "https://spoonacular.com/recipeImages/663050-312x231.jpg",
+            "imageType": "jpg"
+        }
+    ]
+    const data = {results: results};
+    /**
+     * Tests that, when requesting recommendations, a 200 OK response is returned,
+     * with the response body containing the recommended recipes.
+     */
+    it('simple search',  async () => {
+
+        axiosMock.onGet(`https://api.spoonacular.com/recipes/complexSearch`)
+            .reply(200, data);
+
+        request(app)
+            .get('/search')
+            .query({recipeQuery: "burger"})
+            .send()
+            .expect(200)
+            .end((err, res) => {
+                const apiRecipes = res.body;
+                expect(apiRecipes).toEqual(results);
+                expect(axiosMock.history.get.length).toBe(1);
+                expect(axiosMock.history.get.url).toEqual('https://api.spoonacular.com/recipes/complexSearch');
+                expect(axiosMock.history.get.params.query).toBe("burger");
+            });
+    }, 10000); // timeout to 10 seconds
+
+    it('complex search', async () => {
+
+        const user = await User.findOne({username: "test"});
+        user.intolerances = ["dairy", "egg"];
+        await user.save();
+
+        axiosMock.onGet(`https://api.spoonacular.com/recipes/complexSearch`)
+            .reply(200, data);
+
+        request(app)
+            .get('/search')
+            .query({
+                recipeQuery: "burger",
+                userName: "test",
+                cuisines: ["american"],
+                diets: ["vegetarian", "vegan"],
+            })
+            .send()
+            .expect(200)
+            .end((err, res) => {
+                const apiRecipes = res.body;
+                expect(apiRecipes).toEqual(results);
+                const axiosReq = axiosMock.history.get;
+                const axiosReqParams = axiosReq[0].params;
+                expect(axiosReq.length).toBe(1);
+                expect(axiosReq.url).toEqual('https://api.spoonacular.com/recipes/complexSearch');
+                expect(axiosReqParams.query).toBe("burger");
+                expect(axiosReqParams.cuisine).toBe("american");
+                expect(axiosReqParams.diet).toBe("vegetarian|vegan");
+                expect(axiosReqParams.intolerances).toBe("dairy,egg");
+            });
+    }, 10000); // timeout to 10 seconds
+});
+
+
 describe('recommendations endpoint', () => {
     const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
         "soup", "beverage", "fingerfood", "snack", "drink"]
