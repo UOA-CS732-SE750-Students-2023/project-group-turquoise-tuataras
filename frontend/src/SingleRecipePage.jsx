@@ -7,29 +7,43 @@ import NutritionPie from './NutritionPie';
 import RecipeInfo from './RecipeInfo';
 import { CommentButton } from './CommentButton';
 import { FavoriteButton } from './FavoriteButton';
-
 import styles from './SingleRecipePage.module.css';
+import { useAuthContext } from './hooks/useAuthContext';
 
-export default function SingleRecipePage({onChangeFavorite , users }) {
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const { id } = useParams();
+export default function SingleRecipePage() {
+
+    const { spoonacularId } = useParams();
+    const { user, loading } = useAuthContext()
     const [commentStatus , setCommentStatus] = useState(false);
+
+    // need check the single recipe saved status
+    const [favoriteStatus, setFavoriteStatus] = useState(checkRecipeSavedStatus()); 
 
     const [recipeData, setRecipeData] = useState(null);
 
+    //Retrieve specific recipe data by spoonacularId
     useEffect(() => {
-        const fetchData = async () => {
-          const response = await axios(
-            'http://localhost:3000/api/recipes',
-          );
+      async function fetchRecipe() {
+        try {
+          const response = await axios.get(`${API_BASE_URL}/recipes/${spoonacularId}`, {
+          })
+          console.log('recipe = ', response.data)
           setRecipeData(response.data);
-        };
-        fetchData();
+    
+        } catch (err) {
+          console.error(err);
+        }
+      }
+        fetchRecipe();
         setCommentStatus(false);
-      }, [commentStatus]);
+      }, [commentStatus , favoriteStatus]);
 
-    function retrieveRecipeBySpoonacularId(id) {
-        return recipeData.find(a => a.spoonacularId === parseInt(id));
+    // ToDo: check the single recipe saved status
+    function checkRecipeSavedStatus()
+    {
+      return false;
     }
 
     return (
@@ -39,20 +53,23 @@ export default function SingleRecipePage({onChangeFavorite , users }) {
             <div className={styles.Img_Ing_SinglePage}>   
                 <div className={styles.Img_button_SinglePage}>   
                   <div className={styles.Img}>
-                    <h1>{retrieveRecipeBySpoonacularId(id).title}</h1>
-                    <img src = {retrieveRecipeBySpoonacularId(id).image}/>
+                    <h1>{recipeData.title}</h1>
+                    <img src = {recipeData.image}/>
                   </div>
-                  <ButtonTable  recipe = {retrieveRecipeBySpoonacularId(id)} users = {users} setCommentStatus = {setCommentStatus}
-                                onChangeFavorite ={onChangeFavorite} commentStatus = {commentStatus}/>
+                  <ButtonTable  recipe = {recipeData} 
+                                setCommentStatus = {setCommentStatus}
+                                favoriteStatus = {favoriteStatus}
+                                setFavoriteStatus = {setFavoriteStatus}/>
+
                   <div className={styles.RecipeInfo}> 
-                    <RecipeInfo  recipe = {retrieveRecipeBySpoonacularId(id)} />
+                    <RecipeInfo  recipe = {recipeData} />
                   </div> 
                 </div>  
-                <Ingredients recipe = {retrieveRecipeBySpoonacularId(id)} />
-                <NutritionPie recipe = {retrieveRecipeBySpoonacularId(id)} />
+                <Ingredients recipe = {recipeData} />
+                <NutritionPie recipe = {recipeData} />
             </div>
             <div className={styles.Ins_SinglePage}>
-                <Instructions recipe = {retrieveRecipeBySpoonacularId(id)} />
+                <Instructions recipe = {recipeData} />
             </div>
           </div>  
         ) : 
@@ -63,24 +80,24 @@ export default function SingleRecipePage({onChangeFavorite , users }) {
   );
 }
 
-export function ButtonTable({recipe, onChangeFavorite , users , setCommentStatus }){
+export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus }){
   return(
       <div className={styles.ButtonTable}>
             <table className={styles.table}>
                 <tbody>
                         <tr>
-                          <td><CommentButton recipe = {recipe} users = {users} setCommentStatus = {setCommentStatus} /></td>  
-                          <td><FavoriteButton recipe = {recipe} users = {users} onChangeFavorite={onChangeFavorite}/></td>
-                          <td className={styles.Rating} >Rating: {recipe.rating.rating}</td>
+                          <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} /></td>  
+                          <td><FavoriteButton recipe = { recipe } 
+                                              favoriteStatus = {favoriteStatus}
+                                              setFavoriteStatus = {setFavoriteStatus}/></td>
+                          <td className={styles.Rating}>Rating: {recipe?.rating?.rating}</td>
                         </tr>
                 </tbody>
             </table>                       
-        
       </div>
   )
 }
    
-
 
 
 

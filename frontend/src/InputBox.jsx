@@ -1,9 +1,11 @@
 import { Input } from 'antd';
 import axios from 'axios';
 import React, { useState, } from "react";
+import { useAuthContext } from './hooks/useAuthContext';
 
 
-function InputBox({ recipe, users, setCommentStatus}) {
+function InputBox({ recipe, setCommentStatus}) {
+  const { user, loading } = useAuthContext()
 
   const [inputValue, setInputValue] = useState("");
   
@@ -19,7 +21,7 @@ function InputBox({ recipe, users, setCommentStatus}) {
     const second = dateTime.getSeconds();
 
     const innertComment = {
-        username: users[0].username,
+        username: user.username,
         comment: newComment,
         date: `${year}/${month}/${day} ${hour}:${minute}:${second}`
     }

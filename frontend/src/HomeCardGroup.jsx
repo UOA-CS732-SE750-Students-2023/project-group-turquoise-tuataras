@@ -9,7 +9,7 @@ function homeCardGroup(props) {
         if (id.length === 0) {
             return;
         }
-        window.location.href = "./recipe/" + id;
+        window.location.href = "./recipes/" + id;
     }
     return (<div>
             {props.data.value.length === 10 ?
