@@ -22,9 +22,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const userId = req.user._id;
-    const spoonacularRecipeId = req.body.recipeId;
+    let userId;
+    try{userId = req.user._id;}
+    catch{console.log("User was null");}
 
+    const spoonacularRecipeId = req.body.recipeId;
     let recipe = await getRecipeById(spoonacularRecipeId);
 
     if (recipe === null) {
@@ -35,27 +37,27 @@ router.post("/", async (req, res) => {
     if(user) {
         user.savedRecipes.addToSet(recipe);
         await user.save();
-        res.send().status(201);
+        res.sendStatus(201);
     } else {
-        res.send().status(404);
+        res.status(404).send("User not found");
     }
-
 });
 
 router.delete("/", async (req, res) => {
-    const userId = req.user._id;
+    let userId;
+    try{userId = req.user._id;}
+    catch{console.log("User was null");}
+
     const spoonacularRecipeId = req.body.recipeId;
-
     const recipe = await getRecipeById(spoonacularRecipeId);
-
     const user = await User.findById(userId);
 
     if(user) {
         user.savedRecipes.pull(recipe);
         await user.save();
-        res.send().status(201);
+        res.sendStatus(204);
     } else {
-        res.send().status(404);
+        res.status(404).send("User not found");
     }
 });
 
