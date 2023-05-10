@@ -255,4 +255,34 @@ describe('authentication needed', () => {
             return done();
         })
     })
+
+    it('update intolerances', (done) => {
+        request(app)
+        .put('/intolerances')
+        .set('Authorization', `Bearer: ${token}`)
+        .send(["Dairy", "Egg", "Gluten"])
+        .expect(201)
+        .end(async(err, res) => {
+            if (err) {
+                return done(err);
+            }
+            const userDB = await User.findById(user._id);
+            expect(userDB.intolerances).toStrictEqual(["Dairy", "Egg", "Gluten"]);
+            expect(res.body.message).toBe("Intolerances updated")
+            return done();
+        })
+    })
+
+    it('update intolerances no auth', (done) => {
+        request(app)
+        .put('/intolerances')
+        .send()
+        .expect(401)
+        .end((err, res) => {
+            if (err) {
+                return done(err);
+            }
+            return done();
+        })
+    })
 })
