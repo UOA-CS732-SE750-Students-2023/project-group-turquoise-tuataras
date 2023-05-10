@@ -105,7 +105,7 @@ function App() {
             element={user ? <MealSchedule/> : <Navigate to="/" />}/>
           <Route path="/saved-recipes"
             element={user ? <SavedRecipePage /> : <Navigate to="/" />}/>
-          <Route path="/shoppingList"
+          <Route path="/shopping-list"
             element={user ? <ShoppingList /> : <Navigate to="/" />}/>
           <Route path="/recipes/:spoonacularId"
             element={<SingleRecipePage />} />
