@@ -120,15 +120,12 @@ describe('POST /:spoonacularId/comment', () => {
                 }
                 const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
                 const dbComment = dbRecipe.comments[dbRecipe.comments.length-1];
-                console.log(dbRecipe.comments);
                 const dbCommentNoId = {
                   "username": dbComment.username,
                   "comment": dbComment.comment,
                   "date": dbComment.date.toISOString().split('T')[0]
                 }
                 const comment = res.body;
-                console.log(comment)
-                console.log(dbCommentNoId)
                 expect(dbCommentNoId).toEqual(comment);
                 done();
 
@@ -155,7 +152,6 @@ describe('POST /:spoonacularId/rating', () => {
             const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
             const dbRating = dbRecipe.rating;
             const response = res.body;
-            console.log(response);
             expect(response).toEqual({message:"New rating: 4.583333333333333"});
             expect(dbRating).toEqual(
                 {

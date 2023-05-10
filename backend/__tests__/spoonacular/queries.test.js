@@ -1,8 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {getRecipeBySpoonacularId, searchRecipes} from "../../src/spoonacular/queries.js";
-import { recipeData } from './recipeData_631814.js';
-import { spoonacularRecipeData } from './spoonacularRecipeData_631814.js';
+import recipeData from './recipeData_631814.json';
+import spoonacularRecipeData from './spoonacularRecipeData_631814.json';
 
 const axiosMock= new MockAdapter(axios);
 process.env.SPOONACULAR_API_KEY = '12345';

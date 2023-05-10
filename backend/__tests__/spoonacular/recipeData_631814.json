@@ -1,4 +1,4 @@
-export const recipeData = {
+{
   "spoonacularId": 631814,
   "types": {
     "vegetarian": false,
