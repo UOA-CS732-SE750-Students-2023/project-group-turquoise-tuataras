@@ -1,11 +1,10 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {getRecipeBySpoonacularId, searchRecipes} from "../../src/spoonacular/queries.js";
-import recipeData from './recipeData_631814.json';
-import spoonacularRecipeData from './spoonacularRecipeData_631814.json';
+import recipeData from '../testData/recipeData_631814.json';
+import spoonacularRecipeData from '../testData/spoonacularRecipeData_631814.json';
 
 const axiosMock= new MockAdapter(axios);
-process.env.SPOONACULAR_API_KEY = '12345';
 afterEach(() =>{
     axiosMock.reset();
 });
@@ -32,9 +31,7 @@ describe('getRecipes', () => {
                 "imageType": "jpg"
             }
         ]
-        const data = {
-                results: results
-            };
+        const data = {results: results};
 
         axiosMock.onGet(`https://api.spoonacular.com/recipes/complexSearch`,
             { params: { query: "burger", apiKey: "12345" } })

@@ -7,12 +7,18 @@ import recipe from '../../src/database/init-recipe.json'
 import { Recipe } from '../../src/database/schema/recipe-schema.js';
 import jwt from 'jsonwebtoken'
 import { User } from '../../src/database/schema/user-schema.js';
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import recipeData from '../testData/recipeData_631814.json';
+import spoonacularRecipeData from '../testData/spoonacularRecipeData_631814.json';
+
 let mongod;
 let token;
 const app = express();
 app.use(express.json());
 app.use('/', routes);
 
+const axiosMock= new MockAdapter(axios);
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
 }
@@ -25,16 +31,20 @@ beforeAll(async () => {
 
 beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
-    const collection = await mongoose.connection.db.createCollection('recipes');
+    const recipes = await mongoose.connection.db.createCollection('recipes');
+   //const users = await mongoose.connection.db.createCollection('users');
     const user = new User({
         username: "test",
         password: "test"
     });
     await User.create(user);
     token = createToken(user._id);
-    await collection.insertOne(recipe);
+    //await users.insertOne(user);
+    await recipes.insertOne(recipe);
 });
-
+afterEach(() =>{
+    axiosMock.reset();
+});
 afterAll(async () => {
     await mongoose.disconnect();
     await mongod.stop();
@@ -46,7 +56,7 @@ describe('GET /:spoonacularId', () => {
      * Tests that, when requesting a specific recipe, a 200 OK response is returned,
      * with the response body containing the requested recipe.
      */
-    it('get recipe', (done) => {
+    it('get recipe when in database', (done) => {
         request(app)
             .get('/650181')
             .send()
@@ -96,7 +106,24 @@ describe('GET /:spoonacularId', () => {
                 return done();
             });
     }, 10000); // timeout to 10 seconds
+
+    it('get recipe when not in database', async () => {
+
+        axiosMock.onGet(`https://api.spoonacular.com/recipes/631814/information`,
+            {params: {includeNutrition: true, apiKey: "12345"}})
+            .reply(200, spoonacularRecipeData);
+
+        request(app)
+            .get('/631814')
+            .send()
+            .expect(200)
+            .end((err, res) => {
+                const apiRecipe = res.body;
+                expect(apiRecipe).toEqual(recipeData);
+            });
+    }, 10000); // timeout to 10 seconds
 });
+
 
 describe('POST /:spoonacularId/comment', () => {
 
@@ -205,3 +232,94 @@ it('post comment', (done) => {
         });
     })  
 })
+
+describe('recommendations endpoint', () => {
+    const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
+        "soup", "beverage", "fingerfood", "snack", "drink"]
+    const results = [
+        {
+            "id": 631814,
+            "title": "$50,000 Burger",
+            "image": "https://spoonacular.com/recipeImages/631814-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 642539,
+            "title": "Falafel Burger",
+            "image": "https://spoonacular.com/recipeImages/642539-312x231.png",
+            "imageType": "png"
+        },
+        {
+            "id": 663050,
+            "title": "Tex-Mex Burger",
+            "image": "https://spoonacular.com/recipeImages/663050-312x231.jpg",
+            "imageType": "jpg"
+        }
+    ]
+    const data = {results: results};
+        /**
+        * Tests that, when requesting recommendations, a 200 OK response is returned,
+        * with the response body containing the recommended recipes.
+        */
+        it('get recommendations',  (done) => {
+
+            axiosMock.onGet(`https://api.spoonacular.com/recipes/complexSearch`)
+                .reply(200, data);
+
+            request(app)
+                .get('/search/recommendations')
+                .send()
+                .expect(200)
+                .end((err, res) => {
+                    if (err) {
+                        return done(err);
+                    }
+                    const apiRecipes = res.body;
+                    expect(Object.keys(apiRecipes).length).toBe(3);
+                    Object.values(apiRecipes).forEach((recipes) => {
+                        expect(recipes).toEqual(results);
+                    });
+                    expect(axiosMock.history.get.length).toBe(3);
+                    Object.values(axiosMock.history.get).forEach((apiCall) => {
+                        expect(apiCall.url).toEqual('https://api.spoonacular.com/recipes/complexSearch');
+                        expect(apiCall.params.number).toBe(10);
+                        expect(apiCall.params.sort).toBe('random');
+                        expect(mealTypes).toContain(apiCall.params.type);
+                    });
+                    return done();
+                });
+        }, 10000); // timeout to 10 seconds
+
+    it('get recommendations with user', async () => {
+
+        const user = await User.findOne({username: "test"});
+        const recipe = await Recipe.findOne({spoonacularId: 650181})
+        user.intolerances = ["dairy", "egg"];
+        user.savedRecipes.push(recipe);
+        await user.save();
+
+        axiosMock.onGet(`https://api.spoonacular.com/recipes/complexSearch`)
+            .reply(200, data);
+        request(app)
+            .get('/search/recommendations')
+            .query({userName: 'test'})
+            .send()
+            .expect(200)
+            .end((err, res) => {
+                const apiRecipes = res.body;
+                expect(Object.keys(apiRecipes).length).toBe(3);
+                Object.values(apiRecipes).forEach((recipes) => {
+                    expect(recipes).toEqual(results);
+                });
+                expect(axiosMock.history.get.length).toBe(3);
+                Object.values(axiosMock.history.get).forEach((apiCall) => {
+                    expect(apiCall.url).toEqual('https://api.spoonacular.com/recipes/complexSearch');
+                    expect(apiCall.params.number).toBe(10);
+                    expect(apiCall.params.sort).toBe('random');
+                    expect(mealTypes).toContain(apiCall.params.type);
+                    expect(intolerances).toBe('dairy,egg');
+                    expect(cuisine).toBe('American')
+                });
+            });
+    }, 10000); // timeout to 10 seconds
+});
