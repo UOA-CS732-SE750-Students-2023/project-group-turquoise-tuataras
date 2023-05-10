@@ -65,17 +65,6 @@ router.get("/search", async (req, res) => {
     res.json(res1);
 });
 
-router.get("/:spoonacularId", async (req, res) => {
-    const spoonacularId = req.params.spoonacularId;
-    let recipe = await getRecipe(spoonacularId, false);
-
-    if (recipe) {
-        res.json(recipe).status(200);
-    } else {
-        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
-    }
-});
-
 router.get("/recommendations", async (req, res) => {
     const { userName } = req.query;
 
@@ -102,6 +91,17 @@ router.get("/recommendations", async (req, res) => {
     }
 
     res.json(recommendations);
+});
+
+router.get("/:spoonacularId", async (req, res) => {
+    const spoonacularId = req.params.spoonacularId;
+    let recipe = await getRecipe(spoonacularId, false);
+
+    if (recipe) {
+        res.json(recipe).status(200);
+    } else {
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
+    }
 });
 
 // Mount the auth router onto the main router for the routes that require authentication

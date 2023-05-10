@@ -12,6 +12,7 @@ import LocationSearch from './LocationSearch';
 import Alerts from './Alerts';
 import { useAuthContext } from './hooks/useAuthContext';
 import MealSchedule from "./MealSchedule.jsx";
+import HomePage from "./HomePage.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -93,8 +94,8 @@ function App() {
           <Route path="/profile"
             element={user ? <Profile handleReset={handleReset} handleIntolerances={handleIntolerances}/> : <Navigate to="/" />}/>
           <Route path="/"
-            element={<p>Home Page</p>}/>
-          <Route path="/stores-near-me" 
+            element={<HomePage/>}/>
+          <Route path="/stores-near-me"
             element={<LocationSearch/>}/>
            <Route path="/meal-schedule"
             element={user ? <MealSchedule/> : <Navigate to="/" />}/>
