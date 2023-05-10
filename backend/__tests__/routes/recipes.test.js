@@ -35,12 +35,11 @@ beforeEach(async () => {
     axiosMock = new MockAdapter(axiosInstance, { delayResponse: 300 })
     await mongoose.connection.db.dropDatabase();
     const recipes = await mongoose.connection.db.createCollection('recipes');
-    const users = await mongoose.connection.db.createCollection('users');
     const user = new User({
         username: "test",
         password: "test"
     });
-    await users.insertOne(user);
+    await User.create(user);
     token = createToken(user._id);
     await recipes.insertOne(recipe);
 });
