@@ -1,25 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { Button, Tooltip, Drawer} from 'antd';
+import { Button } from 'antd';
 import axios from 'axios';
 
-export function FavoriteButton({recipe , onChangeFavorite , users }) {
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const [favoriteStatus, setFavoriteStatus] = useState( getRecipeSavedStatus(recipe,users) );
+export function FavoriteButton({ recipe , user , favoriteStatus , setFavoriteStatus}) {
 
+    // add the selected SavedRecipe to databse , then refresh favoriteStatus
     const insertSavedRecipe = async () => {
-        setFavoriteStatus(true);
-        // add the selected SavedRecipe to databse , then call the refresh favorite
-        const addNewSavedRecipeData = await axios.post(
-              `http://localhost:3000/api/users/savedrecipes/${users[0].id}`, recipe)
-              .then(()=> onChangeFavorite());
-      };
+        
+        try {
+            const response = await axios.post(`${API_BASE_URL}/users/savedRecipes`, {
+                recipieId: recipe.spoonacularId
+            }, {
+                headers: {
+                Authorization: `Bearer ${user.token}`
+                }
+            })
+            .then(()=> setFavoriteStatus(true));
+        
+            } catch (err) {
+            console.error(err);
+        }
+    };
 
     const deleteSavedRecipe = async () => {
-        setFavoriteStatus(false);
-            // delete the selected SavedRecipe to databse , then call the refresh favorite
-        const deleteNewSavedRecipeData = await axios.post(
-            `http://localhost:3000/api/users/deleteSavedrecipes/${users[0].id}`, recipe)
-            .then(()=> onChangeFavorite());
+
+        // delete the selected SavedRecipe to databse , then refresh favoriteStatus
+        try {
+            const response = await axios.delete(`${API_BASE_URL}/users/savedRecipes`, {
+                recipieId: recipe.spoonacularId
+            }, {
+                headers: {
+                Authorization: `Bearer ${user.token}`
+                }
+            })
+            .then(()=> setFavoriteStatus(false));
+        
+            } catch (err) {
+            console.error(err);
+        }
     };
   
     return (      
@@ -30,17 +49,6 @@ export function FavoriteButton({recipe , onChangeFavorite , users }) {
         <Button type="primary" onClick={insertSavedRecipe}  
         style={{background: "#83a459"}}>add Favorite</Button>
     )
-  }  
-
-export function getRecipeSavedStatus (recipeData , userData) {
-
-        for (let i = 0; i < (userData[0].savedRecipes.length); i++) {
-            if((recipeData._id) === (userData[0].savedRecipes[i])){
-                return true;
-            }
-        }
-    
-        return false;
-}
+  } 
 
   
