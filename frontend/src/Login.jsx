@@ -2,14 +2,16 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useLogin } from './hooks/useLogin';
 
-function Login({ show, onHide, handleLogin }) {
+function Login({ show, onHide, setLogInModalShow}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { login, error, isLoading } = useLogin()
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        handleLogin(username, password);
+        await login(username, password, setLogInModalShow);
         };
 
     return (
@@ -25,10 +27,11 @@ function Login({ show, onHide, handleLogin }) {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
-                    
-                    <Button variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
+                    {error && <div className='error'>{error}</div>}
+                    <Button disabled={isLoading} variant="primary" type="submit" style={{ background: "#EC6E70", border: "none" }}>
                         Log in
                     </Button>
+
                 </Form>
             </div>
         </Modal>

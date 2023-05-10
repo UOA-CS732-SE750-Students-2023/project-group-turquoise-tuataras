@@ -5,17 +5,19 @@ import {
     updateDayMealPlan,
     deleteDayMealPlanRecipe } from '../../database/dao/meal-plan-dao.js';
 import moment from 'moment'
+import requireAuth from '../../middleware/requireAuth.js'
 
 const router = express.Router();
 
-// Todo: Implement JWT so that userId isn't needed
+// require auth for all meal-plan routes
+router.use(requireAuth)
 
 // Retrieve the user's meal plan for the current week
-router.get('/:userId', async (req, res) => {
-    const { userId } = req.params;
+router.get('/', async (req, res) => {
+    const userId = req.user._id
 
-    const startOfWeek = moment().utc().isoWeekday(1).startOf('day');
-    const endOfWeek = moment().utc().isoWeekday(7).endOf('day');
+    const startOfWeek = moment().utc().startOf('day');
+    const endOfWeek = moment().utc().add(6, 'days').endOf('day');
 
     const mealPlan = await getMealPlanByUserAndCurrentWeek(userId, startOfWeek, endOfWeek);
     res.json(mealPlan);
@@ -23,10 +25,12 @@ router.get('/:userId', async (req, res) => {
 
 // Create new day meal plan
 router.post('/', async (req, res) => {
+    const userId = req.user._id
+    const newDayMealPlan = req.body
+    newDayMealPlan.user = userId
+    const dayMealPlan = await createDayMealPlan(newDayMealPlan);
 
-    const newDayMealPlan = await createDayMealPlan(req.body);
-
-    if (newDayMealPlan) return res.status(201).json(newDayMealPlan)
+    if (dayMealPlan) return res.status(201).json(dayMealPlan)
     return res.sendStatus(422)
 })
 

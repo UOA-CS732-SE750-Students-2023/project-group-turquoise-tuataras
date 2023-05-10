@@ -12,6 +12,8 @@
     "@ant-design/plots": "^1.2.5",
     "antd": "^5.4.7",
     "axios": "^1.4.0",
+    "@react-google-maps/api": "^2.18.1",
+    "basicscroll": "^3.0.4",
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.3",

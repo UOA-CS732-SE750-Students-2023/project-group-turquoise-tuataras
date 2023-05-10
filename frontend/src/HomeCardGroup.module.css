@@ -1,0 +1,48 @@
+.card_group {
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+.card_group_title {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 35px auto 20px;
+    text-align: center;
+}
+
+.card_group_title_animation {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #EC6E70;
+    z-index: 999;
+    text-align: center;
+}
+
+.card_group_items {
+    width: 100%;
+    height: 520px;
+    text-align: center;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.card_group_card {
+    width: 15rem;
+    display: inline-block;
+    margin: 1rem;
+}
+
+.card_group_card:hover {
+    background: lightgrey;
+}
+
+.card_group_error {
+    height: 600px;
+    line-height: 600px;
+    text-align: center;
+}

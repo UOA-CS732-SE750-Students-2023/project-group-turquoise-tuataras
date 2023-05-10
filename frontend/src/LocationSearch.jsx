@@ -3,7 +3,8 @@ import axios from 'axios';
 import React, {useState, useCallback} from 'react';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-const apiURL = "http://localhost:3000/api/google/nearbyStores";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const apiURL = `${API_BASE_URL}/google/nearbyStores`;
 const containerStyle = {
   width: '1920px',
   height: '1080px',

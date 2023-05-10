@@ -1,5 +1,5 @@
 import express from "express";
-import { getNearbySupermarkets } from "../../google-maps/requests";
+import { getNearbySupermarkets } from "../../google-maps/requests.js";
 const router = express.Router();
 
 router.get('/nearbyStores', async (req, res) => {
