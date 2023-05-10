@@ -29,7 +29,16 @@ export default function SingleRecipePage() {
         try {
           const response = await axios.get(`${API_BASE_URL}/recipes/${spoonacularId}`, {
           })
-          console.log('recipe = ', response.data)
+          
+          // check if recipe has rating attribute
+          if(response.data.rating == undefined)
+          {
+            response.data = {
+              ...response.data ,
+              rating : {rating: 0 ,numberOfRatings:0}
+            }
+          }
+
           setRecipeData(response.data);
     
         } catch (err) {
@@ -83,22 +92,31 @@ export default function SingleRecipePage() {
 
 export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus, setRecipeData}){
   const { user, loading } = useAuthContext()
-  return(
+    return(
       <div className={styles.ButtonTable}>
-            <table className={styles.table}>
-                <tbody>
-                        <tr>
-                          { user && <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/></td> }
-                          { user && <td><FavoriteButton recipe = { recipe } 
-                                              favoriteStatus = {favoriteStatus}
-                                              setFavoriteStatus = {setFavoriteStatus}/></td> }
-                          <td className={styles.Rating}>Rating: {recipe?.rating?.rating}</td>
-                        </tr>
-                </tbody>
-            </table>                       
-      </div>
+      <table className={styles.table}>
+          <tbody>
+                  <tr>
+                    { user && <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/></td> }
+                    { user && <td><FavoriteButton recipe = { recipe } 
+                                        favoriteStatus = {favoriteStatus}
+                                        setFavoriteStatus = {setFavoriteStatus}/></td> }
+                    <td className={styles.Rating}>Rating: {recipe.rating.rating}</td>
+                  </tr>
+          </tbody>
+      </table>                       
+  </div>
   )
 }
+
+// export function DisplayRating({recipe}){
+//   return(
+//           (recipe.rating.rating != ) ?
+//           <span className={styles.Rating}>Rating: {recipe.rating.rating}</span>
+//           :
+//           <span className={styles.Rating}>Rating: 0</span>
+//   )
+// }
 
    
 
