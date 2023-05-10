@@ -14,7 +14,12 @@ router.use(requireAuth)
 
 // Retrieve the user's meal plan for the current week
 router.get('/', async (req, res) => {
-    const userId = req.user._id
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found")
+    }
 
     const startOfWeek = moment().utc().startOf('day');
     const endOfWeek = moment().utc().add(6, 'days').endOf('day');
@@ -25,7 +30,13 @@ router.get('/', async (req, res) => {
 
 // Create new day meal plan
 router.post('/', async (req, res) => {
-    const userId = req.user._id
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found")
+        return;
+    }
     const newDayMealPlan = req.body
     newDayMealPlan.user = userId
     const dayMealPlan = await createDayMealPlan(newDayMealPlan);
@@ -36,6 +47,13 @@ router.post('/', async (req, res) => {
 
 // Update day meal plan
 router.patch('/:id', async (req, res) => {
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found")
+        return;
+    }
     const { id } = req.params;
     const dayMealPlan = req.body;
     dayMealPlan._id = id;
@@ -46,6 +64,13 @@ router.patch('/:id', async (req, res) => {
 
 // Delete day meal plan
 router.delete('/:id/:recipeId', async (req, res) => {
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found")
+        return;
+    }
     const { id, recipeId } = req.params;
     const success = await deleteDayMealPlanRecipe(id, recipeId);
     res.sendStatus(success ? 204 : 404);
