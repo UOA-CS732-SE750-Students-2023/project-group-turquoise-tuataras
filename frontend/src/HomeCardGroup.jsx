@@ -25,7 +25,7 @@ function homeCardGroup(props) {
                             <Card className={style.card_group_card} key={item.id} onClick={() => recipe(item.id)}>
                                 <Card.Img variant="top" height="160rem" src={item.image}/>
                                 <Card.Body>
-                                    <Card.Title style={{fontSize:"16px"}}>{item.title.length > 22 ? item.title.slice(0, 22) + "..." : item.title}</Card.Title>
+                                    <Card.Title style={{fontSize:"16px"}}>{item.title.length > 21 ? item.title.slice(0, 21) + "..." : item.title}</Card.Title>
                                 </Card.Body>
                             </Card>)}
                     </div>
