@@ -5,16 +5,23 @@ import InputBox from './InputBox';
 import styles from './Comment.module.css';
 
 
-export default function Comment({recipe, setCommentStatus }) {
+export default function Comment({recipe, setCommentStatus, setRecipeData }) {
     
     return(
         <div >
-            <ListComment recipe= {recipe} setCommentStatus = {setCommentStatus}/>                       
+            <ListComment recipe= {recipe} setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/>                       
         </div>
     );
 }
 
-export function ListComment({ recipe , setCommentStatus}) {
+export function ListComment({ recipe , setCommentStatus, setRecipeData}) {
+    if (!recipe.comments) {
+        return(
+            <div>
+                <InputBox recipe = {recipe} setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/>
+            </div>
+        )
+    }
 
     return (
     <div>
@@ -32,7 +39,7 @@ export function ListComment({ recipe , setCommentStatus}) {
             ))}
 
             <div>
-                <InputBox recipe = {recipe} setCommentStatus = {setCommentStatus} />
+                <InputBox recipe = {recipe} setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/>
             </div>
     </div>    
     )            

@@ -3,42 +3,51 @@ import axios from 'axios';
 import React, { useState, } from "react";
 import { useAuthContext } from './hooks/useAuthContext';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-function InputBox({ recipe, setCommentStatus}) {
+function InputBox({ recipe, setCommentStatus, setRecipeData}) {
   const { user, loading } = useAuthContext()
 
   const [inputValue, setInputValue] = useState("");
-  
+
   const insertComment = async (newComment) => {
 
     const dateTime = new Date();
+    const year = dateTime.getFullYear();
+    const month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
+    const day = ("0" + dateTime.getDate()).slice(-2);
+    const hours = ("0" + dateTime.getHours()).slice(-2);
+    const minutes = ("0" + dateTime.getMinutes()).slice(-2);
+    const seconds = ("0" + dateTime.getSeconds()).slice(-2);
+    const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    const year = dateTime.getFullYear(); 
-    const month = dateTime.getMonth() + 1; 
-    const day = dateTime.getDate(); // 
-    const hour = dateTime.getHours(); 
-    const minute = dateTime.getMinutes(); 
-    const second = dateTime.getSeconds();
-
-    const innertComment = {
-        username: user.username,
+    try {
+      const response = await axios.post(`${API_BASE_URL}/recipes/${recipe.spoonacularId}/comment`, {
         comment: newComment,
-        date: `${year}/${month}/${day} ${hour}:${minute}:${second}`
+        date: dateString,
+        username: user.username
+      }, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
+      const newCommentData = response.data;
+      setCommentStatus(true); // This will trigger a re-fetch of the recipe data
+      setRecipeData(prevData => {
+        return {
+          ...prevData,
+          comments: [...prevData.comments || [], newCommentData]
+        }
+      });
+    } catch (err) {
+      console.error(err);
     }
-    console.log("date = ",innertComment.date);
-    recipe.comments = [...(recipe.comments) , innertComment];
-
-    // Save the recipe data to databse when new comment added , then call the refresh function
-    const recipeData = await axios.put(
-          `http://localhost:3000/api/updateComment/${recipe.spoonacularId}`, recipe)
-          .then(setCommentStatus(true));
-
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-        insertComment(event.target.value);
-        setInputValue("");
+      insertComment(event.target.value);
+      setInputValue("");
     }
   };
 
