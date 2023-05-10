@@ -227,34 +227,7 @@ describe('authentication needed', () => {
         })
     })
 
-    it('get saved recipes', (done) => {
-        request(app)
-        .get('/savedRecipes')
-        .set('Authorization', `Bearer: ${token}`)
-        .send()
-        .expect(200)
-        .end((err, res) => {
-            if (err) {
-                return done(err);
-            }
-            expect(res.body[0].spoonacularId).toBe(recipe.spoonacularId);
-            expect(res.body[1].spoonacularId).toBe(recipe2.spoonacularId);
-            return done();
-        })
-    })
 
-    it('get saved recipes no auth', (done) => {
-        request(app)
-        .get('/savedRecipes')
-        .send()
-        .expect(401)
-        .end((err, res) => {
-            if (err) {
-                return done(err);
-            }
-            return done();
-        })
-    })
 
     it('update intolerances', (done) => {
         request(app)

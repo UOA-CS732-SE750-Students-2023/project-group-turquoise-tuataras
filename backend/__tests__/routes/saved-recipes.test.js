@@ -1,68 +1,148 @@
-// import routes from '../../src/routes/api/saved-recipes.js'
-// import { MongoMemoryServer } from 'mongodb-memory-server';
-// import mongoose from 'mongoose';
-// import express from 'express';
-// import request from 'supertest';
-// import recipe650181 from '../../src/database/init-recipe.json'
-// import { Recipe } from '../../src/database/schema/recipe-schema.js';
-// import jwt from 'jsonwebtoken'
-// import { User } from '../../src/database/schema/user-schema.js';
-// import MockAdapter from "axios-mock-adapter";
-// import axios from "axios";
-// import recipe631814 from '../testData/recipeData_631814.json';
-//
-// let mongod;
-// let token;
-// const app = express();
-// app.use(express.json());
-// app.use('/', routes);
-//
-// const axiosMock= new MockAdapter(axios);
-// const createToken = (_id) => {
-//     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
-// }
-//
-// beforeAll(async () => {
-//     mongod = await MongoMemoryServer.create();
-//     const connectionString = mongod.getUri();
-//     await mongoose.connect(connectionString, { useNewUrlParser: true });
-// });
-//
-// beforeEach(async () => {
-//     await mongoose.connection.db.dropDatabase();
-//     const recipes = await mongoose.connection.db.createCollection('recipes');
-//     const user = new User({
-//         username: "test",
-//         password: "test"
-//     });
-//     await User.create(user);
-//     token = createToken(user._id);
-//     await recipes.insertMany([recipe650181,recipe631814]);
-// });
-// afterEach(() =>{
-//     axiosMock.reset();
-// });
-// afterAll(async () => {
-//     await mongoose.disconnect();
-//     await mongod.stop();
-// });
-//
-// describe('post saved recipe endpoint', () => {
-//
-//     it('post saved recipe', async(done) => {
-//         request(app)
-//             .post('/')
-//             .set('Authorization', `Bearer ${token}`)
-//             .send({
-//                 "recipeId": "631814"
-//             })
-//             .expect(201)
-//             .end(async (err, res) => {
-//                 const user = await Recipe.findOne({username: "test"}).populate('savedRecipes');
-//                 const savedRecipes = user.savedRecipes;
-//                 expect(savedRecipes.length).toBe(1);
-//                 expect(savedRecipes[0].spoonacularRecipeId).toBe(631814);
-//
-//             });
-//     })
-// })
+import routes from '../../src/routes/api/saved-recipes.js'
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+import express from 'express';
+import request from 'supertest';
+import recipe650181 from '../../src/database/init-recipe.json'
+import { Recipe } from '../../src/database/schema/recipe-schema.js';
+import jwt from 'jsonwebtoken'
+import { User } from '../../src/database/schema/user-schema.js';
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import recipe631814 from '../testData/recipeData_631814.json';
+import recipe from "../../src/database/init-recipe.json";
+import recipe2 from "../testData/recipeData_631814.json";
+import {signupUser} from "../../src/database/dao/user-dao.js";
+
+let mongod;
+let token;
+let user;
+
+const app = express();
+app.use(express.json());
+app.use('/', routes);
+
+const axiosMock= new MockAdapter(axios);
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
+}
+
+beforeAll(async () => {
+    mongod = await MongoMemoryServer.create();
+    const connectionString = mongod.getUri();
+    await mongoose.connect(connectionString, { useNewUrlParser: true });
+});
+
+beforeEach(async () => {
+    await mongoose.connection.db.dropDatabase();
+    user = await signupUser("test", "test");
+    token = createToken(user._id);
+    const recipes = await mongoose.connection.db.createCollection('recipes');
+    await recipes.insertOne(recipe);
+    await recipes.insertOne(recipe2);
+    user.savedRecipes.addToSet(recipe);
+    await user.save();
+});
+
+afterAll(async () => {
+    await mongoose.disconnect();
+    await mongod.stop();
+});
+
+describe('post saved recipe endpoint', () => {
+
+    it('post saved recipe', () => {
+        request(app)
+            .post('/')
+            .set('Authorization', `Bearer ${token}`)
+            .send({
+                "recipeId": "631814"
+            })
+            .expect(201)
+            .end(async (err, res) => {
+                const user = await User.findById(2).populate('savedRecipes');
+                const savedRecipes = user.savedRecipes;
+                expect(savedRecipes.length).toBe(2);
+                expect(savedRecipes[0].spoonacularRecipeId).toBe(631814);
+            });
+    })
+
+    it('post saved recipe without auth', () => {
+        request(app)
+            .post('/')
+            .send({
+                "recipeId": "631814"
+            })
+            .expect(404)
+            .end(async (err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                return done();
+            });
+    })
+})
+
+describe('delete saved recipe endpoint', () => {
+
+    it('delete saved recipe', () => {
+        request(app)
+            .delete('/')
+            .set('Authorization', `Bearer ${token}`)
+            .send({
+                "recipeId": "650181"
+            })
+            .expect(201)
+            .end(async (err, res) => {
+                const user = await User.findById(2).populate('savedRecipes');
+                const savedRecipes = user.savedRecipes;
+                expect(savedRecipes.length).toBe(0);
+            });
+    })
+
+    it('delete saved recipe without auth', () => {
+        request(app)
+            .delete('/')
+            .send({
+                "recipeId": "650181"
+            })
+            .expect(404)
+            .end(async (err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                return done();
+            });
+    })
+})
+
+describe('get saved recipes endpoint', () => {
+    it('get saved recipes', (done) => {
+        request(app)
+            .get('/')
+            .set('Authorization', `Bearer: ${token}`)
+            .send()
+            .expect(200)
+            .end((err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                expect(res.body.length).toBe(1);
+                expect(res.body[0].spoonacularId).toBe(recipe.spoonacularId);
+                return done();
+            })
+    })
+
+    it('get saved recipes no auth', (done) => {
+        request(app)
+            .get('/')
+            .send()
+            .expect(401)
+            .end((err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                return done();
+            })
+    })
+});
