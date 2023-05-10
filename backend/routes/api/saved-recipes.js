@@ -35,9 +35,9 @@ router.post("/", async (req, res) => {
     if(user) {
         user.savedRecipes.addToSet(recipe);
         await user.save();
-        res.status(201);
+        res.send().status(201);
     } else {
-        res.status(404);
+        res.send().status(404);
     }
 
 });
@@ -53,9 +53,9 @@ router.delete("/", async (req, res) => {
     if(user) {
         user.savedRecipes.pull(recipe);
         await user.save();
-        res.status(201);
+        res.send().status(201);
     } else {
-        res.status(404);
+        res.send().status(404);
     }
 });
 
