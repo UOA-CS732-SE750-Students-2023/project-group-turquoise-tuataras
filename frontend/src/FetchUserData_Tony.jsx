@@ -22,7 +22,7 @@ const [testData, setTestData] = useState(new Map());
                         })
                     });
                     setTestData(recipeMap);
-                    console.log(recipeMap);
+                    // console.log(recipeMap);
                 });
         } catch (err) {
             console.error(err);
