@@ -1,42 +1,39 @@
 import { Button } from 'antd';
 import axios from 'axios';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export function FavoriteButton({ recipe , user , favoriteStatus , setFavoriteStatus}) {
+export function FavoriteButton({ recipe , favoriteStatus , setFavoriteStatus}) {
+
+    const { user, loading} = useAuthContext()
 
     // add the selected SavedRecipe to databse , then refresh favoriteStatus
     const insertSavedRecipe = async () => {
         
         try {
             const response = await axios.post(`${API_BASE_URL}/users/savedRecipes`, {
-                recipieId: recipe.spoonacularId
-            }, {
+                data: { recipeId: recipe.spoonacularId },
                 headers: {
-                Authorization: `Bearer ${user.token}`
+                    Authorization: `Bearer ${user.token}`
                 }
-            })
-            .then(()=> setFavoriteStatus(true));
-        
+            });
+            setFavoriteStatus(false);
             } catch (err) {
             console.error(err);
         }
     };
 
     const deleteSavedRecipe = async () => {
-
-        // delete the selected SavedRecipe to databse , then refresh favoriteStatus
         try {
             const response = await axios.delete(`${API_BASE_URL}/users/savedRecipes`, {
-                recipieId: recipe.spoonacularId
-            }, {
+                data: { recipeId: recipe.spoonacularId },
                 headers: {
-                Authorization: `Bearer ${user.token}`
+                    Authorization: `Bearer ${user.token}`
                 }
-            })
-            .then(()=> setFavoriteStatus(false));
-        
-            } catch (err) {
+            });
+            setFavoriteStatus(false);
+        } catch (err) {
             console.error(err);
         }
     };

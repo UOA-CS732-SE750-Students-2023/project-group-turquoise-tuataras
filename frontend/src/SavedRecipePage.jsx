@@ -25,6 +25,7 @@ export default function SavedRecipePage() {
           }
         })
   
+        console.log(response.data)
         setSavedRecipes(response.data);
         console.log("savedRecipes = ", savedRecipes);
   
@@ -46,7 +47,6 @@ export default function SavedRecipePage() {
               {savedRecipes.map((recipe) => (
                 <SavedReceipeCard key={recipe.spoonacularId}
                   item={recipe}
-                  user={user}
                   favoriteStatus={favoriteStatus}
                   setFavoriteStatus={setFavoriteStatus} />
               ))}

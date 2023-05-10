@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 
-export default function SavedReceipeCard({ item , user , favoriteStatus , setFavoriteStatus}) {
+export default function SavedReceipeCard({ item , favoriteStatus , setFavoriteStatus}) {
 
     return (
         <div id={styles.popularCards} className={styles.popularBlock}>
@@ -26,7 +26,6 @@ export default function SavedReceipeCard({ item , user , favoriteStatus , setFav
                     <Space>
                        
                         <FavoriteButton recipe = {item} 
-                                        user = { user } 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus ={ setFavoriteStatus}/>
                         
