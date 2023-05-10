@@ -32,14 +32,12 @@ beforeAll(async () => {
 beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
     const recipes = await mongoose.connection.db.createCollection('recipes');
-   //const users = await mongoose.connection.db.createCollection('users');
     const user = new User({
         username: "test",
         password: "test"
     });
     await User.create(user);
     token = createToken(user._id);
-    //await users.insertOne(user);
     await recipes.insertOne(recipe);
 });
 afterEach(() =>{

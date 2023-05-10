@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import express from 'express';
 import request from 'supertest';
 import jwt from 'jsonwebtoken'
+import recipe from '../../src/database/init-recipe.json'
+import recipe2 from '../testData/recipeData_631814.json'
 import { signupUser } from '../../src/database/dao/user-dao.js';
 import { User } from '../../src/database/schema/user-schema.js';
 let mongod;
@@ -27,6 +29,12 @@ beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
     user = await signupUser("test", "test");
     token = createToken(user._id);
+    const recipes = await mongoose.connection.db.createCollection('recipes');
+    await recipes.insertOne(recipe);
+    await recipes.insertOne(recipe2);
+    await user.savedRecipes.push(recipe);
+    await user.savedRecipes.push(recipe2);
+    await user.save();
 });
 
 afterAll(async () => {
@@ -202,6 +210,48 @@ describe('authentication needed', () => {
                 return done(err);
             }
             expect(res.body.error).toBe('Username and/or password must be provided');
+            return done();
+        })
+    })
+
+    it('reset no auth', (done) => {
+        request(app)
+        .patch('/reset')
+        .send({"username": "lol"})
+        .expect(401)
+        .end(async(err, res) => {
+            if (err) {
+                return done(err);
+            }
+            return done();
+        })
+    })
+
+    it('get saved recipes', (done) => {
+        request(app)
+        .get('/savedRecipes')
+        .set('Authorization', `Bearer: ${token}`)
+        .send()
+        .expect(200)
+        .end((err, res) => {
+            if (err) {
+                return done(err);
+            }
+            expect(res.body[0].spoonacularId).toBe(recipe.spoonacularId);
+            expect(res.body[1].spoonacularId).toBe(recipe2.spoonacularId);
+            return done();
+        })
+    })
+
+    it('get saved recipes no auth', (done) => {
+        request(app)
+        .get('/savedRecipes')
+        .send()
+        .expect(401)
+        .end((err, res) => {
+            if (err) {
+                return done(err);
+            }
             return done();
         })
     })
