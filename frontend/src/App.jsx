@@ -3,7 +3,6 @@ import SavedRecipePage from "./SavedRecipePage";
 import SingleRecipePage from "./SingleRecipePage";
 import ShoppingList from "./ShoppingList";
 import { useContext } from 'react';
-import { AppContext } from './AppContextProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
@@ -85,8 +84,6 @@ function App() {
   if (loading) {
     return
   }
-
-  const { recipes, recipesIsLoading , users , onChangeFavorite} = useContext(AppContext);
   
   return (
     <BrowserRouter>
@@ -106,12 +103,12 @@ function App() {
             element={<LocationSearch/>}/>
           <Route path="/meal-schedule"
             element={user ? <MealSchedule/> : <Navigate to="/" />}/>
-          <Route path="/savedRecipes"
-            element={<SavedRecipePage onChangeFavorite={onChangeFavorite} />}/>
+          <Route path="/saved-recipes"
+            element={<SavedRecipePage />}/>
           <Route path="/shoppingList"
             element={<ShoppingList />}/>
           <Route path="/recipes/:spoonacularId"
-            element={<SingleRecipePage recipes = {recipes} users = {users} recipesIsLoading = {recipesIsLoading} onChangeFavorite={onChangeFavorite} />} />
+            element={<SingleRecipePage />} />
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
