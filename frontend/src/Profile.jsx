@@ -5,50 +5,30 @@ import Card from 'react-bootstrap/Card';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { intolerances } from './intolerances';
-import { useAuthContext } from './hooks/useAuthContext';
 
 const animatedComponents = makeAnimated();
 
 function Profile({ handleReset, handleIntolerances }) {
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { user } = useAuthContext()
 
     const [selectedIntolerances, setSelectedIntolerances] = useState([]);
 
     const handleResetSubmit = (event) => {
         event.preventDefault();
-
-        // dont send reset request if user isn't logged in
-        if (!user) {
-            return
-        }
-
-        handleReset(username, password, user);
-    };
+        handleReset(username, password);
+        };
 
     const handleIntolerancesSubmit = (event) => {
         event.preventDefault();
-
-        // dont send intolerances request if user isn't logged in
-        if (!user) {
-            return
-        }
-
         handleIntolerances(selectedIntolerances);
-    };
+        };
     
     const [storedIntolerances, setStoredIntolerances] = useState([]);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const storedList = JSON.parse(localStorage.getItem(user.username + "_intolerances"));
-        
-        if (!storedList) {
-            return
-        }
-
+        const userId = JSON.parse(localStorage.getItem("user"));
+        const storedList = JSON.parse(localStorage.getItem(userId + "_intolerances"));
         const convertedList = storedList.map(item => ({
             value: item,
             label: item

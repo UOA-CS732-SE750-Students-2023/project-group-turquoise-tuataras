@@ -1,10 +1,13 @@
 import {User} from "../schema/user-schema.js";
 import bcrypt from 'bcrypt';
 
-export async function getIntolerances(userName) {
-    const user = await User.findOne({username: userName});
-    return user.intolerances;
-
+export function getIntolerances(userId) {
+    User.findById(userId, (err, user) => {
+        if (err) {
+            return err;
+        }
+        return user.intolerances;
+    });
 }
 
 export async function setUserIntolerances(userId, intolerances) {
@@ -64,45 +67,4 @@ export async function signupUser(username, password) {
     const user = await User.create({ username, password: hash, savedRecipes: [], ratedRecipes: [] });
 
     return user;
-}
-
-export async function userData(userName) {
-    const user = await User.findOne({username: userName}).populate('savedRecipes');
-    return user;
-}
-
-// reset user credentials
-export async function resetUserCredentials(userId, username, password) {
-
-    if (!username && !password) {
-        throw Error('Username and/or password must be provided')
-    }
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-        throw Error('User not found')
-    }
-
-    const filter = { _id: userId };
-    const update = {};
-
-    if (username && username !== user.username) {
-        const exists = await User.findOne({ username });
-        if (exists){
-            throw Error('Username already in use');
-        }
-        
-        update.username = username
-    }
-
-    if (password) {
-        const salt = await bcrypt.genSalt(10)
-        const hash = await bcrypt.hash(password, salt)
-        update.password = hash
-    }
-
-    const updatedUser = await User.findOneAndUpdate(filter, update, {new: true});
-
-    return updatedUser
 }

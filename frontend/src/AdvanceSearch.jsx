@@ -60,17 +60,18 @@ function AdvanceSearch() {
   const handleSearch = async () => {
     const inputText = document.querySelector('[aria-label="Complex Search Bar"]').value;
     const selectedMealType = document.querySelector('select').value;
-    const user = JSON.parse(localStorage.getItem("user"));
 
     const data = {
       recipeQuery: inputText,
       cuisines: selectedCuisines,
       diet: selectedDiets,
       type: selectedMealType,
+      userId: JSON.parse(localStorage.getItem("user")),
+      intolerances: JSON.parse(localStorage.getItem(JSON.parse(localStorage.getItem("user")) + "_intolerances")),
     }
-
-    if (user) {
-      data.userName = user.username
+    if (data.userId === null) {
+      delete data.userId;
+      delete data.intolerances;
     }
 
     console.log(data);

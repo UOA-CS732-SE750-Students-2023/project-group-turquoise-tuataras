@@ -3,18 +3,14 @@ import express from "express";
 import {
     setUserIntolerances,
     signupUser,
-    loginUser,
-    resetUserCredentials } from "../../database/dao/user-dao.js";
+    loginUser } from "../../database/dao/user-dao.js";
 import jwt from 'jsonwebtoken'
-import requireAuth from '../../middleware/requireAuth.js'
 
-const authRouter = express.Router();
+const router = express.Router({mergeParams: true});
+router.use('/:userId/savedRecipes', savedRecipesRoutes)
 
-// Apply requireAuth middleware to all routes on the auth router
-authRouter.use(requireAuth);
-
-authRouter.put('/intolerances', async (req, res) => {
-    const userId = req.user._id
+router.put('/:userId/intolerances', async (req, res) => {
+    const { userId } = req.params;
     const intolerances = req.body;
     setUserIntolerances(userId, intolerances).then(() => {
         res.status(201).json({
@@ -24,23 +20,6 @@ authRouter.put('/intolerances', async (req, res) => {
         res.status(404).json(err);
     });
 });
-
-// reset route
-authRouter.patch('/reset', async (req, res) => {
-    const userId = req.user._id
-    const { username, password} = req.body
-
-    try {
-        const updatedUser = await resetUserCredentials(userId, username, password);
-
-        res.status(200).json(updatedUser)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-})
-
-const router = express.Router({mergeParams: true});
-router.use('/savedRecipes', savedRecipesRoutes)
 
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
@@ -77,8 +56,5 @@ router.post('/signup', async (req, res) => {
         res.status(400).json({error: error.message});
     }
 })
-
-// Mount the auth router onto the main router for the routes that require authentication
-router.use(authRouter);
 
 export default router;
