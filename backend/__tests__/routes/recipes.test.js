@@ -99,12 +99,12 @@ describe('GET /:spoonacularId', () => {
 });
 
 describe('POST /:spoonacularId/comment', () => {
+
     /**
      * Tests that, when posting a comment, a 201 Created response is returned,
      * with the response body containing the comment.
      */
-    it('post comment', (done) => {
-        
+    it('post comment', (done) => {    
         request(app)
             .post('/650181/comment')
             .set('Authorization', `Bearer ${token}`)
@@ -120,6 +120,7 @@ describe('POST /:spoonacularId/comment', () => {
                 }
                 const dbRecipe = await Recipe.findOne({spoonacularId: 650181});
                 const dbComment = dbRecipe.comments[dbRecipe.comments.length-1];
+                console.log(dbRecipe.comments);
                 const dbCommentNoId = {
                   "username": dbComment.username,
                   "comment": dbComment.comment,
@@ -136,7 +137,7 @@ describe('POST /:spoonacularId/comment', () => {
 })
 
 describe('POST /:spoonacularId/rating', () => {
-
+    
     /**
      * Tests that, when posting a rating, a 201 Created response is returned,
      * with the response body containing the new rating.
@@ -144,6 +145,7 @@ describe('POST /:spoonacularId/rating', () => {
     it('post rating', (done) => {
         request(app)
         .post('/650181/rating')
+        .set('Authorization', `Bearer ${token}`)
         .send({"rating": 5})
         .expect(201)
         .end(async (err, res) => {
@@ -164,4 +166,46 @@ describe('POST /:spoonacularId/rating', () => {
             return done();
         });
     }, 10000);
+})
+
+describe('401 POST /:spoonacularId/comment', () => {
+    
+    /**
+     * Tests that, when posting a comment without authorisation, a 401 Created response is returned.
+     */
+it('post comment', (done) => {    
+    request(app)
+        .post('/650181/comment')
+        .send({
+            "username": "BenG",
+            "comment": "Delicious",
+            "date": "2023-06-06"
+        })
+        .expect(401)
+        .end(async (err, res) => {
+            if (err) {
+              return done(err)
+            }
+            done();
+        });
+    })  
+})
+
+describe('401 POST /:spoonacularId/rating', () => {
+    
+    /**
+     * Tests that, when posting a rating without authorisation, a 401 Created response is returned.
+     */
+it('post comment', (done) => {    
+    request(app)
+        .post('/650181/rating')
+        .send({"rating": "2"})
+        .expect(401)
+        .end(async (err, res) => {
+            if (err) {
+              return done(err)
+            }
+            done();
+        });
+    })  
 })
