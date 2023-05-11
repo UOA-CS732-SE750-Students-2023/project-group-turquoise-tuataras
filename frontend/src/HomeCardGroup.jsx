@@ -14,7 +14,7 @@ function homeCardGroup(props) {
         window.location.href = "./recipe/" + id;
     };
     return (<div>
-        {props.data.value.length === 10 ? <div className={style.card_group}>
+        {props.data.value.length > 0 ? <div className={style.card_group}>
             <div className={style.card_group_title}
                  style={{fontSize: "var(--card_title_" + props.index + ")"}}>{props.data.name}</div>
             <div className={style.card_group_title_animation} style={{

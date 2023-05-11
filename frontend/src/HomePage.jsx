@@ -34,6 +34,7 @@ function homePage() {
                 .then(response => {
                     console.log("get data")
                     let data = response.data;
+                    console.log(data)
                     let dataArray = [];
                     for (let propName in data) {
                         dataArray.push({name: propName, value: data[propName]})
