@@ -125,3 +125,21 @@ export async function deleteSavedRecipe(userId, recipe) {
     await user.save();
     return user;
 }
+
+export async function rateRecipe(userId, spoonacularId, rating) {
+    const user = await User.findById(userId);
+    if(!user){
+        return false;
+    }
+    const usersRatings = user.ratedRecipes;
+
+    for (var i = 0; i < usersRatings.length; i++){
+        if(usersRatings[i].spoonacularId == spoonacularId){
+            return false;
+        }
+    }
+    console.log(rating);
+    user.ratedRecipes.push({spoonacularId, rating: rating});
+    await user.save();
+    return true;
+}

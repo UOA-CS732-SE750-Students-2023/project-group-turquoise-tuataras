@@ -8,7 +8,7 @@ import * as url from "url";
 import {useAuthContext} from './hooks/useAuthContext';
 
 let inputValue = "-1";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function inputValueChangeHandler(event) {
     inputValue = event.target.value
 }
@@ -36,7 +36,7 @@ function MealSchedule() {
     // function add
     const funAdd = () => {
         //send request
-        const url = 'http://localhost:3000/api/meal-plan/';
+        const url = `${API_BASE_URL}/meal-plan/`;
         if (inputValue != "-1") {
             console.log(mealPlanId)
             if (mealPlanId.length > 0) {
@@ -72,7 +72,7 @@ function MealSchedule() {
     // function delete
     const funDelete = (item) => {
         //send request
-        const url = 'http://localhost:3000/api/meal-plan/';
+        const url = `${API_BASE_URL}/meal-plan/`;
         mealPlanId.forEach((obj) => {
             console.log(obj)
             try {
@@ -102,8 +102,8 @@ function MealSchedule() {
     const [data, setData] = useState(new Map());
     const [savedRecipes, setSavedRecipes] = useState(new Map());
     const [mealPlanId, setMealPlanId] = useState([]);
-    const mealPlanUrl = 'http://localhost:3000/api/meal-plan/';
-    const savedRecipesUrl = 'http://localhost:3000/api/users' + '/savedRecipes';
+    const mealPlanUrl = `${API_BASE_URL}/meal-plan/`;
+    const savedRecipesUrl = `${API_BASE_URL}/users/savedRecipes`;
     // get saved recipes
     useEffect(() => {
         try {

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { User } from '../database/schema/user-schema'
+import { User } from '../database/schema/user-schema.js'
 
 const requireAuth = async (req, res, next) => {
 

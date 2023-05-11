@@ -6,8 +6,8 @@ import HomeCardGroup from "./HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.js";
-import test from "./__test__/test.json"
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function homePage() {
     const {user, loading} = useAuthContext();
@@ -27,8 +27,7 @@ function homePage() {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    //const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
-    const url = "";
+    const url = user?.username ? `${API_BASE_URL}/recipes/search/recommendations?userName=${user.username}` : `${API_BASE_URL}/recipes/search/recommendations`;
     useEffect(() => {
         try {
             axios.get(url)
@@ -47,12 +46,6 @@ function homePage() {
                     }, 1000);
                 }).catch(err => {
                 console.error(err);
-                let data = test;
-                let dataArray = [];
-                for (let propName in data) {
-                    dataArray.push({name: propName, value: data[propName]})
-                }
-                setData(dataArray)
                 coverBox.current.style.animationPlayState = "running";
                 searchBox.current.style.display = "block";
                 setTimeout(() => {
@@ -184,7 +177,7 @@ function homePage() {
                 </div>
                 <div className={style.home_bottom_content}>
                     <ul style={{listStyle: "none", padding: 0, color: "white", fontSize: "20px"}}>
-                        <li>Paul Lan: Slan526@aucklanduni.ac.nz</li>
+                        <li>Paul Lan: slan526@aucklanduni.ac.nz</li>
                         <li>Yunqi Zheng: yzhe583@aucklanduni.ac.nz</li>
                         <li>Benjamin Goh: bgoh684@aucklanduni.ac.nz</li>
                         <li>Cameron Nathan: cnat307@aucklanduni.ac.nz</li>

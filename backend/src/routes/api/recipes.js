@@ -1,7 +1,7 @@
 import express from "express";
 import {searchRecipes, getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
-import {getIntolerances, userData} from "../../database/dao/user-dao.js";
+import {getIntolerances, rateRecipe, userData} from "../../database/dao/user-dao.js";
 import requireAuth from '../../middleware/requireAuth.js'
 
 const authRouter = express.Router();
@@ -42,8 +42,14 @@ authRouter.post('/:spoonacularId/rating', async (req, res) => {
         res.status(404).send("User must be logged in to rate or user is not found");
         return;
     }
+
     const { spoonacularId } = req.params;
     const rating = req.body.rating;
+    const canRate = await rateRecipe(userId, spoonacularId, rating);
+    if (!canRate){
+        res.status(409).send("Already rated");
+        return;
+    }
     const recipe = await getRecipe(spoonacularId, true);
     if (recipe){
         const newCalculatedRating = (recipe.rating.rating*recipe.rating.numberOfRatings + rating)/(recipe.rating.numberOfRatings + 1);
@@ -68,7 +74,7 @@ router.get("/search", async (req, res) => {
     const { recipeQuery, cuisines, diet, userName, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
     recipeQuery && (searchQuery.query = recipeQuery);
-    cuisines && (searchQuery.cuisines = cuisines.toString());
+    cuisines && (searchQuery.cuisine = cuisines.toString());
     diet && (searchQuery.diet = diet.join('|'));
     userName && (searchQuery.intolerances = getIntolerances(userName).toString());
     type && (searchQuery.type = type);
@@ -79,7 +85,18 @@ router.get("/search", async (req, res) => {
     res.json(res1);
 });
 
-router.get("/recommendations", async (req, res) => {
+router.get("/:spoonacularId", async (req, res) => {
+    const spoonacularId = req.params.spoonacularId;
+    let recipe = await getRecipe(spoonacularId, false);
+
+    if (recipe) {
+        res.json(recipe).status(200);
+    } else {
+        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
+    }
+});
+
+router.get("/search/recommendations", async (req, res) => {
     const { userName } = req.query;
 
     const commonQuery = {};
@@ -93,7 +110,7 @@ router.get("/recommendations", async (req, res) => {
             cuisines = [...new Set([cuisines, ...recipe.cuisines])];
         });
 
-        commonQuery.cuisines = cuisines.toString();
+        commonQuery.cuisine = cuisines.toString();
         commonQuery.intolerances = intolerances.toString();
     }
     const recommendations = {};

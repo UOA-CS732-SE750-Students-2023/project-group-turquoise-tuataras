@@ -44,9 +44,6 @@ function NavBar({onSignUpShow, onLogInShow}) {
               <Nav.Link href={user ? "meal-schedule" : null} className="navbar_link">
                 Meal Schedule
               </Nav.Link>
-              <Nav.Link href={user ? "search" : null} className="navbar_link">
-                Advance Search
-              </Nav.Link>
             </>
           )}
         </Nav>
