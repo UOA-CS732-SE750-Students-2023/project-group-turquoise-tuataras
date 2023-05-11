@@ -13,12 +13,11 @@ import { useAuthContext } from './hooks/useAuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export default function SingleRecipePage({ handleRating , ratingValue }) {
+export default function SingleRecipePage({ handleRating }) {
 
     const { spoonacularId } = useParams();
     const { user, loading } = useAuthContext()
     const [commentStatus , setCommentStatus] = useState(false);
-
     // need check the single recipe saved status
 
     const [favoriteStatus, setFavoriteStatus] = useState(false); 
@@ -103,7 +102,6 @@ export default function SingleRecipePage({ handleRating , ratingValue }) {
                                 setFavoriteStatus = {setFavoriteStatus}
                                 setRecipeData = {setRecipeData}
                                 handleRating = {handleRating}
-                                ratingValue = {ratingValue}
                                 spoonacularId = {spoonacularId}/>
 
                   <div className={styles.RecipeInfo}> 
@@ -136,7 +134,7 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
                     { user && <td><FavoriteButton recipe = { recipe } 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus = {setFavoriteStatus}/></td> }
-                    { user && <td><Rating handleRating={handleRating} ratingValue={ratingValue} spoonacularId={spoonacularId}/></td> }
+                    { user && <td><Rating handleRating={handleRating} spoonacularId={spoonacularId}/></td> }
                   </tr>
           </tbody>
       </table>                       

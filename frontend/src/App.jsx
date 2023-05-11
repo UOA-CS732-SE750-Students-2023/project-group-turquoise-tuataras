@@ -83,7 +83,10 @@ function App() {
   const handleRating = (value, recipeId) => {
     setRatingValue(value);
     axios.post(`${API_BASE_URL}/recipes/${recipeId}/rating`,
-    value, {
+    {
+      "rating": value
+    }
+    , {
       headers: {
         Authorization: `Bearer ${user.token}`
       }
@@ -119,7 +122,7 @@ function App() {
           <Route path="/shopping-list"
             element={user ? <ShoppingList /> : <Navigate to="/" />}/>
           <Route path="/recipes/:spoonacularId"
-            element={<SingleRecipePage handleRating={handleRating} ratingValue={ratingValue} />} />
+            element={<SingleRecipePage handleRating={handleRating} />} />
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
