@@ -18,13 +18,47 @@ export default function SingleRecipePage({ handleRating , ratingValue }) {
     const { spoonacularId } = useParams();
     const { user, loading } = useAuthContext()
     const [commentStatus , setCommentStatus] = useState(false);
-    console.log(ratingValue, spoonacularId);
+
     // need check the single recipe saved status
-    const [favoriteStatus, setFavoriteStatus] = useState(checkRecipeSavedStatus()); 
+
+    const [favoriteStatus, setFavoriteStatus] = useState(false); 
 
     const [recipeData, setRecipeData] = useState(null);
 
-    //Retrieve specific recipe data by spoonacularId
+
+    // Check Single recipe saved status when page refresh
+    useEffect(() => {
+
+    async function checkRecipeSavedStatus() {
+
+          try {
+            const response = await axios.get(`${API_BASE_URL}/users/savedRecipes`, {
+              headers: {
+                Authorization: `Bearer ${user.token}`
+              }
+            }).then((response) => {
+
+            for (let index = 0; index < (response.data).length; index++) {
+
+              if(parseInt(spoonacularId) === (response.data)[index].spoonacularId){
+                setFavoriteStatus(true);
+                return;
+              } 
+            }
+              setFavoriteStatus(false); 
+              return;
+          })
+
+          } catch (err) {
+            console.error(err);
+          }      
+        }
+        
+        checkRecipeSavedStatus();
+
+    }, []);  
+
+    //Retrieve Single recipe data by spoonacularId
     useEffect(() => {
       async function fetchRecipe() {
         try {
@@ -42,7 +76,7 @@ export default function SingleRecipePage({ handleRating , ratingValue }) {
           }
 
           setRecipeData(response.data);
-    
+
         } catch (err) {
           console.error(err);
         }
@@ -52,10 +86,6 @@ export default function SingleRecipePage({ handleRating , ratingValue }) {
       }, [commentStatus , favoriteStatus]);
 
     // ToDo: check the single recipe saved status
-    function checkRecipeSavedStatus()
-    {
-      return false;
-    }
 
     return (
     <div>
@@ -97,7 +127,6 @@ export default function SingleRecipePage({ handleRating , ratingValue }) {
 
 export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus, setRecipeData, handleRating, ratingValue, spoonacularId}){
   const { user, loading } = useAuthContext()
-  console.log(spoonacularId);
     return(
       <div className={styles.ButtonTable}>
       <table className={styles.table}>
@@ -114,15 +143,6 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
   </div>
   )
 }
-
-// export function DisplayRating({recipe}){
-//   return(
-//           (recipe.rating.rating != ) ?
-//           <span className={styles.Rating}>Rating: {recipe.rating.rating}</span>
-//           :
-//           <span className={styles.Rating}>Rating: 0</span>
-//   )
-// }
 
    
 

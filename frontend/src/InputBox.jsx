@@ -59,7 +59,7 @@ function InputBox({ recipe, setCommentStatus, setRecipeData}) {
     <div>
       <Input
         type="text"
-        placeholder='Commet Here !!'
+        placeholder='Comment Here !!'
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

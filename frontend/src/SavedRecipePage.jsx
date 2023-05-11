@@ -28,6 +28,7 @@ export default function SavedRecipePage() {
         console.log(response.data)
         setSavedRecipes(response.data);
         console.log("savedRecipes = ", savedRecipes);
+        console.log("user = " ,user)
   
       } catch (err) {
         console.error(err);
@@ -38,12 +39,15 @@ export default function SavedRecipePage() {
 
   // Retrieve SavedRecipe Data ----- end
 
+  
+
   return (
     <div>
       {(savedRecipes && user) ?
         (<div>
           <div className={styles.mainGrid}>
             <div className={styles.productContainer}>
+              
               {savedRecipes.map((recipe) => (
                 <SavedReceipeCard key={recipe.spoonacularId}
                   item={recipe}
@@ -53,16 +57,23 @@ export default function SavedRecipePage() {
             </div>
           </div>
         </div>
-        ) :
+        ) : 
         (
-          <LoadingImage />
+          <LoadingImage savedRecipes = {savedRecipes} />
         )}
     </div>
   );
 
-  function LoadingImage() {
+  function LoadingImage({savedRecipes}) {
+
+      let isSavedTecipe
+
     return (
-      <img src="Loading_icon.gif" />
+
+
+
+
+        <img src="Loading_icon.gif" />
     )
-  }
+}
 }
