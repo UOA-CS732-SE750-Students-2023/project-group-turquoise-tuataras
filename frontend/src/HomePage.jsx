@@ -27,7 +27,7 @@ function homePage() {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    const url = user?.username ? `${API_BASE_URL}/recipes/search/recommendations?userName=${user.username}` : `${API_BASE_URL}/recipes/recommendations`;
+    const url = user?.username ? `${API_BASE_URL}/recipes/search/recommendations?userName=${user.username}` : `${API_BASE_URL}/recipes/search/recommendations`;
     useEffect(() => {
         try {
             axios.get(url)
