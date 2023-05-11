@@ -1,0 +1,188 @@
+{
+  "breakfast": [
+    {
+      "id": 661862,
+      "title": "Strawberry Poppy Seed Muffins",
+      "image": "https://spoonacular.com/recipeImages/661862-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 63225,
+      "title": "Fruit Filled Coffee Cake",
+      "image": "https://spoonacular.com/recipeImages/63225-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 633970,
+      "title": "Banana & Oreo Muffin",
+      "image": "https://spoonacular.com/recipeImages/633970-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 661725,
+      "title": "Strawberries and Cream Scones",
+      "image": "https://spoonacular.com/recipeImages/661725-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 1096190,
+      "title": "Leek and goat’s cheese quiche",
+      "image": "https://spoonacular.com/recipeImages/1096190-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 1747693,
+      "title": "Your Basic Low Carb Breakfast",
+      "image": "https://spoonacular.com/recipeImages/1747693-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 657916,
+      "title": "Raspberry White Peach Smoothie",
+      "image": "https://spoonacular.com/recipeImages/657916-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 635129,
+      "title": "Black Muffins",
+      "image": "https://spoonacular.com/recipeImages/635129-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 639637,
+      "title": "Classic scones",
+      "image": "https://spoonacular.com/recipeImages/639637-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 1096166,
+      "title": "Leek And Pea Frittata",
+      "image": "https://spoonacular.com/recipeImages/1096166-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ],
+  "salad": [
+    {
+      "id": 639512,
+      "title": "Citrus Arugula Salad with Seared Scallops",
+      "image": "https://spoonacular.com/recipeImages/639512-312x231.png",
+      "imageType": "png"
+    },
+    {
+      "id": 633105,
+      "title": "Autumn Salad",
+      "image": "https://spoonacular.com/recipeImages/633105-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 640927,
+      "title": "Crumbled Feta Couscous Salad",
+      "image": "https://spoonacular.com/recipeImages/640927-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 636604,
+      "title": "Butternut Squash Tofu Salad With Toasted Hazelnuts",
+      "image": "https://spoonacular.com/recipeImages/636604-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 656817,
+      "title": "Pork Schnitzel And Apple Salad",
+      "image": "https://spoonacular.com/recipeImages/656817-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 648275,
+      "title": "Italian Tomato and Mozzarella Caprese",
+      "image": "https://spoonacular.com/recipeImages/648275-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 637102,
+      "title": "Caribbean Cobb Salad with Fire-Roasted Pineapple Vinaigrette",
+      "image": "https://spoonacular.com/recipeImages/637102-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 655174,
+      "title": "Peach, Ham and Feta Salad with Fruity Olive Oil Dressing",
+      "image": "https://spoonacular.com/recipeImages/655174-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 665777,
+      "title": "Zucchini Ribbon Caper Salad",
+      "image": "https://spoonacular.com/recipeImages/665777-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 658269,
+      "title": "Rice noodle salad with sesame oil dressing",
+      "image": "https://spoonacular.com/recipeImages/658269-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ],
+  "appetizer": [
+    {
+      "id": 660146,
+      "title": "Simple Squash Salad",
+      "image": "https://spoonacular.com/recipeImages/660146-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 642372,
+      "title": "Elk Sirloin Tacos With Pickled Jalapeños",
+      "image": "https://spoonacular.com/recipeImages/642372-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 633337,
+      "title": "Bacon Wrapped Dates with Manchego, Romesco Sauce",
+      "image": "https://spoonacular.com/recipeImages/633337-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 644525,
+      "title": "Giant Oreo Sandwiches - Gluten And Dairy Free",
+      "image": "https://spoonacular.com/recipeImages/644525-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 648712,
+      "title": "Kale and Bean Winter Soup",
+      "image": "https://spoonacular.com/recipeImages/648712-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 661072,
+      "title": "Spicy Coconut Curry With Peppers, Pak Choi and Tomatoes",
+      "image": "https://spoonacular.com/recipeImages/661072-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 659906,
+      "title": "Shrimp & Crab Egg Rolls",
+      "image": "https://spoonacular.com/recipeImages/659906-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 658129,
+      "title": "Red, White, and Blue Fruit Salsa",
+      "image": "https://spoonacular.com/recipeImages/658129-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 918033,
+      "title": "Chicken Spring Rolls",
+      "image": "https://spoonacular.com/recipeImages/918033-312x231.jpg",
+      "imageType": "jpg"
+    },
+    {
+      "id": 637633,
+      "title": "Cheesy Artichoke Stuffed Mushrooms",
+      "image": "https://spoonacular.com/recipeImages/637633-312x231.jpg",
+      "imageType": "jpg"
+    }
+  ]
+}

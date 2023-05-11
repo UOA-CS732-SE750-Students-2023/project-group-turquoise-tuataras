@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import { User } from './schema/user-schema.js';
 import { Recipe } from './schema/recipe-schema.js';
 import { DayMealPlan } from './schema/day-meal-plan-schema.js';
-import recipe from './init-recipe.json' assert { type: "json" };
+import recipe from '../database/init-recipe.json' assert { type: "json" };
+import { signupUser } from './dao/user-dao.js';
 
 async function run() {
     console.log(`Connecting to database at ${process.env.MONGODB_CONNECTION_STRING}...`);
@@ -16,11 +17,7 @@ async function run() {
     await Recipe.deleteMany({});
 
     console.log('Adding data...');
-    const rootUser = new User({
-        username: 'root',
-        password: '123'
-    });
-
+    const rootUser = await signupUser("root", "123");
     const initRecipe = new Recipe({
         spoonacularId: recipe.spoonacularId,
         types: recipe.types,

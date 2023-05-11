@@ -10,7 +10,13 @@ router.use(requireAuth)
 
 // Retrieve the user's shopping list with dates for the current week
 router.get('/', async (req, res) => {
-    const userId = req.user._id;
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
+    }
     const startOfWeek = moment().utc().startOf('day');
     const endOfWeek = moment().utc().add(6, 'days').endOf('day');
 

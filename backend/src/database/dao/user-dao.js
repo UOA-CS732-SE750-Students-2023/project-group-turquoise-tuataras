@@ -106,3 +106,22 @@ export async function resetUserCredentials(userId, username, password) {
 
     return updatedUser
 }
+
+export async function getSavedRecipes(userId) {
+    const user = await User.findById(userId).populate('savedRecipes');
+    return user.savedRecipes;
+}
+
+export async function saveRecipe(userId, recipe) {
+    const user = await User.findById(userId);
+    user.savedRecipes.addToSet(recipe);
+    await user.save();
+    return user;
+}
+
+export async function deleteSavedRecipe(userId, recipe) {
+    const user = await User.findById(userId);
+    user.savedRecipes.pull(recipe);
+    await user.save();
+    return user;
+}
