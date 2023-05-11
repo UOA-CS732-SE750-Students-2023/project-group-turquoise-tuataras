@@ -35,7 +35,8 @@ export default function SingleRecipePage({ handleRating }) {
           {
             response.data = {
               ...response.data ,
-              rating : { rating: 0 , numberOfRatings: 0}
+              rating : { rating: 0 , 
+                numberOfRatings: 0}
             }
           }
 
