@@ -51,7 +51,7 @@ afterAll(async () => {
 
 describe('post saved recipe endpoint', () => {
 
-    it('post saved recipe', () => {
+    it('post saved recipe', (done) => {
         request(app)
             .post('/')
             .set('Authorization', `Bearer ${token}`)
@@ -60,20 +60,24 @@ describe('post saved recipe endpoint', () => {
             })
             .expect(201)
             .end(async (err, res) => {
-                const user = await User.findById(2).populate('savedRecipes');
-                const savedRecipes = user.savedRecipes;
+                if(err){
+                    return done(err);
+                }
+                const userDB = await User.findById(user._id).populate('savedRecipes');
+                const savedRecipes = userDB.savedRecipes;
                 expect(savedRecipes.length).toBe(2);
-                expect(savedRecipes[0].spoonacularRecipeId).toBe(631814);
+                expect(savedRecipes[1].spoonacularId).toBe(631814);
+                done();
             });
     })
 
-    it('post saved recipe without auth', () => {
+    it('post saved recipe without auth', (done) => {
         request(app)
             .post('/')
             .send({
                 "recipeId": "631814"
             })
-            .expect(404)
+            .expect(401)
             .end(async (err, res) => {
                 if (err) {
                     return done(err);
@@ -85,28 +89,32 @@ describe('post saved recipe endpoint', () => {
 
 describe('delete saved recipe endpoint', () => {
 
-    it('delete saved recipe', () => {
+    it('delete saved recipe', (done) => {
         request(app)
             .delete('/')
             .set('Authorization', `Bearer ${token}`)
             .send({
                 "recipeId": "650181"
             })
-            .expect(201)
+            .expect(204)
             .end(async (err, res) => {
-                const user = await User.findById(2).populate('savedRecipes');
-                const savedRecipes = user.savedRecipes;
+                if(err){
+                    return done(err)
+                }
+                const userDB = await User.findById(user._id).populate('savedRecipes')
+                const savedRecipes = userDB.savedRecipes;
                 expect(savedRecipes.length).toBe(0);
+                done();
             });
     })
 
-    it('delete saved recipe without auth', () => {
+    it('delete saved recipe without auth', (done) => {
         request(app)
             .delete('/')
             .send({
                 "recipeId": "650181"
             })
-            .expect(404)
+            .expect(401)
             .end(async (err, res) => {
                 if (err) {
                     return done(err);
