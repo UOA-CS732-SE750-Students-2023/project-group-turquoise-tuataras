@@ -75,6 +75,19 @@ function App() {
     handleAlert("Intolerances Updated","success")
   };
 
+  const [RatingValue, setRatingValue] = useState(0);
+  const handleRating = (value, recipeId) => {
+    setRatingValue(value);
+    console.log(value);
+    console.log(recipeId);
+    axios.post(`${API_BASE_URL}/recipes/${recipeId}/rating`,
+    value, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+  }
+
   // ToDo: Provide feedback when a loading state is present
   // when loading show a blank screen
   if (loading) {
@@ -97,7 +110,7 @@ function App() {
             element={<HomePage/>}/>
           <Route path="/stores-near-me"
             element={<LocationSearch/>}/>
-           <Route path="/meal-schedule"
+          <Route path="/meal-schedule"
             element={user ? <MealSchedule/> : <Navigate to="/" />}/>
           <Route path="*"
             element={<p>404 Page</p>}/>
