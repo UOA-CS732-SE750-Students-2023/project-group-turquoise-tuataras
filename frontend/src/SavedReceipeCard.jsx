@@ -1,39 +1,36 @@
 import styles from './SavedReceipeCard.module.css';
 import React from 'react'
-import { FavoriteButton } from './FavoriteButton';
-import { Card } from 'antd';
-import { Image } from 'antd';
-import { Button, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import {FavoriteButton} from './FavoriteButton';
+import {Button, Space} from 'antd';
+import {Link} from 'react-router-dom';
+import Card from "react-bootstrap/Card";
 
-const { Meta } = Card;
+const {Meta} = Card;
 
-export default function SavedReceipeCard({ item , favoriteStatus , setFavoriteStatus}) {
+export default function SavedReceipeCard({item, favoriteStatus, setFavoriteStatus}) {
 
     return (
-        <div id={styles.popularCards} className={styles.popularBlock}>
-            <Card className={styles.cards} 
-                hoverable
-                style={{ width: 360}}
-                
-                cover={<Image alt="recipe image" src={item.image} width={360} height={240}/>}>   
-                <div id="recipe_name">
-                    <Meta title={item.recipe_name}/>
-                </div>
-
-                <div id={styles.savedrecipe_button}>
-                    
-                    <Space>
-                        <FavoriteButton recipe = {item} 
-                                        favoriteStatus = {favoriteStatus}
-                                        setFavoriteStatus ={ setFavoriteStatus}/>
-                        
+        <Card className={styles.card_group_card} style={{display: "inline-block"}} key={item.id}>
+            <Card.Img variant="top" height="160rem" src={item.image}/>
+            <Card.Body>
+                <Card.Title
+                    style={{fontSize: "16px"}}>
+                    {item.title.length > 21 ? item.title.slice(0, 21) + "..." : item.title}
+                    <div style={{position:"relative",textAlign:"center",top:"10px"}}>
+                        <FavoriteButton
+                            style={{position: "absolute", right: "0"}}
+                            recipe={item}
+                            favoriteStatus={favoriteStatus}
+                            setFavoriteStatus={setFavoriteStatus}/>
+                    </div>
+                    <div style={{position:"relative",textAlign:"center",top:"16px"}}>
                         <Link to={`../recipes/${item.spoonacularId}`}>
-                            <Button type="primary" size="medium" style={{ background: "#a27d27"}} >Recipe Detail</Button>
+                            <Button type="primary" size="medium"
+                                    style={{background: "#a27d27"}}>Recipe Detail</Button>
                         </Link>
-                    </Space>
-                </div>
-            </Card>
-        </div>
+                    </div>
+                </Card.Title>
+            </Card.Body>
+        </Card>
     )
 }

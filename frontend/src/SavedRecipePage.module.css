@@ -1,18 +1,10 @@
-.mainGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    gap: 10px;
-    justify-items: center;
-    width: 80%;
-    margin:auto;
-}
-
-.productContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    flex-direction: row;
-    gap: 10px;
+.card_group_items {
+    width: 1100px;
+    text-align: left;
+    margin-bottom: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 h1 {
