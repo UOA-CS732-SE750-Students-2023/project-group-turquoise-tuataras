@@ -1,0 +1,13 @@
+.Calories {
+    border-radius: 8px;
+    color: whitesmoke;
+    background-color: #a79c93;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+
+    font-size:large
+}
+
+

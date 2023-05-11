@@ -11,8 +11,9 @@ function homeCardGroup(props) {
         if (id.length === 0) {
             return;
         }
-        window.location.href = "./recipe/" + id;
-    };
+
+        window.location.href = "./recipes/" + id;
+    }
     return (<div>
         {props.data.value.length > 0 ? <div className={style.card_group}>
             <div className={style.card_group_title}

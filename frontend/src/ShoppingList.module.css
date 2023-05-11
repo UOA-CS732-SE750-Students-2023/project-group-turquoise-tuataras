@@ -1,0 +1,38 @@
+/* *{
+    border: 1px solid black
+} */
+
+.custom_table 
+{
+    margin: auto;
+    width: 80%;
+    height: 100%
+} 
+
+.shopping_list_title {
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    gap: 10px;
+
+}
+
+.shopping_list_img {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+.ShoppinListButtonTable {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 10px auto 10px auto;
+
+}
+.shopping_list_date {
+    color: #a37c27;
+    font-size: large;
+    font-weight: bolder;
+}
+

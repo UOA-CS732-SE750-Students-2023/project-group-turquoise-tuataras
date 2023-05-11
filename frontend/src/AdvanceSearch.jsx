@@ -43,7 +43,7 @@ function AdvanceSearch() {
     if (Array.isArray(searchResults)) {
       const recipeCards = searchResults.map((recipe)=>(
         <Col key={recipe.id}>
-        <a href={`/recipe/${recipe.id}`} style={{textDecoration: 'none', color: 'black'}}>
+        <a href={`/recipes/${recipe.id}`} style={{textDecoration: 'none', color: 'black'}}>
         <Card style={{ width: '18rem', height: '300px'}} key={recipe.id}>
           <Card.Img variant="top" src={recipe.image} height="160rem"/>
           <Card.Body>

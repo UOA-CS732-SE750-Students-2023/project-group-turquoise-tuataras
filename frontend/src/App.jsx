@@ -1,4 +1,8 @@
 import './App.css'
+import SavedRecipePage from "./SavedRecipePage";
+import SingleRecipePage from "./SingleRecipePage";
+import ShoppingList from "./ShoppingList";
+import { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
@@ -75,12 +79,26 @@ function App() {
     handleAlert("Intolerances Updated","success")
   };
 
+  const [ratingValue, setRatingValue] = useState(0);
+  const handleRating = (value, recipeId) => {
+    setRatingValue(value);
+    axios.post(`${API_BASE_URL}/recipes/${recipeId}/rating`,
+    {
+      "rating": value
+    }
+    , {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+  }
+
   // ToDo: Provide feedback when a loading state is present
   // when loading show a blank screen
   if (loading) {
     return
   }
-
+  
   return (
     <BrowserRouter>
       <div>
@@ -97,8 +115,14 @@ function App() {
             element={<HomePage/>}/>
           <Route path="/stores-near-me"
             element={<LocationSearch/>}/>
-           <Route path="/meal-schedule"
+          <Route path="/meal-schedule"
             element={user ? <MealSchedule/> : <Navigate to="/" />}/>
+          <Route path="/saved-recipes"
+            element={user ? <SavedRecipePage /> : <Navigate to="/" />}/>
+          <Route path="/shopping-list"
+            element={user ? <ShoppingList /> : <Navigate to="/" />}/>
+          <Route path="/recipes/:spoonacularId"
+            element={<SingleRecipePage handleRating={handleRating} />} />
           <Route path="*"
             element={<p>404 Page</p>}/>
         </Routes>
