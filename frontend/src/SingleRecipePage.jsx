@@ -125,6 +125,12 @@ export default function SingleRecipePage({ handleRating }) {
 
 export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus, setRecipeData, handleRating, ratingValue, spoonacularId}){
   const { user, loading } = useAuthContext()
+  const [rating, setRating] = useState(recipe.rating.rating.toFixed(1));
+
+  useEffect(() => {
+    setRating(recipe.rating.rating.toFixed(1));
+  }, []);
+  
     return(
       <div className={styles.ButtonTable}>
       <table className={styles.table}>
@@ -134,6 +140,7 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
                     { user && <td><FavoriteButton recipe = { recipe } 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus = {setFavoriteStatus}/></td> }
+                    <td>{rating}</td>
                     { user && <td><Rating handleRating={handleRating} spoonacularId={spoonacularId}/></td> }
                   </tr>
           </tbody>
