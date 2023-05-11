@@ -19,7 +19,7 @@ export function FavoriteButton({ recipe , favoriteStatus , setFavoriteStatus}) {
                     Authorization: `Bearer ${user.token}`
                 }
             });
-            setFavoriteStatus(false);
+            setFavoriteStatus(true);
             } catch (err) {
             console.error(err);
         }

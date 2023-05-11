@@ -28,6 +28,7 @@ export default function SavedRecipePage() {
         console.log(response.data)
         setSavedRecipes(response.data);
         console.log("savedRecipes = ", savedRecipes);
+        console.log("favoriteStatus");
   
       } catch (err) {
         console.error(err);
