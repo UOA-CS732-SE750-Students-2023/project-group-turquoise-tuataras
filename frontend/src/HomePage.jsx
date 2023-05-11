@@ -176,7 +176,7 @@ function homePage() {
                 </div>
                 <div className={style.home_bottom_content}>
                     <ul style={{listStyle: "none", padding: 0, color: "white", fontSize: "20px"}}>
-                        <li>Paul Lan: Slan526@aucklanduni.ac.nz</li>
+                        <li>Paul Lan: slan526@aucklanduni.ac.nz</li>
                         <li>Yunqi Zheng: yzhe583@aucklanduni.ac.nz</li>
                         <li>Benjamin Goh: bgoh684@aucklanduni.ac.nz</li>
                         <li>Cameron Nathan: cnat307@aucklanduni.ac.nz</li>
