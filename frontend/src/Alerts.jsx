@@ -9,4 +9,3 @@ function Alerts({ showAlert, setShowAlert, alertMessage, alertVariant }) {
 }
 
 export default Alerts;
-

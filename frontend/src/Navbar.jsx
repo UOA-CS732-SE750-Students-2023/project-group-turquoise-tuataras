@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import icon from './icon/icon.png'
+import icon from './images/icon.png'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
 import './App.css';
 import { useLogout } from './hooks/useLogout'
 import { useAuthContext } from './hooks/useAuthContext'
 
 function NavBar({onSignUpShow, onLogInShow}) {
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchValue = event.target.elements.search.value.trim();
+    if (searchValue) {
+      const searchUrl = `/search?query=${encodeURIComponent(searchValue)}`;
+      window.location.href = searchUrl;
+    } else {
+      const searchUrl = `/search`;
+      window.location.href = searchUrl;
+    }
+  }
 
   const { logout } = useLogout()
   const { user } = useAuthContext()
@@ -37,8 +48,8 @@ function NavBar({onSignUpShow, onLogInShow}) {
           )}
         </Nav>
         </Navbar.Collapse>
-        <form className="navbar_form">
-          <input type="text" placeholder="Search" className="navbar_input" />
+        <form className="navbar_form" onSubmit={handleSearch}>
+          <input type="text" name="search" placeholder="Search" className="navbar_input" />
           <button type="submit" className="navbar_button">Search</button>
         </form>
         <Navbar.Collapse className="justify-content-end">
