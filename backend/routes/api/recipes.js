@@ -10,6 +10,13 @@ const authRouter = express.Router();
 authRouter.use(requireAuth);
 
 authRouter.post('/:spoonacularId/comment', async (req, res) => {
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User must be logged in to comment or user is not found");
+        return;
+    }
     const { spoonacularId } = req.params;
     const comment = req.body;
     const recipe = await getRecipe(spoonacularId, true);
@@ -28,6 +35,13 @@ authRouter.post('/:spoonacularId/comment', async (req, res) => {
 });
 
 authRouter.post('/:spoonacularId/rating', async (req, res) => {
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User must be logged in to rate or user is not found");
+        return;
+    }
     const { spoonacularId } = req.params;
     const rating = req.body.rating;
     const recipe = await getRecipe(spoonacularId, true);

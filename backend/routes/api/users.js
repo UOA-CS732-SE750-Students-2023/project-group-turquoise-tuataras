@@ -14,7 +14,13 @@ const authRouter = express.Router();
 authRouter.use(requireAuth);
 
 authRouter.put('/intolerances', async (req, res) => {
-    const userId = req.user._id
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
+    }
     const intolerances = req.body;
     setUserIntolerances(userId, intolerances).then(() => {
         res.status(201).json({
@@ -27,7 +33,14 @@ authRouter.put('/intolerances', async (req, res) => {
 
 // reset route
 authRouter.patch('/reset', async (req, res) => {
-    const userId = req.user._id
+    let userId;
+    try{userId = req.user._id}
+    catch{
+        console.log("User is null");
+        res.status(404).send("User not found");
+        return;
+    }
+    
     const { username, password} = req.body
 
     try {

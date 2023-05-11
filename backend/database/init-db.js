@@ -5,6 +5,7 @@ import { User } from './user-schema';
 import { Recipe } from './recipe-schema';
 import { DayMealPlan } from './day-meal-plan-schema';
 import recipe from '../database/init-recipe.json' assert { type: "json" };
+import { signupUser } from './dao/user-dao.js';
 
 async function run() {
     console.log(`Connecting to database at ${process.env.MONGODB_CONNECTION_STRING}...`);
@@ -16,11 +17,7 @@ async function run() {
     await Recipe.deleteMany({});
 
     console.log('Adding data...');
-    const rootUser = new User({
-        username: 'root',
-        password: '123'
-    });
-
+    const rootUser = await signupUser("root", "123");
     const initRecipe = new Recipe({
         spoonacularId: recipe.spoonacularId,
         types: recipe.types,
