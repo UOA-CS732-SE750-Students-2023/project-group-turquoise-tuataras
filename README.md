@@ -80,28 +80,28 @@ npm run test
 
 
 # Application Features
-## Home Page
+### Home Page
 This page presents recommended recipes to the user, organised into categories. 
 The recommendations are based on user preferences.
-## Search Recipes
+### Search Recipes
 Users can search for recipes through a variety of filters and keywords, including cuisine, diet, and type of meal.
-## View Recipes
+### View Recipes
 When the user clicks on a recipe, the application presents detailed information about the recipe. 
 The information includes the ingredients, cooking steps, and nutritional information. 
 The user can also comment on the recipe and rate the recipe through this page.
-## Save Recipes
+### Save Recipes
 Users can save recipes to their personal collection which can be accessed via the saved recipes page. 
-## Create a Meal Schedule
+### Create a Meal Schedule
 The meal schedule page allows you to add saved recipes to a meal schedule. 
 This allows users to plan what they want to cook throughout the week.
-## Shopping List
+### Shopping List
 A shopping list can be generated from the meal schedule. 
 The list is created by compiling all the ingredients from the recipes within the meal plan.
-## Nearby shops
+### Nearby shops
 From the shopping list page, you can choose to find the nearby supermarkets to purchase your ingredients.
 
 
-## Authentication
+### Authentication
 -Cameron
 
 
