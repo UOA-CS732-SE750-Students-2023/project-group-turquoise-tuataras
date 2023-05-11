@@ -29,7 +29,7 @@ export default function NutritionPie({recipe}) {
         angleField: 'value',
         colorField: 'type',
         radius: 0.75,
-        innerRadius: 0.4,
+        // innerRadius: 0.4,
 
         legend: {
           layout: 'horizontal',
@@ -73,7 +73,7 @@ export default function NutritionPie({recipe}) {
               attrs: {
                 x: 0,
                 y: 25,
-                text: `${(data.percent * 100).toFixed(2)}% (${data.value})`,
+                text: `${(data.percent * 100).toFixed(2)}% (${data.value} mg) `,
                 fill: 'rgba(0, 0, 0, 0.65)',
                 fontWeight: 700,
                 
