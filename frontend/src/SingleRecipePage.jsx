@@ -29,13 +29,13 @@ export default function SingleRecipePage() {
         try {
           const response = await axios.get(`${API_BASE_URL}/recipes/${spoonacularId}`, {
           })
-          
+
           // check if recipe has rating attribute
           if(response.data.rating == undefined)
           {
             response.data = {
               ...response.data ,
-              rating : {rating: 0 ,numberOfRatings:0}
+              rating : { rating: 0 , numberOfRatings: 0}
             }
           }
 
