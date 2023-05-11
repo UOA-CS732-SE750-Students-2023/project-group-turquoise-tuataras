@@ -14,7 +14,7 @@
 
 .card_group_title_animation {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0;
     right: 0;
     margin: auto;
@@ -45,4 +45,54 @@
     height: 600px;
     line-height: 600px;
     text-align: center;
+}
+
+.card_group_content_fix{
+    position: relative;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card_group_content {
+    position: absolute;
+    background-color: lightgrey;
+    top: 0;
+    left: 0;
+    width: 210px;
+    height: 20px;
+    overflow: hidden;
+    display: none;
+}
+
+.card_group_content_animation {
+    position: relative;
+    width: fit-content;
+    white-space: nowrap;
+    animation-name: move;
+    animation-duration: 5s;
+    animation-delay: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.card_group_card:hover .card_group_content {
+    display: block;
+}
+
+.card_group_card:hover .card_group_content_animation {
+    display: block;
+    animation-play-state: running;
+}
+
+@keyframes move {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: calc(-50% - 18px);
+    }
 }

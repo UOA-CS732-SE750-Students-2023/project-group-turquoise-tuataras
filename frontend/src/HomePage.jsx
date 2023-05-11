@@ -6,6 +6,7 @@ import HomeCardGroup from "./HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.js";
+import test from "./__test__/test.json"
 
 
 function homePage() {
@@ -26,7 +27,8 @@ function homePage() {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
+    //const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
+    const url = "";
     useEffect(() => {
         try {
             axios.get(url)
@@ -45,6 +47,12 @@ function homePage() {
                     }, 1000);
                 }).catch(err => {
                 console.error(err);
+                let data = test;
+                let dataArray = [];
+                for (let propName in data) {
+                    dataArray.push({name: propName, value: data[propName]})
+                }
+                setData(dataArray)
                 coverBox.current.style.animationPlayState = "running";
                 searchBox.current.style.display = "block";
                 setTimeout(() => {
@@ -76,7 +84,7 @@ function homePage() {
     // --animation--
     // animation for search box
     basicScroll.create({
-        from: '0px', to: '300px', props: {
+        from: '0px', to: '200px', props: {
             '--search_content_position': {
                 from: "60vh", to: "10vh"
             }, '--search_height': {
@@ -86,7 +94,7 @@ function homePage() {
     }).start();
     // animation for card groups
     basicScroll.create({
-        from: "0px", to: "200px", props: {
+        from: "0px", to: "220px", props: {
             '--card_0': {
                 from: "0", to: "1"
             }, '--card_title_0': {
