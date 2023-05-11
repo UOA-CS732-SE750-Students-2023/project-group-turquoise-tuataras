@@ -7,6 +7,7 @@ import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.js";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function homePage() {
     const {user, loading} = useAuthContext();
@@ -26,7 +27,7 @@ function homePage() {
     const [data, setData] = useState([]);
     const searchBox = useRef();
     const coverBox = useRef();
-    const url = user?.username ? `http://localhost:3000/api/recipes/recommendations?userName=${user.username}` : 'http://localhost:3000/api/recipes/recommendations';
+    const url = user?.username ? `${API_BASE_URL}/recipes/search/recommendations?userName=${user.username}` : `${API_BASE_URL}/recipes/recommendations`;
     useEffect(() => {
         try {
             axios.get(url)
