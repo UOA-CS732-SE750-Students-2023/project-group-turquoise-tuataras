@@ -1,7 +1,7 @@
 import express from "express";
 import {searchRecipes, getRecipeBySpoonacularId} from "../../spoonacular/queries.js";
 import {createRecipe, getRecipeById} from "../../database/dao/recipe-dao.js";
-import {getIntolerances, userData} from "../../database/dao/user-dao.js";
+import {getIntolerances, rateRecipe, userData} from "../../database/dao/user-dao.js";
 import requireAuth from '../../middleware/requireAuth.js'
 
 const authRouter = express.Router();
@@ -42,8 +42,14 @@ authRouter.post('/:spoonacularId/rating', async (req, res) => {
         res.status(404).send("User must be logged in to rate or user is not found");
         return;
     }
+
     const { spoonacularId } = req.params;
     const rating = req.body.rating;
+    const canRate = await rateRecipe(userId, spoonacularId, rating);
+    if (!canRate){
+        res.status(409).send("Already rated");
+        return;
+    }
     const recipe = await getRecipe(spoonacularId, true);
     if (recipe){
         const newCalculatedRating = (recipe.rating.rating*recipe.rating.numberOfRatings + rating)/(recipe.rating.numberOfRatings + 1);
