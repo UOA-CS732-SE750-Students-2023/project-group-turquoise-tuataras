@@ -4,18 +4,24 @@ import {FavoriteButton} from './FavoriteButton';
 import {Button, Space} from 'antd';
 import {Link} from 'react-router-dom';
 import Card from "react-bootstrap/Card";
-
-const {Meta} = Card;
+import style from "./HomeCardGroup.module.css";
 
 export default function SavedReceipeCard({item, favoriteStatus, setFavoriteStatus}) {
 
     return (
-        <Card className={styles.card_group_card} style={{display: "inline-block"}} key={item.id}>
+        <Card className={style.card_group_card} style={{display: "inline-block"}} key={item.id}>
             <Card.Img variant="top" height="160rem" src={item.image}/>
             <Card.Body>
-                <Card.Title
-                    style={{fontSize: "16px"}}>
-                    {item.title.length > 21 ? item.title.slice(0, 21) + "..." : item.title}
+                <Card.Title style={{fontSize: "16px"}}>
+                    <div className={style.card_group_content_fix}>
+                        {item.title}
+                        <div className={style.card_group_content}>
+                            <div style={{position: "absolute", width: "fit-content"}}>
+                                <div className={style.card_group_content_animation}>
+                                    {item.title}&emsp;&emsp;{item.title}</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style={{position:"relative",textAlign:"center",top:"10px"}}>
                         <FavoriteButton
                             style={{position: "absolute", right: "0"}}
