@@ -5,6 +5,7 @@ import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import NutritionPie from './NutritionPie';
 import RecipeInfo from './RecipeInfo';
+import Rating from './Rating';
 import { CommentButton } from './CommentButton';
 import { FavoriteButton } from './FavoriteButton';
 import styles from './SingleRecipePage.module.css';
@@ -12,12 +13,12 @@ import { useAuthContext } from './hooks/useAuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export default function SingleRecipePage() {
+export default function SingleRecipePage({ handleRating , ratingValue }) {
 
     const { spoonacularId } = useParams();
     const { user, loading } = useAuthContext()
     const [commentStatus , setCommentStatus] = useState(false);
-
+    console.log(ratingValue, spoonacularId);
     // need check the single recipe saved status
     const [favoriteStatus, setFavoriteStatus] = useState(checkRecipeSavedStatus()); 
 
@@ -70,7 +71,10 @@ export default function SingleRecipePage() {
                                 setCommentStatus = {setCommentStatus}
                                 favoriteStatus = {favoriteStatus}
                                 setFavoriteStatus = {setFavoriteStatus}
-                                setRecipeData = {setRecipeData}/>
+                                setRecipeData = {setRecipeData}
+                                handleRating = {handleRating}
+                                ratingValue = {ratingValue}
+                                spoonacularId = {spoonacularId}/>
 
                   <div className={styles.RecipeInfo}> 
                     <RecipeInfo  recipe = {recipeData} />
@@ -91,8 +95,9 @@ export default function SingleRecipePage() {
   );
 }
 
-export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus, setRecipeData}){
+export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFavoriteStatus, setRecipeData, handleRating, ratingValue, spoonacularId}){
   const { user, loading } = useAuthContext()
+  console.log(spoonacularId);
     return(
       <div className={styles.ButtonTable}>
       <table className={styles.table}>
@@ -102,7 +107,7 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
                     { user && <td><FavoriteButton recipe = { recipe } 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus = {setFavoriteStatus}/></td> }
-                    <td className={styles.Rating}>Rating: {recipe.rating.rating}</td>
+                    { user && <td><Rating handleRating={handleRating} ratingValue={ratingValue} spoonacularId={spoonacularId}/></td> }
                   </tr>
           </tbody>
       </table>                       
