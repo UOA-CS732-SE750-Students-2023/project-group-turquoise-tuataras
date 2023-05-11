@@ -4,6 +4,8 @@
     grid-auto-rows: auto;
     gap: 10px;
     justify-items: center;
+    width: 80%;
+    margin:auto;
 }
 
 .productContainer {

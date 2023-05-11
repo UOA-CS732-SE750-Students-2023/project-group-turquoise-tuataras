@@ -14,17 +14,16 @@ export default function SavedReceipeCard({ item , favoriteStatus , setFavoriteSt
         <div id={styles.popularCards} className={styles.popularBlock}>
             <Card className={styles.cards} 
                 hoverable
-                style={{ width: 300}}
+                style={{ width: 360}}
                 
-                cover={<Image alt="recipe image" src={item.image} width={300} height={200}/>}>   
+                cover={<Image alt="recipe image" src={item.image} width={360} height={240}/>}>   
                 <div id="recipe_name">
                     <Meta title={item.recipe_name}/>
                 </div>
 
-                <div id="ingredients_button">
+                <div id={styles.savedrecipe_button}>
                     
                     <Space>
-                       
                         <FavoriteButton recipe = {item} 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus ={ setFavoriteStatus}/>
