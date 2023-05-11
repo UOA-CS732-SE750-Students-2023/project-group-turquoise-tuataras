@@ -94,7 +94,7 @@ export default function SingleRecipePage({ handleRating }) {
                 <div className={styles.Img_button_SinglePage}>   
                   <div className={styles.Img}>
                     <h1>{recipeData.title}</h1>
-                    <img src = {recipeData.image}/>
+                    <img className={styles.image} src = {recipeData.image}/>
                   </div>
                   <ButtonTable  recipe = {recipeData} 
                                 setCommentStatus = {setCommentStatus}
