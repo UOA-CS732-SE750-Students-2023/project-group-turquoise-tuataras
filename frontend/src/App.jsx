@@ -84,7 +84,7 @@ function App() {
     setRatingValue(value);
     axios.post(`${API_BASE_URL}/recipes/${recipeId}/rating`,
     {
-      "rating": 5
+      "rating": value
     }
     , {
       headers: {
