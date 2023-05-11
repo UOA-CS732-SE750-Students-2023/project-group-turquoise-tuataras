@@ -139,7 +139,7 @@ export async function rateRecipe(userId, spoonacularId, rating) {
         }
     }
     console.log(rating);
-    user.ratedRecipes.push({spoonacularId, ratingObject: rating});
+    user.ratedRecipes.push({spoonacularId, rating: rating});
     await user.save();
     return true;
 }
