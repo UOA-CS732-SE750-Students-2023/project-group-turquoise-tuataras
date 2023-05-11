@@ -3,6 +3,5 @@ module.exports = {
     roots: [
         '.'
     ],
-    setupFiles: ['<rootDir>/.jest/setEnvVars.js'],
-    transform: {}
+    setupFiles: ['<rootDir>/.jest/setEnvVars.js']
 }
