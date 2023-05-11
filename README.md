@@ -1,5 +1,3 @@
-# project-group-turquoise-tuataras
-
 ![Team logo](https://user-images.githubusercontent.com/53165831/226262458-54f18685-671f-4e17-bc16-372b11524e07.png)
 
 
