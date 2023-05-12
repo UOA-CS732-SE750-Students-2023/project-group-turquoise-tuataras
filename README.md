@@ -64,8 +64,13 @@ CD to the backend folder, and start the frontend using the following command
 ```
 npm run dev
 ```
-#### Google Maps Note
-Google Maps API does not work in China. To remedy this issue, try to use a VPN before launching our application.
+
+**Notes**
+
+- Running the web application for the first time can take a while (2-3 minutes) due to issues with Spoonacular API. 
+After the first time, there won't be any issues.
+
+- Google Maps API does not work in China. To remedy this issue, try to use a VPN before launching our application.
 
 
 # Testing
