@@ -48,7 +48,6 @@ export async function getRecipeBySpoonacularId(id) {
         summary: recipe.summary,
         cuisines: recipe.cuisines
     }
-    console.log(recipe.analyzedInstructions)
     if(recipe.analyzedInstructions[0]) {
         returnRecipe.instructions = recipe.analyzedInstructions[0].steps.map(step => step.step)
     }
