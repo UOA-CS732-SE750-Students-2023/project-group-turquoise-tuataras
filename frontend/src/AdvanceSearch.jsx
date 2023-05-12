@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
@@ -16,6 +16,7 @@ import makeAnimated from 'react-select/animated';
 import { cuisines } from './cuisines';
 import { diets } from './diets';
 import { mealTypes } from './mealTypes';
+import style from "./HomeCardGroup.module.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -44,10 +45,20 @@ function AdvanceSearch() {
       const recipeCards = searchResults.map((recipe)=>(
         <Col key={recipe.id}>
         <a href={`/recipes/${recipe.id}`} style={{textDecoration: 'none', color: 'black'}}>
-        <Card style={{ width: '18rem', height: '300px'}} key={recipe.id}>
+        <Card className={style.card_group_card} key={recipe.id}>
           <Card.Img variant="top" src={recipe.image} height="160rem"/>
           <Card.Body>
-            <Card.Title>{recipe.title}</Card.Title>
+            <Card.Title style={{position:"relative",top:"5px",fontSize: "16px", textAlign: "left"}}>
+              <div className={style.card_group_content_fix}>
+                {recipe.title}
+                <div className={style.card_group_content}>
+                  <div style={{position: "absolute", width: "fit-content"}}>
+                    <div className={style.card_group_content_animation}>
+                      {recipe.title}&emsp;&emsp;{recipe.title}</div>
+                  </div>
+                </div>
+              </div>
+            </Card.Title>
           </Card.Body>
         </Card>
         </a>
@@ -98,8 +109,8 @@ function AdvanceSearch() {
             ))}
           </Form.Select>
         </div>
-        <Form.Control aria-label="Complex Search Bar" defaultValue={query}/>
-        <Button variant="outline-secondary" id="button-addon2" onClick={handleSearch}>
+        <Form.Control style={{marginLeft:"20px",borderRadius:"5px 0 0 5px"}} aria-label="Complex Search Bar" defaultValue={query}/>
+        <Button style={{width:"10%"}} variant="outline-secondary" id="button-addon2" onClick={handleSearch}>
           Search
         </Button>
       </InputGroup>
