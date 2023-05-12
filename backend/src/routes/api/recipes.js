@@ -116,9 +116,13 @@ router.get("/search/recommendations", async (req, res) => {
     const recommendations = {};
     const mealTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast",
         "soup", "beverage", "fingerfood", "snack", "drink"]
-        .sort(() => 0.5 - Math.random()).slice(0, 3);
-    for (const mealType of mealTypes) {
-        recommendations[mealType] = await searchRecipes({...commonQuery, type: mealType});
+        .sort(() => 0.5 - Math.random());
+    let i = 0;
+    while (Object.keys(recommendations).length < 3 && i < mealTypes.length) {
+        const mealTypeRecipes = await searchRecipes({...commonQuery, type: mealTypes[i++]});
+        if(mealTypeRecipes.length == 10) {
+            recommendations[mealTypes[i]] = mealTypeRecipes;
+        }
     }
 
     res.json(recommendations);
