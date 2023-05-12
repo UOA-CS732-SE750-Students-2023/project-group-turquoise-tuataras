@@ -324,21 +324,63 @@ describe('recommendations endpoint', () => {
         "soup", "beverage", "fingerfood", "snack", "drink"]
     const results = [
         {
-            "id": 631814,
-            "title": "$50,000 Burger",
-            "image": "https://spoonacular.com/recipeImages/631814-312x231.jpg",
+            "id": 647412,
+            "title": "Hot Charlotte Cocktail",
+            "image": "https://spoonacular.com/recipeImages/647412-312x231.jpg",
             "imageType": "jpg"
         },
         {
-            "id": 642539,
-            "title": "Falafel Burger",
-            "image": "https://spoonacular.com/recipeImages/642539-312x231.png",
-            "imageType": "png"
+            "id": 716301,
+            "title": "Honey Ginger Lemon Iced Tea",
+            "image": "https://spoonacular.com/recipeImages/716301-312x231.jpg",
+            "imageType": "jpg"
         },
         {
-            "id": 663050,
-            "title": "Tex-Mex Burger",
-            "image": "https://spoonacular.com/recipeImages/663050-312x231.jpg",
+            "id": 658152,
+            "title": "Refreshing Strawberry Limeade",
+            "image": "https://spoonacular.com/recipeImages/658152-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 511692,
+            "title": "Awesome Antioxidant Smoothie",
+            "image": "https://spoonacular.com/recipeImages/511692-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 632575,
+            "title": "Apple Pie Smoothie",
+            "image": "https://spoonacular.com/recipeImages/632575-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 665040,
+            "title": "Watermelon, Kiwi, Apple and Frozen Banana Smoothie",
+            "image": "https://spoonacular.com/recipeImages/665040-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 650844,
+            "title": "Mango-Berry Swirled Smoothies",
+            "image": "https://spoonacular.com/recipeImages/650844-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 639593,
+            "title": "Classic Daiquiri Cocktail",
+            "image": "https://spoonacular.com/recipeImages/639593-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 661740,
+            "title": "Strawberry and Banana Lassi",
+            "image": "https://spoonacular.com/recipeImages/661740-312x231.jpg",
+            "imageType": "jpg"
+        },
+        {
+            "id": 664480,
+            "title": "Vegan Pumpkin Pie Milkshake",
+            "image": "https://spoonacular.com/recipeImages/664480-312x231.jpg",
             "imageType": "jpg"
         }
     ]
