@@ -9,6 +9,9 @@ const authRouter = express.Router();
 // Apply requireAuth middleware to all routes on the auth router
 authRouter.use(requireAuth);
 
+/*
+    Endpoint to add a comment to a recipe
+ */
 authRouter.post('/:spoonacularId/comment', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -34,6 +37,9 @@ authRouter.post('/:spoonacularId/comment', async (req, res) => {
     }
 });
 
+/*
+    Endpoint to add a rating to a recipe
+ */
 authRouter.post('/:spoonacularId/rating', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -70,6 +76,9 @@ authRouter.post('/:spoonacularId/rating', async (req, res) => {
 
 const router = express.Router();
 
+/*
+    Endpoint to search for recipes by different parameters
+ */
 router.get("/search", async (req, res) => {
     const { recipeQuery, cuisines, diet, userName, type, maxReadyTime, number, offset } = req.query;
     const searchQuery = {};
@@ -85,6 +94,9 @@ router.get("/search", async (req, res) => {
     res.json(res1);
 });
 
+/*
+    Endpoint to get a specific recipe
+ */
 router.get("/:spoonacularId", async (req, res) => {
     const spoonacularId = req.params.spoonacularId;
     let recipe = await getRecipe(spoonacularId, false);
@@ -96,6 +108,9 @@ router.get("/:spoonacularId", async (req, res) => {
     }
 });
 
+/*
+    Endpoint to get recipe recommendations
+ */
 router.get("/search/recommendations", async (req, res) => {
     const { userName } = req.query;
 
@@ -126,17 +141,6 @@ router.get("/search/recommendations", async (req, res) => {
     }
 
     res.json(recommendations);
-});
-
-router.get("/:spoonacularId", async (req, res) => {
-    const spoonacularId = req.params.spoonacularId;
-    let recipe = await getRecipe(spoonacularId, false);
-
-    if (recipe) {
-        res.json(recipe).status(200);
-    } else {
-        res.status(404).json({"message": `Recipe with spoonacular ID: ${spoonacularId} not found`});
-    }
 });
 
 // Mount the auth router onto the main router for the routes that require authentication

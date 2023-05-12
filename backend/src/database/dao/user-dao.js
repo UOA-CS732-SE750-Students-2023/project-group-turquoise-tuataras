@@ -138,7 +138,6 @@ export async function rateRecipe(userId, spoonacularId, rating) {
             return false;
         }
     }
-    console.log(rating);
     user.ratedRecipes.push({spoonacularId, rating: rating});
     await user.save();
     return true;

@@ -17,6 +17,5 @@ export async function createRecipe(spoonacularRecipeId) {
         comments: []
     });
     const createdRecipe = await newRecipe.save();
-    console.log("Created recipe: " + createdRecipe)
     return createdRecipe;
 }

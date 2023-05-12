@@ -13,6 +13,9 @@ const authRouter = express.Router();
 // Apply requireAuth middleware to all routes on the auth router
 authRouter.use(requireAuth);
 
+/*
+    Endpoint to get the user's intolerances
+ */
 authRouter.put('/intolerances', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -31,7 +34,9 @@ authRouter.put('/intolerances', async (req, res) => {
     });
 });
 
-// reset route
+/*
+    reset user credentials
+ */
 authRouter.patch('/reset', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -59,7 +64,9 @@ const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
 }
 
-//login route
+/*
+    login user
+ */
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -75,7 +82,9 @@ router.post('/login', async (req, res) => {
     }
 })
 
-// signup route
+/*
+    signup user
+ */
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body;
 

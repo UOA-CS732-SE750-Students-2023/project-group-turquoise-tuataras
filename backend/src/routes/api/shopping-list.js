@@ -7,8 +7,9 @@ const router = express.Router();
 
 // require auth for all shopping-list routes
 router.use(requireAuth)
-
-// Retrieve the user's shopping list with dates for the current week
+/*
+    Retrieve the user's shopping list with dates for the current week
+ */
 router.get('/', async (req, res) => {
     let userId;
     try{userId = req.user._id}
