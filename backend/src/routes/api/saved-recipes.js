@@ -8,6 +8,9 @@ const router = express.Router({mergeParams: true});
 // require auth for all saved-recipes routes
 router.use(requireAuth)
 
+/*
+    Endpoint to get all saved recipes for a user
+ */
 router.get("/", async (req, res) => {
     let userId;
     try{userId = req.user._id;}
@@ -22,6 +25,9 @@ router.get("/", async (req, res) => {
 
 });
 
+/*
+    Endpoint to add a recipe to a user's saved recipes
+ */
 router.post("/", async (req, res) => {
     let userId;
     try{userId = req.user._id;}
@@ -42,6 +48,9 @@ router.post("/", async (req, res) => {
 
 });
 
+/*
+    Endpoint to delete a recipe from a user's saved recipes
+ */
 router.delete("/", async (req, res) => {
     let userId;
     try{userId = req.user._id;}

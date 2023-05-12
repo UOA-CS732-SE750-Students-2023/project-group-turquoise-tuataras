@@ -5,7 +5,9 @@ dotenv.config();
 const SPOONACULAR_URL = process.env.SPOONACULAR_URL ?? '';
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY ?? '';
 
-
+/*
+    function to search recipes from Spoonacular API
+ */
 export async function searchRecipes(query) {
     const response = await axios.get(`${SPOONACULAR_URL}/complexSearch`, {
         params: {
@@ -16,6 +18,9 @@ export async function searchRecipes(query) {
     return response.data.results;
 }
 
+/*
+    function to get specific recipe from Spoonacular API
+ */
 export async function getRecipeBySpoonacularId(id) {
 
     const response = await axios.get(`${SPOONACULAR_URL}/${id}/information`, {

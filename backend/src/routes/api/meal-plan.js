@@ -11,8 +11,9 @@ const router = express.Router();
 
 // require auth for all meal-plan routes
 router.use(requireAuth)
-
-// Retrieve the user's meal plan for the current week
+/*
+    Retrieve the user's meal plan for the current week
+ */
 router.get('/', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -27,8 +28,9 @@ router.get('/', async (req, res) => {
     const mealPlan = await getMealPlanByUserAndCurrentWeek(userId, startOfWeek, endOfWeek);
     res.json(mealPlan);
 })
-
-// Create new day meal plan
+/*
+    Create new day meal plan
+ */
 router.post('/', async (req, res) => {
     let userId;
     try{userId = req.user._id}
@@ -44,8 +46,9 @@ router.post('/', async (req, res) => {
     if (dayMealPlan) return res.status(201).json(dayMealPlan)
     return res.sendStatus(422)
 })
-
-// Update day meal plan
+/*
+    Update day meal plan
+ */
 router.patch('/:id', async (req, res) => {
     let userId;
     try{userId = req.user._id}
