@@ -4,8 +4,10 @@
 
 
 .mainGridSinglePage {
+    position: relative;
+    top: 30px;
     display: grid;
-    grid-template-rows: 1fr , 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-auto-columns: auto;
     gap: 10px;
     justify-items: center;
@@ -13,7 +15,9 @@
 
 .Img_Ing_SinglePage {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    width: 90%;
+    left: 5%;
+    grid-template-columns: 2fr 1fr;
     flex-direction: row;
     gap: 10px;
     margin-top: 5px;
@@ -22,11 +26,8 @@
 }
 
 .Ins_SinglePage {
-    display: grid;
-    grid-template-columns: 1fr;
-    flex-direction: row;
-    gap: 10px;
-    justify-items: center;
+    position: relative;
+    top: 30px;
 }
 
 .ButtonTable {
@@ -41,19 +42,27 @@ td {
 
 .Img {
     margin-bottom: 10px
-    
+
 }
 
 .image {
+    position: relative;
+    width: 70%;
     display: block;
-    margin: auto;
+    margin: 30px auto 10px;
+    border-radius: 15px;
+    border: lightgray 1px solid;
 }
 
-h1 {
+.title {
+    width: 90%;
+    font-size: xx-large;
+    margin-left: 5%;
+    margin-right: 5%;
     text-align: center;
     color: #000000;
-    background-color: #dcd8c5;
     font-family: 'Microsoft JhengHei', sans-serif;
+    background-color: white;
 }
 
 .Rating {
@@ -68,5 +77,3 @@ h1 {
     display: flex;
     justify-items: center;
 }
-
-

@@ -2,12 +2,16 @@
     border: 1px solid black
 } */
 
-.custom_table 
-{
-    margin: auto;
+.custom_table {
     width: 80%;
-    height: 100%
-} 
+    height: 100%;
+    margin: auto auto 50px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    border: lightgray 2px solid;
+    overflow: hidden;
+}
 
 .shopping_list_title {
     display: block;
@@ -21,8 +25,9 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    
+
 }
+
 .ShoppinListButtonTable {
     display: flex;
     justify-content: space-evenly;
@@ -30,9 +35,11 @@
     margin: 10px auto 10px auto;
 
 }
+
 .shopping_list_date {
-    color: #a37c27;
+    color: #1677ff;
     font-size: large;
-    font-weight: bolder;
+    font-weight: normal;
+    margin-top: 3px;
 }
 

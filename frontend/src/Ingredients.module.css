@@ -1,24 +1,31 @@
 .Ing {
     margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    border-radius: 15px;
+    overflow: hidden;
+    border: lightsteelblue 2px solid;
+    background-color: lightsteelblue;
 }
 
 
 
 /* Table CSS */
 .table {
+    width: 100%;
     border-collapse: collapse;
-    border-top: 1px solid darkgray;
-    border-bottom: 1px solid darkgray;
     text-align: left;
 }
 
 .table > thead {
     background-color: lightsteelblue;
-    border-bottom: 1px dotted darkgray
 }
 
 .table > tbody > tr:nth-child(even) {
     background-color: aliceblue;
+}
+.table > tbody > tr:nth-child(odd) {
+    background-color: white;
 }
 
 .table td, .table th {
