@@ -113,9 +113,11 @@ export default function SingleRecipePage({handleRating}) {
                         <div className={styles.Ins_SinglePage}>
                             <Instructions recipe={recipeData}/>
                         </div>
-                        <div style={{position:"relative",top:"100px"}}>
+                        <div style={{position:"relative",top:"80px",textAlign:"center",fontSize:"x-large"}}>Nutrition</div>
+                        <div style={{height: "650px",width:"90%",borderRadius:"15px",border:"2px solid red",margin:"auto",marginTop:"30px",background:"#ffe0e0"}}>
                             <NutritionPie recipe = {recipeData} />
                         </div>
+                        <div style={{position:"relative",height:"50px"}}></div>
                     </div>
                 ) :
                 (

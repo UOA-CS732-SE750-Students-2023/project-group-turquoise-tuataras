@@ -93,7 +93,15 @@ export default function NutritionPie({recipe}) {
     };
 
     return (
-        <div style={{width: 750, height: 500,margin:"auto"}}>
+        <div style={{
+            position: "relative",
+            top: "60px",
+            width: "750px",
+            height: "500px",
+            margin: "auto",
+            background: "white",
+            borderRadius: "15px"
+        }}>
             <Pie {...pieconfig}/>
             <span className={styles.Calories}>Calories: {recipe.nutrition[0].amount} cal</span>
         </div>
