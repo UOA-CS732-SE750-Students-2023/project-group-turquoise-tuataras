@@ -56,7 +56,7 @@ function NavBar({onSignUpShow, onLogInShow}) {
           {user ? (
             <>
               <NavDropdown className="navbar_username" title={user.username} id="basic-nav-dropdown">
-                <NavDropdown.Item href={`profile?user=${user.username}`}>
+                <NavDropdown.Item href={`/profile?user=${user.username}`}>
                     My Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
