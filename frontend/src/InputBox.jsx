@@ -19,8 +19,8 @@ function InputBox({ recipe, setCommentStatus, setRecipeData}) {
     const hours = ("0" + dateTime.getHours()).slice(-2);
     const minutes = ("0" + dateTime.getMinutes()).slice(-2);
     const seconds = ("0" + dateTime.getSeconds()).slice(-2);
-    const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
+    const dateString = `${hours}:${minutes}:${seconds} ${day}-${month}-${year} `;
+   
     try {
       const response = await axios.post(`${API_BASE_URL}/recipes/${recipe.spoonacularId}/comment`, {
         comment: newComment,
