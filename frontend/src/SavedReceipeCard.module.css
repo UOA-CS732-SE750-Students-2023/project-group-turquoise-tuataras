@@ -2,7 +2,9 @@
     display: block;
 }
 
-#savedrecipe_button {
+.savedrecipe_button {
+    position: relative;
+    top:7px;
     border-radius: 20px;
     display: flex;
     justify-content: space-evenly;

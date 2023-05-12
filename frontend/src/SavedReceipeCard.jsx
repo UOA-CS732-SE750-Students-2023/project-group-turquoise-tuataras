@@ -24,17 +24,14 @@ export default function SavedReceipeCard({item, favoriteStatus, setFavoriteStatu
                             </div>
                         </div>
                         <div>
-                            <div id={styles.savedrecipe_button}>
-
-                                <Space>
+                            <div className={styles.savedrecipe_button}>
+                                <Space style={{width: "15rem"}}>
                                     <FavoriteButton recipe={item}
                                                     favoriteStatus={favoriteStatus}
                                                     setFavoriteStatus={setFavoriteStatus}/>
 
-                                    <Link to={`../recipes/${item.spoonacularId}`}>
-                                        <Button type="primary" size="medium" style={{background: "#a27d27"}}>Recipe
-                                            Detail</Button>
-                                    </Link>
+                                    <Button type="primary" size="medium" style={{width: "6rem"}}
+                                            href={`../recipes/${item.spoonacularId}`} ghost>Detail</Button>
                                 </Space>
                             </div>
                         </div>
