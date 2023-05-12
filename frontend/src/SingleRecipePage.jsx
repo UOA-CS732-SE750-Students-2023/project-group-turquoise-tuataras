@@ -163,7 +163,6 @@ export function ButtonTable({
             <table>
                 <tbody>
                 <tr>
-
                     {user && <td style={{position: "relative", top: "-5px"}}><Rating
                         handleRating={handleRating} spoonacularId={spoonacularId}/></td>}
                     <td style={{fontSize: "20px"}}>Rating: {rating}</td>

@@ -13,15 +13,13 @@ h1 {
     text-align: center;
     color: #34416a;
     background-color: #ffffff;
-    
-    border: 1px solid red;
 }
 
 .nosavedrecipe{
-    display:flex;
-    justify-content: center;
-    border: 1px solid red;
-    margin-top: auto;
-    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: calc(50% - 40px)
 }
 
