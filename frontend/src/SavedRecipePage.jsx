@@ -29,7 +29,7 @@ export default function SavedRecipePage() {
         setSavedRecipes(response.data);
         console.log("savedRecipes = ", savedRecipes);
         console.log("user = " ,user)
-  
+        setFavoriteStatus(true);
       } catch (err) {
         console.error(err);
       }

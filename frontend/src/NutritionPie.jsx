@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Pie, G2 } from '@ant-design/plots';
 import styles from './NutritionPie.module.css';
@@ -8,8 +7,6 @@ const G = G2.getEngine('canvas');
 export default function NutritionPie({recipe}) {
 
     const data = getNutrituionData(recipe);
-
-
 
     function getNutrituionData(recipe) {
 
