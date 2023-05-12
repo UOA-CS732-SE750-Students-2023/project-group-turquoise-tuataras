@@ -8,7 +8,7 @@ It is a meal schedule preparation website that allows users to search for recipe
 Users can save recipes, add them to a meal schedule, generate a shopping list, and find nearby supermarkets.
 The application makes use of the Spoonacular API for obtaining recipe data, and Google Maps API for location information.
 
-# Set up the application for the first time
+# Set up for the first time
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ npm run dev
 Google Maps API does not work in China. To remedy this issue, try to use a VPN before launching our application.
 
 
-# Test the application
+# Testing
 
 ### Backend Testing
 CD to the backend folder and run the following command to run the backend tests
@@ -82,7 +82,7 @@ npm run test
 ```
 
 
-# Application Features
+# Features
 ### Home Page
 This page presents recommended recipes to the user, organised into categories. 
 The recommendations are based on user preferences.
