@@ -15,7 +15,7 @@ export default function Instructions({recipe}) {
                 <tbody>
                     {(recipe.instructions).map((item , index) => (
                         <tr key={index}>
-                            <td className={styles.Ins_index} >{index}</td>
+                            <td className={styles.Ins_index} >{index+1}</td>
                             <td>{item}</td>     
                         </tr>
                     ))}
