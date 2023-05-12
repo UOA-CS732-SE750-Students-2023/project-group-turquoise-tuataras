@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -16,7 +15,7 @@ import makeAnimated from 'react-select/animated';
 import { cuisines } from '../data/cuisines.js';
 import { diets } from '../data/diets.js';
 import { mealTypes } from '../mealTypes.jsx';
-import style from "./HomeCardGroup.module.css";
+import style from "./HomePage/HomeCardGroup/HomeCardGroup.module.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
