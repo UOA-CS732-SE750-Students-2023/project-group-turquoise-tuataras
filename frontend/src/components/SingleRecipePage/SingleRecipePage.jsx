@@ -1,15 +1,15 @@
 import {useParams} from 'react-router-dom';
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import Ingredients from './Ingredients';
-import Instructions from './Instructions';
-import NutritionPie from './NutritionPie';
-import RecipeInfo from './RecipeInfo';
-import Rating from './Rating';
-import {CommentButton} from './CommentButton';
-import {FavoriteButton} from './FavoriteButton';
+import Ingredients from './Ingredients/Ingredients.jsx';
+import Instructions from './Instructions/Instructions.jsx';
+import NutritionPie from './NutritionPie/NutritionPie.jsx';
+import RecipeInfo from './RecipeInfo/RecipeInfo.jsx';
+import Rating from './Rating.jsx';
+import {CommentButton} from './comment/CommentButton.jsx';
+import {FavoriteButton} from '../SavedRecipePage/FavoriteButton.jsx';
 import styles from './SingleRecipePage.module.css';
-import {useAuthContext} from './hooks/useAuthContext';
+import {useAuthContext} from '../../hooks/useAuthContext.js';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

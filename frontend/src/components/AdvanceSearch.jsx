@@ -13,9 +13,9 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 
-import { cuisines } from './cuisines';
-import { diets } from './diets';
-import { mealTypes } from './mealTypes';
+import { cuisines } from '../data/cuisines.js';
+import { diets } from '../data/diets.js';
+import { mealTypes } from '../mealTypes.jsx';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

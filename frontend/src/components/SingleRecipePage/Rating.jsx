@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import StarsRating from "react-star-rate";
-import { useAuthContext } from './hooks/useAuthContext';
+import { useAuthContext } from '../../hooks/useAuthContext.js';
 
 export default function Rating({ handleRating, spoonacularId }) {
   const { user } = useAuthContext()

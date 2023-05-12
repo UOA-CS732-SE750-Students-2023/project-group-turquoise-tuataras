@@ -1,7 +1,7 @@
 
 import { Divider , Input } from 'antd';
 import React from "react";
-import InputBox from './InputBox';
+import InputBox from './InputBox.jsx';
 import styles from './Comment.module.css';
 
 
