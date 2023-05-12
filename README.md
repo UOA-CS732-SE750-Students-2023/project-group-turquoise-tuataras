@@ -10,6 +10,11 @@ The application makes use of the Spoonacular API for obtaining recipe data, and 
 
 # Set up the application for the first time
 
+## Prerequisites
+
+- node.js
+- npm
+
 ### 1. Backend Environment Variables
 Create a .env file in the backend folder. It should contain the following variables.
 
