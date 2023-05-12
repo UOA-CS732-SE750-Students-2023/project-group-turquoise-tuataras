@@ -42,7 +42,7 @@ function AdvanceSearch() {
     useEffect(() => {
         if (Array.isArray(searchResults)) {
             const recipeCards = searchResults.map((recipe) => (
-                <Col key={recipe.id} style={{textAlign: "center"}}>
+                <Col key={recipe.id} style={{textAlign: "center",minWidth:"16rem"}}>
                     <a href={`/recipes/${recipe.id}`}
                        style={{textDecoration: 'none', color: 'black', textAlign: "center", width: "100%"}}>
                         <Card className={style.card_group_card} key={recipe.id} style={{margin: "auto"}}>
