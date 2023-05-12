@@ -1,16 +1,10 @@
-.mainGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    gap: 10px;
-    justify-items: center;
-    width: 80%;
-    margin:auto;
-}
-
 .productContainer {
+    position: relative;
+    top:30px;
+    width: 90%;
+    margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     flex-direction: row;
     gap: 10px;
 }
