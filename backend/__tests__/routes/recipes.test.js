@@ -98,7 +98,7 @@ describe('GET /:spoonacularId', () => {
                     commentsNoId[i] = {
                         username: comments[i].username,
                         comment: comments[i].comment,
-                        date: String(comments[i].date).split('T')[0]
+                        date: comments[i].date
                     }
                 } 
                 expect(commentsNoId).toEqual(recipe.comments);
@@ -151,7 +151,7 @@ describe('POST /:spoonacularId/comment', () => {
                 const dbCommentNoId = {
                   "username": dbComment.username,
                   "comment": dbComment.comment,
-                  "date": dbComment.date.toISOString().split('T')[0]
+                  "date": dbComment.date
                 }
                 const comment = res.body;
                 expect(dbCommentNoId).toEqual(comment);

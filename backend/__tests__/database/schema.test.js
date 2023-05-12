@@ -104,7 +104,7 @@ it('get a specific recipe', async () => {
         commentsNoId[i] = {
             username: comments[i].username,
             comment: comments[i].comment,
-            date: comments[i].date.toISOString().split('T')[0]
+            date: comments[i].date
         }
     } 
     expect(commentsNoId).toEqual(recipe.comments);
