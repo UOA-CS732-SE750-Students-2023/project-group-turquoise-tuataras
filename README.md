@@ -12,8 +12,9 @@ The application makes use of the Spoonacular API for obtaining recipe data, and 
 
 ## Prerequisites
 
-- node.js
+- Node.js
 - npm
+- MongoDB
 
 ### 1. Backend Environment Variables
 Create a .env file in the backend folder. It should contain the following variables.
@@ -28,7 +29,7 @@ Create a .env file in the backend folder. It should contain the following variab
 Afterwards, you can obtain the API key through [here](https://spoonacular.com/food-api/console#Profile).
 <br> (For the markers, API keys will be provided by us via Andrew)
 <br> Note: the API usage is limited in the number of requests per day.
-
+<br> Note: the application will not run if the API key's daily limit has been exceeded.
 
 **Google API key**: Register for Google Maps API [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
 <br> (For the markers, API keys will be provided by us via Andrew)
