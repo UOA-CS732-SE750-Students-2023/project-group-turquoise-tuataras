@@ -11,7 +11,17 @@
 
 h1 {
     text-align: center;
-    color: rgb(238, 238, 20);
-    background-color: #34416a;
+    color: #34416a;
+    background-color: #ffffff;
+    
+    border: 1px solid red;
+}
+
+.nosavedrecipe{
+    display:flex;
+    justify-content: center;
+    border: 1px solid red;
+    margin-top: auto;
+    height: 100%;
 }
 

@@ -25,11 +25,9 @@ export default function SavedRecipePage() {
                     }
                 })
 
-                console.log(response.data)
                 setSavedRecipes(response.data);
-                console.log("savedRecipes = ", savedRecipes);
-                console.log("user = ", user)
                 setFavoriteStatus(true);
+                
             } catch (err) {
                 console.error(err);
             }
@@ -38,12 +36,13 @@ export default function SavedRecipePage() {
         fetchSavedRecipes();
     }, [favoriteStatus]);
 
-    // Retrieve SavedRecipe Data ----- end
-
+    // Retrieve SavedRecipe Data ----- end]
 
     return (
         <div>
-            {(savedRecipes && user) ?
+            {(Array.isArray(savedRecipes) && savedRecipes.length === 0) ? (<div className = {styles.nosavedrecipe}><h1> No Saved Recipes! </h1></div>) :
+
+            (savedRecipes && user) ?
                 (<div>
                         <div className={styles.productContainer}>
                             {savedRecipes.map((recipe) => (
@@ -56,18 +55,14 @@ export default function SavedRecipePage() {
                     </div>
                 ) :
                 (
-                    <LoadingImage savedRecipes={savedRecipes}/>
+                    <LoadingImage/>
                 )}
         </div>
     );
 
-    function LoadingImage({savedRecipes}) {
-
-        let isSavedTecipe
+    function LoadingImage() {
 
         return (
-
-
             <img src="Loading_icon.gif"/>
         )
     }
