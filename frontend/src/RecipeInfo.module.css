@@ -1,20 +1,25 @@
 .Info {
+    width: 90%;
+    left: 0;
+    right: 0;
     margin: 0 auto;
+    border-radius: 15px;
+    border: 2px solid #e4eae3;
+    background: #e4eae3;
+    overflow: hidden;
 }
-
 
 
 /* Table CSS */
 .table {
+    width: 100%;
+    margin: auto;
     border-collapse: collapse;
-    border-top: 1px solid darkgray;
-    border-bottom: 1px solid darkgray;
     text-align: left;
 }
 
 .table > thead {
-    background-color: #ebf2e9;
-    border-bottom: 1px dotted darkgray
+    background-color: #e4eae3;
 }
 
 .table > tbody > tr:nth-child(even) {
@@ -24,5 +29,8 @@
 .table td, .table th {
     padding: 10px;
     text-align: center;
+    border: 1px solid #e4eae3;
 }
-
+.table td{
+    background: white;
+}

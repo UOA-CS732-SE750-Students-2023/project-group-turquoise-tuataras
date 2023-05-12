@@ -1,26 +1,33 @@
 .Ins{
-    margin: auto 150px auto 150px;
+    width: 90%;
+    margin: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #edd170;
+    border: 2px #edd170 solid;
 }
 
 /* Table CSS */
 .table {
     border-collapse: collapse;
-    border-top: 1px solid darkgray;
-    border-bottom: 1px solid darkgray;
     text-align: left;
 }
 
 .table > thead {
     background-color: #edd170;
-    border-bottom: 1px dotted darkgray
 }
 
 .table > tbody > tr:nth-child(even) {
-    background-color: aliceblue;
+    background-color: rgb(255, 243, 211);
+}
+.table > tbody > tr:nth-child(odd) {
+    background-color: white;
 }
 
 .table td, .table th {
     padding: 10px;
+    border-left: 1px #edd170 solid;
+    border-right: 1px #edd170 solid;
 
 }
 
