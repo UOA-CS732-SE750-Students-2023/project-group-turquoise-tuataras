@@ -41,11 +41,11 @@ export function FavoriteButton({ recipe , favoriteStatus , setFavoriteStatus}) {
   
     return (      
         (favoriteStatus) ?
-        <Button type="primary" onClick={deleteSavedRecipe}  
-        style={{background: "#b0aeb0"}}>remove Favorite</Button>
+        <Button type="primary" onClick={deleteSavedRecipe}
+        style={{width:"6rem"}} ghost danger>Remove</Button>
         :
         <Button type="primary" onClick={insertSavedRecipe}  
-        style={{background: "#83a459"}}>add Favorite</Button>
+        style={{width:"6rem", color:"green",borderColor:"green"}} ghost>Save</Button>
     )
   } 
 
