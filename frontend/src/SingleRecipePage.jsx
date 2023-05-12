@@ -88,12 +88,14 @@ export default function SingleRecipePage({ handleRating }) {
 
     return (
     <div>
+      <div style={{paddingTop: '5%'}}/>
         {(recipeData) ?
-        ( <div className={styles.mainGridSinglePage}>
+        ( 
+        <div className={styles.mainGridSinglePage}>
             <div className={styles.Img_Ing_SinglePage}>   
                 <div className={styles.Img_button_SinglePage}>   
                   <div className={styles.Img}>
-                    <h1>{recipeData.title}</h1>
+                    <h2>{recipeData.title}</h2>
                     <img className={styles.image} src = {recipeData.image}/>
                   </div>
                   <ButtonTable  recipe = {recipeData} 
@@ -105,12 +107,19 @@ export default function SingleRecipePage({ handleRating }) {
                                 spoonacularId = {spoonacularId}/>
 
                   <div className={styles.RecipeInfo}> 
-                    <RecipeInfo  recipe = {recipeData} />
+                    
                   </div> 
-                </div>  
+                </div>
+                <div>                
+                <RecipeInfo  recipe = {recipeData} />  
                 <Ingredients recipe = {recipeData} />
+                
+                </div>
+
                 <NutritionPie recipe = {recipeData} />
+            
             </div>
+            <br></br>
             <div className={styles.Ins_SinglePage}>
                 <Instructions recipe = {recipeData} />
             </div>
@@ -134,16 +143,22 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
     return(
       <div className={styles.ButtonTable}>
       <table className={styles.table}>
-          <tbody>
+        <div>
+        <h4>Rating {rating}{ user && <Rating handleRating={handleRating} spoonacularId={spoonacularId}/> }</h4>
+        </div>
+          <div>
                   <tr>
                     { user && <td><CommentButton recipe = { recipe } setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/></td> }
                     { user && <td><FavoriteButton recipe = { recipe } 
                                         favoriteStatus = {favoriteStatus}
                                         setFavoriteStatus = {setFavoriteStatus}/></td> }
-                    <td>{rating}</td>
-                    { user && <td><Rating handleRating={handleRating} spoonacularId={spoonacularId}/></td> }
+                    
+                   
                   </tr>
-          </tbody>
+          </div>
+          <div>
+          
+          </div>
       </table>                       
   </div>
   )

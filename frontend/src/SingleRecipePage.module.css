@@ -13,12 +13,13 @@
 
 .Img_Ing_SinglePage {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr ;
     flex-direction: row;
     gap: 10px;
     margin-top: 5px;
     margin-left: 20px;
     margin-right: 20px;
+    
 }
 
 .Ins_SinglePage {
@@ -31,8 +32,9 @@
 
 .ButtonTable {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-bottom: 10px;
+
 }
 
 td {
@@ -40,7 +42,7 @@ td {
 }
 
 .Img {
-    margin-bottom: 10px
+    margin-bottom: 10px;
     
 }
 
@@ -54,6 +56,14 @@ h1 {
     color: #000000;
     background-color: #dcd8c5;
     font-family: 'Microsoft JhengHei', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #EC6E70;
+    font-family: 'Microsoft JhengHei', sans-serif;
+    padding-left: 50px;
+    font-weight: bold;
 }
 
 .Rating {
