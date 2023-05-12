@@ -2,7 +2,13 @@
 import React from "react";
 import styles from './Instructions.module.css';
 
-export default function Instructions({recipe}) { 
+export default function Instructions({recipe}) {
+    if(!recipe.instructions) {
+        return(
+            <div>
+            </div>
+        )
+    }
     return(
         <div className={styles.Ins}>
             <table className={styles.table}>
