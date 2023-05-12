@@ -90,7 +90,7 @@ export default function SingleRecipePage({handleRating}) {
     return (
         <div>
             {(recipeData) ?
-                (<div style={{position:"relative",top:"50px"}}>
+                (<div style={{position: "relative", top: "50px"}}>
                         <div className={styles.Img_Ing_SinglePage}>
                             <div className={styles.Img_button_SinglePage}>
                                 <div className={styles.Img}>
@@ -113,11 +113,25 @@ export default function SingleRecipePage({handleRating}) {
                         <div className={styles.Ins_SinglePage}>
                             <Instructions recipe={recipeData}/>
                         </div>
-                        <div style={{position:"relative",top:"80px",textAlign:"center",fontSize:"x-large"}}>Nutrition</div>
-                        <div style={{height: "650px",width:"90%",borderRadius:"15px",border:"2px solid red",margin:"auto",marginTop:"30px",background:"#ffe0e0"}}>
-                            <NutritionPie recipe = {recipeData} />
+                        <div style={{
+                            position: "relative",
+                            top: "80px",
+                            textAlign: "center",
+                            fontSize: "x-large"
+                        }}>Nutrition
                         </div>
-                        <div style={{position:"relative",height:"50px"}}></div>
+                        <div style={{
+                            height: "650px",
+                            width: "90%",
+                            borderRadius: "15px",
+                            border: "2px solid red",
+                            margin: "auto",
+                            marginTop: "30px",
+                            background: "#ffe0e0"
+                        }}>
+                            <NutritionPie recipe={recipeData}/>
+                        </div>
+                        <div style={{position: "relative", height: "50px"}}></div>
                     </div>
                 ) :
                 (
@@ -146,18 +160,19 @@ export function ButtonTable({
 
     return (
         <div className={styles.ButtonTable}>
-            <table className={styles.table}>
+            <table>
                 <tbody>
                 <tr>
-                    {user && <td><CommentButton recipe={recipe} setCommentStatus={setCommentStatus}
+
+                    {user && <td style={{position: "relative", top: "-5px"}}><Rating
+                        handleRating={handleRating} spoonacularId={spoonacularId}/></td>}
+                    <td style={{fontSize: "20px"}}>Rating: {rating}</td>
+                    {user && <td style={{position: "relative", paddingLeft: "50px"}}><CommentButton recipe={recipe} setCommentStatus={setCommentStatus}
                                                 setRecipeData={setRecipeData}/></td>}
                     {user && <td style={{position: "relative", paddingLeft: "10px"}}><FavoriteButton recipe={recipe}
                                                                                                      favoriteStatus={favoriteStatus}
                                                                                                      setFavoriteStatus={setFavoriteStatus}/>
                     </td>}
-                    {user && <td style={{position: "relative", top: "-5px", paddingLeft: "20px"}}><Rating
-                        handleRating={handleRating} spoonacularId={spoonacularId}/></td>}
-                    <td>Rating: {rating}</td>
                 </tr>
                 </tbody>
             </table>
