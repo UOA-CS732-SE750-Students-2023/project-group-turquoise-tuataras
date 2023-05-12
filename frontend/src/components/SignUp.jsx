@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { useSignup } from './hooks/useSignup';
+import { useSignup } from '../hooks/useSignup.js';
 
 function SignUp({ show, onHide, setSignUpModalShow}) {
     const [username, setUsername] = useState('');

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import icon from './images/icon.png'
+import icon from '../images/icon.png'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import './App.css';
-import { useLogout } from './hooks/useLogout'
-import { useAuthContext } from './hooks/useAuthContext'
+import './app/App.css';
+import { useLogout } from '../hooks/useLogout.js'
+import { useAuthContext } from '../hooks/useAuthContext.js'
 
 function NavBar({onSignUpShow, onLogInShow}) {
 
@@ -56,7 +56,7 @@ function NavBar({onSignUpShow, onLogInShow}) {
           {user ? (
             <>
               <NavDropdown className="navbar_username" title={user.username} id="basic-nav-dropdown">
-                <NavDropdown.Item href={`profile?user=${user.username}`}>
+                <NavDropdown.Item href={`/profile?user=${user.username}`}>
                     My Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

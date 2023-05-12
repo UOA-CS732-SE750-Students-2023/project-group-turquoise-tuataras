@@ -1,6 +1,6 @@
 import styles from './SavedReceipeCard.module.css';
 import React from 'react'
-import {FavoriteButton} from './FavoriteButton';
+import {FavoriteButton} from '../FavoriteButton.jsx';
 import {Image} from 'antd';
 import {Button, Space} from 'antd';
 import {Link} from 'react-router-dom';

@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import {ListGroup, ListGroupItem, Table} from "react-bootstrap";
 import * as url from "url";
-import {useAuthContext} from './hooks/useAuthContext';
+import {useAuthContext} from '../../hooks/useAuthContext.js';
 
 let inputValue = "-1";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

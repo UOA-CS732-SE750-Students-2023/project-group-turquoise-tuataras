@@ -4,8 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { intolerances } from './intolerances';
-import { useAuthContext } from './hooks/useAuthContext';
+import { intolerances } from '../data/intolerances.js';
+import { useAuthContext } from '../hooks/useAuthContext.js';
 
 const animatedComponents = makeAnimated();
 
