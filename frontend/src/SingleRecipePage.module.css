@@ -66,6 +66,13 @@ h2 {
     font-weight: bold;
 }
 
+h6 {
+    text-align: center;
+    color: gray;
+    font-family: 'Microsoft JhengHei', sans-serif;
+    font-weight: bold;
+}
+
 .Rating {
     border-radius: 8px;
     color: white;

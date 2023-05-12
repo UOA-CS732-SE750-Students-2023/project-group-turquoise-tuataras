@@ -144,7 +144,7 @@ export function ButtonTable({ recipe, setCommentStatus , favoriteStatus , setFav
       <div className={styles.ButtonTable}>
       <table className={styles.table}>
         <div>
-        <h4>Rating {rating}{ user && <Rating handleRating={handleRating} spoonacularId={spoonacularId}/> }</h4>
+        <h6>(Rating {rating}){ user && <Rating handleRating={handleRating} spoonacularId={spoonacularId}/> }</h6>
         </div>
           <div>
                   <tr>
