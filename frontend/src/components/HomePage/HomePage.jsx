@@ -2,10 +2,10 @@ import {ButtonGroup} from "react-bootstrap";
 import style from "./HomePage.module.css";
 import * as basicScroll from "basicscroll";
 import Button from "react-bootstrap/Button";
-import HomeCardGroup from "./HomeCardGroup.jsx";
+import HomeCardGroup from "./HomeCardGroup/HomeCardGroup.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import {useAuthContext} from "./hooks/useAuthContext.js";
+import {useAuthContext} from "../../hooks/useAuthContext.js";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

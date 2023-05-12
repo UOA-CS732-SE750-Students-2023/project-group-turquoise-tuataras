@@ -4,7 +4,7 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { it, describe, expect } from 'vitest';
-import AdvanceSearch from '../AdvanceSearch';
+import AdvanceSearch from '../components/AdvanceSearch.jsx';
 
 const mockAxios = new MockAdapter(axios);
 

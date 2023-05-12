@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import SavedReceipeCard from './SavedReceipeCard';
-import {useAuthContext} from './hooks/useAuthContext';
+import SavedReceipeCard from './SavedRecipeCard/SavedReceipeCard.jsx';
+import {useAuthContext} from '../../hooks/useAuthContext.js';
 import styles from './SavedRecipePage.module.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

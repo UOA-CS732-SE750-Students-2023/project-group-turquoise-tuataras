@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Tooltip, Drawer} from 'antd';
-import Comment from './Comment';
+import Comment from './Comment.jsx';
 
 export function CommentButton({recipe, setCommentStatus, setRecipeData}) {
 

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { AuthContext } from '../context/AuthContext';
 import { it, expect, describe } from 'vitest';
-import Profile from '../Profile';
+import Profile from '../components/Profile.jsx';
 
 describe('Profile', () => {
   it('should render Profile component correctly', () => {

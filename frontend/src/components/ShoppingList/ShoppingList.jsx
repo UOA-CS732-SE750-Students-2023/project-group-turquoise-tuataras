@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {Button, Table} from 'antd';
-import getShoppingListIngredients from "./getShoppingListIngredients";
+import getShoppingListIngredients from "../../data/getShoppingListIngredients.js";
 import styles from './ShoppingList.module.css';
-import {useAuthContext} from "./hooks/useAuthContext";
+import {useAuthContext} from "../../hooks/useAuthContext.js";
 import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

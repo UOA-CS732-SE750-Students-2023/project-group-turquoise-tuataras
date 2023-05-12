@@ -1,22 +1,22 @@
 import './App.css'
-import SavedRecipePage from "./SavedRecipePage";
-import SingleRecipePage from "./SingleRecipePage";
-import ShoppingList from "./ShoppingList";
+import SavedRecipePage from "../SavedRecipePage/SavedRecipePage.jsx";
+import SingleRecipePage from "../SingleRecipePage/SingleRecipePage.jsx";
+import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 import { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './Navbar'
-import SignUp from './SignUp';
-import Login from './Login';
-import Profile from './Profile';
-import AdvanceSearch from './AdvanceSearch';
-import LocationSearch from './LocationSearch';
-import Alerts from './Alerts';
-import { useAuthContext } from './hooks/useAuthContext';
-import MealSchedule from "./MealSchedule.jsx";
-import HomePage from "./HomePage.jsx";
+import Navbar from '../Navbar.jsx'
+import SignUp from '../SignUp.jsx';
+import Login from '../Login.jsx';
+import Profile from '../Profile.jsx';
+import AdvanceSearch from '../AdvanceSearch.jsx';
+import LocationSearch from '../LocationSearch/LocationSearch.jsx';
+import Alerts from '../Alerts.jsx';
+import { useAuthContext } from '../../hooks/useAuthContext.js';
+import MealSchedule from "../MealSchedule/MealSchedule.jsx";
+import HomePage from "../HomePage/HomePage.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
