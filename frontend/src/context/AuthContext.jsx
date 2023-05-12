@@ -2,6 +2,7 @@ import { createContext, useReducer, useEffect, useState } from 'react'
 
 export const AuthContext = createContext()
 
+// Defining the authReducer function to update the authentication context state
 export const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
@@ -36,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
 
     console.log('AuthContext state ', state)
 
+    // Allow children components to access user authentication context value
     return (
         <AuthContext.Provider value={{...state, dispatch}}>
             { children }

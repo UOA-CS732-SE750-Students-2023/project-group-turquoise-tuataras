@@ -93,8 +93,6 @@ function App() {
     })
   }
 
-  // ToDo: Provide feedback when a loading state is present
-  // when loading show a blank screen
   if (loading) {
     return
   }
