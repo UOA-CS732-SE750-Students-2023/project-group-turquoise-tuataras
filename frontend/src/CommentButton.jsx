@@ -17,8 +17,7 @@ export function CommentButton({recipe, setCommentStatus, setRecipeData}) {
   
     return (
     <Tooltip title="Show Comments">
-        <Button type="primary" onClick={showDrawer}  
-            style={{ background: "#20a4da"}}>Comments</Button>
+        <Button type="primary" onClick={showDrawer} ghost>Comments</Button>
   
         <Drawer title="Comments:" placement="right" onClose={onClose} open={open}>
             <Comment recipe = {recipe} setCommentStatus = {setCommentStatus} setRecipeData = {setRecipeData}/>

@@ -45,7 +45,7 @@ export function FavoriteButton({ recipe , favoriteStatus , setFavoriteStatus}) {
         style={{width:"6rem"}} ghost danger>Remove</Button>
         :
         <Button type="primary" onClick={insertSavedRecipe}  
-        style={{width:"6rem"}} ghost>Add</Button>
+        style={{width:"6rem", color:"green",borderColor:"green"}} ghost>Save</Button>
     )
   } 
 
