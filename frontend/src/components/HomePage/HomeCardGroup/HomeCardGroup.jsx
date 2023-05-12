@@ -26,7 +26,7 @@ function homeCardGroup(props) {
                                                       onClick={() => recipe(item.id)}>
                     <Card.Img variant="top" height="160rem" src={item.image}/>
                     <Card.Body>
-                        <Card.Title style={{fontSize: "16px", textAlign: "left"}}>
+                        <Card.Title style={{position:"relative",top:"5px",fontSize: "16px", textAlign: "left"}}>
                             <div className={style.card_group_content_fix}>
                                 {item.title}
                                 <div className={style.card_group_content}>
