@@ -1,11 +1,11 @@
 import * as dotenv from 'dotenv'
 dotenv.config();
 import mongoose from 'mongoose';
-import { User } from './user-schema';
-import { Recipe } from './recipe-schema';
-import { DayMealPlan } from './day-meal-plan-schema';
+import { User } from './schema/user-schema';
+import { Recipe } from './schema/recipe-schema';
+import { DayMealPlan } from './schema/day-meal-plan-schema';
 import recipe from '../database/init-recipe.json' assert { type: "json" };
-import { signupUser } from './dao/user-dao.js';
+import { signupUser } from './dao/user-dao';
 
 async function run() {
     console.log(`Connecting to database at ${process.env.MONGODB_CONNECTION_STRING}...`);
