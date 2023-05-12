@@ -31,7 +31,7 @@ function MealSchedule() {
     }
     // shopping list
     const funShopping = () => {
-        window.location.href = "./shoppingList";
+        window.location.href = "./shopping-list";
     }
     // function add
     const funAdd = () => {

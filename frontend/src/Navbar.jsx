@@ -38,10 +38,10 @@ function NavBar({onSignUpShow, onLogInShow}) {
         <Nav className="me-auto">
           {user && (
             <>
-              <Nav.Link href={user ? "saved-recipes" : null} className="navbar_link">
+              <Nav.Link href={user ? "/saved-recipes" : null} className="navbar_link">
                 Saved Recipes
               </Nav.Link>
-              <Nav.Link href={user ? "meal-schedule" : null} className="navbar_link">
+              <Nav.Link href={user ? "/meal-schedule" : null} className="navbar_link">
                 Meal Schedule
               </Nav.Link>
             </>

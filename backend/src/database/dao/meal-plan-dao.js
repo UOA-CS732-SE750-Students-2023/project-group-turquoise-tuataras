@@ -21,10 +21,7 @@ async function getShoppingListByUserAndCurrentWeek(userId, start, end) {
         }
     }).populate('recipe');
 
-    return dayMealPlans.map((dayMealPlan) => ({
-        dateTime: dayMealPlan.dateTime,
-        recipes: dayMealPlan.recipe,
-    }));
+    return dayMealPlans.flatMap((dayMealPlan) => dayMealPlan.recipe);
 }
 
 async function createDayMealPlan(dayMealPlan) {
